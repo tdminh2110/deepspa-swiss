@@ -1,0 +1,38 @@
+<div class="row mb-3">
+    <div class="col-3"><button id="BackListTests" type="button" class="btn btn-outline-primary btn-sm btn-block">Back</button></div>
+    <div class="col-9"><h4 class="session" style="font-style:italic"><span style="font-weight:bold;color:slateblue"><%= session_name %></span> - <span style="font-weight:bold;color:red">ENTRETIENS</span></h4></div>
+</div>
+<%  [
+        [
+            {
+                id: "Test03_NegPosQ", name: "Naration Pos/Neg", checked: test_negposq
+            },
+            {
+                id: "Test26_Entr_Clin", name: "Entretien Clinique", checked: test_entr_clin
+            }
+        ],[
+            {
+                id: "Test26_Raconter", name: "Raconter une journée", checked: test_raconter_journee
+            },
+            {
+                id: "Test26_Historique", name: "Historique du patient", checked: test_historique
+            }
+        ],[
+            {
+                id: "Test26_Conclusions", name: "Conclusions", checked: test_conclusions
+            },
+            {
+                id: "Test30_MEMPHESTO_Interview", name: "MEMPHESTO Interview", checked: test_memphesto_interview
+            }
+        ]
+    ].forEach(function(row) { %>
+        <div class="row">
+    <%  row.forEach(function(cell) { %>
+            <div class="col-6 mb-2" id="listOfTests">
+                <button id="<%= cell.id %>" type="button" class="btn <% if (cell.checked) { %>btn-secondary<% } else {%> btn-primary <% } %> btn-md btn-block">
+                    <% if (cell.checked) { %><i class="fas fa-check"></i><% } %> <%= cell.name %>
+                </button>                
+            </div>
+    <%  }); %>
+        </div>
+<%  }); %>

@@ -1,0 +1,2363 @@
+<%- include('../includes/head.ejs') %>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-1">
+                    <a href="/clinician/report-tests-effectues?idsession=<%= id_session %>"><img src="/images/icons/retour.png" alt="Edit" height="40" width="63"></a>
+                </div>
+                <div class="col-11">
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="font-weight-bold text-success">Patient: <%= patient_family_name %> <%= patient_name %></h5>
+                        </div>                                                
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="font-weight-bold text-success">
+                                Session <%= session_created_date.slice(0,2) %>/<%= session_created_date.slice(2,4) %>/<%= session_created_date.slice(4) %>
+                            </h5>
+                        </div>                                                
+                    </div>
+                    <% if (mmse_active == 1) { %>
+                    <div class="row mt-3">
+                        <div class="col-12"><h5 class="font-weight-bold text-primary">Tests: MMSE</h5><hr /></div>                                                                        
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <table class="table table-borderless">      
+                            <tr>
+                                <td><h5 class="font-weight-bold">Total: <%= mmse_total %></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5 class="font-weight-bold">Orientation temporelle: <%= mmse_orientation_temporelle %></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5 class="font-weight-bold">Orientation spatiale: <%= mmse_orientation_spatiale %></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5 class="font-weight-bold">Liste choisie: <%= mmse_list_number %></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5 class="font-weight-bold">Apprentissage: <%= mmse_apprentissage %></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5 class="font-weight-bold">Attention et calcul: <%= mmse_attention_et_calcul %></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5 class="font-weight-bold">Rappel: <%= mmse_rappel %></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5 class="font-weight-bold">Langage: <%= mmse_langage %></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5 class="font-weight-bold">Praxies constructives: <%= mmse_praxies_constructives %></h5></td>                                
+                            </tr>
+                            </table>                            
+                        </div>
+                        <div class="col-6">
+                            <table class="table table-borderless">      
+                            <tr>
+                                <td><h5 class="font-weight-bold">Commentaires:</h5></td>                                
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table class="table table-bordered">
+                                    <tr>
+                                        <td><h6><%= mmse_commentaires %></h6></td>                                
+                                    </tr>
+                                    </table>
+                                </td>                                
+                            </tr>
+                            <tr>
+                                <td><h5 class="font-weight-bold">Video: <% if (mmse_path_video != "") { %> OUI <% } else { %> NON <% } %></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <% if (mmse_path_video != "") { %>
+                                    <video width="500" controls>
+                                        <source src="<%= mmse_path_video %>" type="video/webm">                                                
+                                    </video>
+                                    <% } %>
+                                </td>                                
+                            </tr>                            
+                            </table>                            
+                        </div>
+                    </div>
+                    <% } %>
+                    <% if (do80_active == 1) { %>
+                    <div class="row mt-3">
+                        <div class="col-12"><h5 class="font-weight-bold text-primary">Test DO80</h5><hr /></div>                                                                        
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <table class="table table-borderless">      
+                            <tr>
+                                <td><h5 class="font-weight-bold">Score 1 = <%= do80_score_1 %> / 80</h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5 class="font-weight-bold">Score 2 = <%= do80_score_2 %> / 80</h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5 class="font-weight-bold">Fichier audio: OUI</h5></td>                                
+                            </tr>
+                            </table>
+                        </div>
+                        <div class="col-6">
+                            <table class="table table-borderless">      
+                            <tr>
+                                <td><h5 class="font-weight-bold">Audio:</h5></td>                                
+                            </tr>
+                            <tr>
+                                <td>
+                                    <audio controls>
+                                        <source src="<%= do80_path_audio %>" type="audio/webm">                                                
+                                    </audio>
+                                </td>                                
+                            </tr>                            
+                            </table>                            
+                        </div>                                                
+                    </div>
+                    <% } %>
+                    <% if (deno_lexis_active == 1) { %>
+                    <div class="row mt-3">
+                        <div class="col-12"><h5 class="font-weight-bold text-primary">Test: Dénomination lexicale</h5><hr /></div>                                                                        
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <table class="table table-borderless">      
+                            <tr>
+                                <td><h5 class="font-weight-bold">Score 1 = <%= deno_lexis_score_1 %> / 64</h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5 class="font-weight-bold">Score 2 = <%= deno_lexis_score_2 %> / 64</h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5 class="font-weight-bold">Fichier audio: OUI</h5></td>                                
+                            </tr>
+                            </table>
+                        </div>
+                        <div class="col-6">
+                            <table class="table table-borderless">      
+                            <tr>
+                                <td><h5 class="font-weight-bold">Audio:</h5></td>                                
+                            </tr>
+                            <tr>
+                                <td>
+                                    <audio controls>
+                                        <source src="<%= deno_lexis_path_audio %>" type="audio/webm">                                                
+                                    </audio>
+                                </td>                                
+                            </tr>                            
+                            </table>                            
+                        </div>                                                
+                    </div>
+                    <% } %>
+                    <% if (portes_active == 1) { %>
+                    <div class="row mt-3">
+                        <div class="col-12"><h5 class="font-weight-bold text-primary">Test des portes</h5><hr /></div>                                                                        
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <table class="table table-borderless">      
+                            <tr>
+                                <td><h5 class="font-weight-bold">Score Partie A = <%= portes_score_partie_a %></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5 class="font-weight-bold">Score Partie B = <%= portes_score_partie_b %></h5></td>                                
+                            </tr>                            
+                            </table>
+                        </div>                                                                        
+                    </div>
+                    <% } %>
+                    <% if (gro_bus_active == 1) {%>
+                    <div class="row mt-3">
+                        <div class="col-12"><h5 class="font-weight-bold text-primary">Test de Grober et Buschke</h5><hr /></div>                                                                        
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="row">
+                                <div class="col-12"><h6 class="font-weight-bold">LISTE CHOISIE:</h6> <h6><% if (gro_bus_list_number == 1) { %> Gillet <% } else if (gro_bus_list_number == 2) { %> Bonnet <% } %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6 class="font-weight-bold">RAPPEL IMMEDIAT</h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Total = <%= gro_bus_rappel_immediat_1 + gro_bus_rappel_immediat_2 + gro_bus_rappel_immediat_3 + gro_bus_rappel_immediat_4 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6 class="font-weight-bold">1. Rappel Immédiat 1:</h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Total = <%= gro_bus_rappel_immediat_1 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Intrusions = <%= gro_bus_rappel_immediat_intrusions_1 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Persévérance: <%= gro_bus_rappel_immediat_perseverations_1 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6 class="font-weight-bold">2. Rappel Immédiat 2:</h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Total = <%= gro_bus_rappel_immediat_2 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Intrusions = <%= gro_bus_rappel_immediat_intrusions_2 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Persévérance: <%= gro_bus_rappel_immediat_perseverations_2 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6 class="font-weight-bold">3. Rappel Immédiat 3:</h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Total = <%= gro_bus_rappel_immediat_3 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Intrusions = <%= gro_bus_rappel_immediat_intrusions_3 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Persévérance: <%= gro_bus_rappel_immediat_perseverations_3 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6 class="font-weight-bold">4. Rappel Immédiat 4:</h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Total = <%= gro_bus_rappel_immediat_4 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Intrusions = <%= gro_bus_rappel_immediat_intrusions_4 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Persévérance: <%= gro_bus_rappel_immediat_perseverations_4 %></h6></div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="row">
+                                <div class="col-12"><h6 class="font-weight-bold">RAPPEL LIBRE ET INDICE</h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Total = <%= gro_bus_rappel_first_rl + gro_bus_rappel_first_ri + gro_bus_rappel_second_rl + gro_bus_rappel_second_ri + gro_bus_rappel_third_rl + gro_bus_rappel_third_ri %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Total Libre = <%= gro_bus_rappel_first_rl + gro_bus_rappel_second_rl + gro_bus_rappel_third_rl %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Total Indicé = <%= gro_bus_rappel_first_ri + gro_bus_rappel_second_ri + gro_bus_rappel_third_ri %></h6></div>                                
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6 class="font-weight-bold">1<sup>er</sup> Rappel:</h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Total = <%= gro_bus_rappel_first_rl + gro_bus_rappel_first_ri %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Libre = <%= gro_bus_rappel_first_rl %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Libre Intrusions = <%= gro_bus_rappel_first_intrusions_1 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Libre Persévérance = <%= gro_bus_rappel_first_perseverations_1 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Indicé = <%= gro_bus_rappel_first_ri %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Indicé Intrusions = <%= gro_bus_rappel_first_intrusions_2 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Indicé Persévérance = <%= gro_bus_rappel_first_perseverations_2 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6 class="font-weight-bold">2<sup>eme</sup> Rappel:</h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Total = <%= gro_bus_rappel_second_rl + gro_bus_rappel_second_ri %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Libre = <%= gro_bus_rappel_second_rl %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Libre Intrusions = <%= gro_bus_rappel_second_intrusions_1 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Libre Persévérance = <%= gro_bus_rappel_second_perseverations_1 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Indicé = <%= gro_bus_rappel_second_ri %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Indicé Intrusions = <%= gro_bus_rappel_second_intrusions_2 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Indicé Persévérance = <%= gro_bus_rappel_second_perseverations_2 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6 class="font-weight-bold">3<sup>eme</sup> Rappel:</h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Total = <%= gro_bus_rappel_third_rl + gro_bus_rappel_third_ri %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Libre = <%= gro_bus_rappel_third_rl %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Libre Intrusions = <%= gro_bus_rappel_third_intrusions_1 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Libre Persévérance = <%= gro_bus_rappel_third_perseverations_1 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Indicé = <%= gro_bus_rappel_third_ri %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Indicé Intrusions = <%= gro_bus_rappel_third_intrusions_2 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Indicé Persévérance = <%= gro_bus_rappel_third_perseverations_2 %></h6></div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="row">
+                                <div class="col-12"><h6 class="font-weight-bold">RAPPEL DIFFÉRÉ</h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Total = <%= gro_bus_rappel_differe_rl + gro_bus_rappel_differe_ri %></h6></div>
+                            </div>                            
+                            <div class="row">
+                                <div class="col-12"><h6>Libre = <%= gro_bus_rappel_differe_rl %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Libre Intrusions = <%= gro_bus_rappel_differe_intrusions_1 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Libre Persévérance = <%= gro_bus_rappel_differe_perseverations_1 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Indicé = <%= gro_bus_rappel_differe_ri %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Indicé Intrusions = <%= gro_bus_rappel_differe_intrusions_2 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Indicé Persévérance = <%= gro_bus_rappel_differe_perseverations_2 %></h6></div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="row">
+                                <div class="col-12"><h6 class="font-weight-bold">RECONNAISSANCE</h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Corrrect = <%= gro_bus_recognized_correct_words %></h6></div>
+                            </div>                            
+                            <div class="row">
+                                <div class="col-12"><h6>Faux = <%= gro_bus_recognized_wrong_words %> <%= gro_bus_list_recognized_wrong_words %></h6></div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12"><h6 class="font-weight-bold">COMMENTAIRES</h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <table class="table table-bordered">
+                                    <tr>
+                                        <td><h6><%= gro_bus_commentaires %></h6></td>                                
+                                    </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6 class="font-weight-bold">AUDIO:</h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6 class="font-weight-bold">1<sup>er</sup> Rappel:</h6></div>
+                            </div>           
+                            <div class="row">
+                                <div class="col-12">
+                                    <% if (gro_bus_path_audio_1 != "") { %>
+                                    <audio controls>
+                                        <source src="<%= gro_bus_path_audio_1 %>" type="audio/webm">                                                
+                                    </audio>
+                                    <% } %>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12"><h6 class="font-weight-bold">2<sup>eme</sup> Rappel:</h6></div>
+                            </div>           
+                            <div class="row">
+                                <div class="col-12">
+                                    <% if (gro_bus_path_audio_2 != "") { %>
+                                    <audio controls>
+                                        <source src="<%= gro_bus_path_audio_2 %>" type="audio/webm">                                                
+                                    </audio>
+                                    <% } %>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12"><h6 class="font-weight-bold">3<sup>eme</sup> Rappel:</h6></div>
+                            </div>           
+                            <div class="row">
+                                <div class="col-12">
+                                    <% if (gro_bus_path_audio_3 != "") { %>
+                                    <audio controls>
+                                        <source src="<%= gro_bus_path_audio_3 %>" type="audio/webm">                                                
+                                    </audio>
+                                    <% } %>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12"><h6 class="font-weight-bold">4<sup>eme</sup> Rappel:</h6></div>
+                            </div>           
+                            <div class="row">
+                                <div class="col-12">
+                                    <% if (gro_bus_path_audio_4 != "") { %>
+                                    <audio controls>
+                                        <source src="<%= gro_bus_path_audio_4 %>" type="audio/webm">                                                
+                                    </audio>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>                    
+                    <% if (fvlex_active == 1) { %>
+                    <div class="row mt-3">
+                        <div class="col-12"><h5 class="font-weight-bold text-primary">Fluence Verbale Lexicale</h5><hr /></div>                                                                        
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-12"><h5 class="font-weight-bold">Lettre P:</h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Durée = <%= fvlex_p_duree %></h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Réponses = <%= fvlex_p_reponses %></h5></div>                                    
+                            </div>  
+                            <div class="row">
+                                <div class="col-12"><h5>Intrusions = <%= fvlex_p_intrusions %></h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Oublis à Mesure = <%= fvlex_p_oublis_a_mesure %></h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Erreurs = <%= fvlex_p_erreurs %></h5></div>                                    
+                            </div>                      
+                            <div class="row mt-3">
+                                <div class="col-12"><h5>Commentaire:</h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <table class="table table-bordered">
+                                    <tr>
+                                        <td><%= fvlex_p_text_zone %></td>                                
+                                    </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12">
+                                    <% if (fvlex_path_video_p != "") { %>
+                                    <video width="500" controls>
+                                        <source src="<%= fvlex_path_video_p %>" type="video/webm">                                                
+                                    </video>
+                                    <% } %>
+                                </div>
+                            </div>                                                 
+                        </div>
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-12"><h5 class="font-weight-bold">Lettre R:</h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Durée = <%= fvlex_r_duree %></h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Réponses = <%= fvlex_r_reponses %></h5></div>                                    
+                            </div>  
+                            <div class="row">
+                                <div class="col-12"><h5>Intrusions = <%= fvlex_r_intrusions %></h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Oublis à Mesure = <%= fvlex_r_oublis_a_mesure %></h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Erreurs = <%= fvlex_r_erreurs %></h5></div>                                    
+                            </div>                            
+                            <div class="row mt-3">
+                                <div class="col-12"><h5>Commentaire:</h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <table class="table table-bordered">
+                                    <tr>
+                                        <td><%= fvlex_r_text_zone %></td>                                
+                                    </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12">
+                                    <% if (fvlex_path_video_r != "") { %>
+                                    <video width="500" controls>
+                                        <source src="<%= fvlex_path_video_r %>" type="video/webm">                                                
+                                    </video>
+                                    <% } %>
+                                </div>
+                            </div>                                                                            
+                        </div>
+                    </div>   
+                    <% } %>
+                    <% if (fvsem_active == 1) { %>
+                    <div class="row mt-3">
+                        <div class="col-12"><h5 class="font-weight-bold text-primary">Fluence Verbale Sémantique</h5><hr /></div>                                                                        
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-12"><h5 class="font-weight-bold">Animaux:</h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Durée = <%= fvsem_animaux_duree %></h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Réponses = <%= fvsem_animaux_reponses %></h5></div>                                    
+                            </div>  
+                            <div class="row">
+                                <div class="col-12"><h5>Intrusions = <%= fvsem_animaux_intrusions %></h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Oublis à Mesure = <%= fvsem_animaux_oublis_a_mesure %></h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Erreurs = <%= fvsem_animaux_erreurs %></h5></div>                                    
+                            </div>                            
+                            <div class="row mt-3">
+                                <div class="col-12"><h5>Commentaire:</h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <table class="table table-bordered">
+                                    <tr>
+                                        <td><%= fvsem_animaux_text_zone %></td>                                
+                                    </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12">
+                                    <% if (fvsem_path_video_animaux != "") { %>
+                                    <video width="500" controls>
+                                        <source src="<%= fvsem_path_video_animaux %>" type="video/webm">                                                
+                                    </video>
+                                    <% } %>
+                                </div>
+                            </div>                                                 
+                        </div>
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-12"><h5 class="font-weight-bold">Fruits:</h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Durée = <%= fvsem_fruits_duree %></h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Réponses = <%= fvsem_fruits_reponses %></h5></div>                                    
+                            </div>  
+                            <div class="row">
+                                <div class="col-12"><h5>Intrusions = <%= fvsem_fruits_intrusions %></h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Oublis à Mesure = <%= fvsem_fruits_oublis_a_mesure %></h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Erreurs = <%= fvsem_fruits_erreurs %></h5></div>                                    
+                            </div>                            
+                            <div class="row mt-3">
+                                <div class="col-12"><h5>Commentaire:</h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <table class="table table-bordered">
+                                    <tr>
+                                        <td><%= fvsem_fruits_text_zone %></td>                                
+                                    </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12">
+                                    <% if (fvsem_path_video_fruits != "") { %>
+                                    <video width="500" controls>
+                                        <source src="<%= fvsem_path_video_fruits %>" type="video/webm">                                                
+                                    </video>
+                                    <% } %>
+                                </div>
+                            </div>                                                                            
+                        </div>
+                    </div>   
+                    <% } %>
+                    <% if (fivemots_active == 1) { %>
+                    <div class="row mt-3">
+                        <div class="col-12"><h5 class="font-weight-bold text-primary">Test des 5 Mots</h5><hr /></div>                                                                        
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-12"><h5>LISTE CHOISIE: <%= fivemots_list_choice %></div>                                    
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12"><h5>Score total = <%= fivemots_score_total %> / 10</h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Rappel Immédiat = <%= fivemots_rappel_immediat %> [<%= fivemots_Ri %>, <%= fivemots_Ri1 %>, <%= fivemots_Ri2 %>]</h5></div>                                    
+                            </div>  
+                            <div class="row">
+                                <div class="col-12"><h5>Rappel Immédiat Indicé 1 = <%= fivemots_Ri1 %></h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Rappel Immédiat Indicé 2 = <%= fivemots_Ri2 %></h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Rappel Différé = <%= fivemots_rappel_differe %> [<%= fivemots_Rd %>, <%= fivemots_Rd1 %>]</h5></div>                                    
+                            </div>   
+                            <div class="row">
+                                <div class="col-12"><h5>Rappel Différé Indicé = <%= fivemots_Rd1 %></h5></div>                                    
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-12"><h5>Audio Partie 1:</h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <% if (fivemots_path_audio_1 != "") { %>
+                                    <audio controls>
+                                        <source src="<%= fivemots_path_audio_1 %>" type="audio/webm">                                                
+                                    </audio>
+                                    <% } %>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12"><h5>Audio Partie 2:</h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <% if (fivemots_path_audio_2 != "") { %>
+                                    <audio controls>
+                                        <source src="<%= fivemots_path_audio_2 %>" type="audio/webm">                                                
+                                    </audio>
+                                    <% } %>
+                                </div>
+                            </div>                                                  
+                        </div>
+                    </div>    
+                    <% } %>
+                    <% if (pra_ges_active == 1) { %>
+                    <div class="row mt-3">
+                        <div class="col-12"><h5 class="font-weight-bold text-primary">Praxis Gestuelles</h5><hr /></div>                                                                        
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-12"><h5>Total = <%= pra_ges_total %></h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Praxies Gestuelles Symboliques = <%= pra_ges_praxies_gestuelles_symboliques %></h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Praxies Gestuelles Mimes d’Actions = <%= pra_ges_praxies_gestuelles_mimes_d_actions %></h5></div>                                    
+                            </div>  
+                            <div class="row">
+                                <div class="col-12"><h5>Gestes Abstraits = <%= pra_ges_gestes_abstraits %></h5></div>                                    
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12"><h5>Commentaire:</h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <table class="table table-bordered">
+                                    <tr>
+                                        <td><%= pra_ges_commentaires %></td>                                
+                                    </tr>
+                                    </table>
+                                </div>                                    
+                            </div>                                                  
+                        </div>
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-12">Vidéo:</div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <% if (pra_ges_path_video != "") { %>
+                                    <video width="500" controls>
+                                        <source src="<%= pra_ges_path_video %>" type="video/webm">                                                
+                                    </video>
+                                    <% } %>
+                                </div>
+                            </div>                                                                           
+                        </div>
+                    </div>    
+                    <% } %>
+                    <% if (empan_active == 1) { %>
+                    <div class="row mt-3">
+                        <div class="col-12"><h5 class="font-weight-bold text-primary">Empan de Chiffres</h5><hr /></div>                                                                        
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-12"><h5>Ordre direct = <%= empan_ordre_direct %></h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Ordre indirect = <%= empan_ordre_indirect %></h5></div>                                    
+                            </div>                                                                         
+                        </div>
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-12"><h5>Audio:</h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <% if (empan_path_audio != "") { %>
+                                    <audio controls>
+                                        <source src="<%= empan_path_audio %>" type="audio/webm">                                                
+                                    </audio>
+                                    <% } %>
+                                </div>
+                            </div>                                        
+                        </div>
+                    </div>
+                    <% } %>
+                    <% if (bdae_ctpd_active == 1) { %>
+                    <div class="row mt-3">
+                        <div class="col-12"><h5 class="font-weight-bold text-primary">Description d’Image</h5><hr /></div>                                                                        
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <table class="table table-borderless">
+                            <tr>
+                                <td class="text-center">
+                                    <video width="600" controls>
+                                        <source src="<%= bdae_ctpd_path_video %>" type="video/webm">                                                
+                                    </video>
+                                </td>                                
+                            </tr>                            
+                            </table>                            
+                        </div>
+                    </div>
+                    <% } %>
+                    <% if (stroop_active == 1) { %>
+                    <div class="row mt-3">
+                        <div class="col-12"><h5 class="font-weight-bold text-primary">Test de Stroop GREFEX</h5><hr /></div>                                                                        
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-12"><h5 class="font-weight-bold">Planche 1: Couleur</h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Durée = <%= stroop_duree_1 %></h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Nombre d’erreurs = <%= stroop_nombre_d_erreurs_1 %></h5></div>                                    
+                            </div>  
+                            <div class="row">
+                                <div class="col-12"><h5>Nombre d’erreurs corrigées = <%= stroop_nombre_d_erreurs_corrigees_1 %></h5></div>                                    
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12"><h5 class="font-weight-bold">Planche 2: Mots</h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Durée = <%= stroop_duree_2 %></h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Nombre d’erreurs = <%= stroop_nombre_d_erreurs_2 %></h5></div>                                    
+                            </div>  
+                            <div class="row">
+                                <div class="col-12"><h5>Nombre d’erreurs corrigées = <%= stroop_nombre_d_erreurs_corrigees_2 %></h5></div>                                    
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12"><h5 class="font-weight-bold">Planche 3: Interférences</h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Durée = <%= stroop_duree_3 %></h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Nombre d’erreurs = <%= stroop_nombre_d_erreurs_3 %></h5></div>                                    
+                            </div>  
+                            <div class="row">
+                                <div class="col-12"><h5>Nombre d’erreurs corrigées = <%= stroop_nombre_d_erreurs_corrigees_3 %></h5></div>                                    
+                            </div>                                                  
+                        </div>
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-12"><h5>Audio Couleurs:</h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <% if (stroop_path_audio_1 != "") { %>
+                                    <audio controls>
+                                        <source src="<%= stroop_path_audio_1 %>" type="audio/webm">                                                
+                                    </audio>
+                                    <% } %>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12"><h5>Audio Mots:</h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <% if (stroop_path_audio_2 != "") { %>
+                                    <audio controls>
+                                        <source src="<%= stroop_path_audio_2 %>" type="audio/webm">                                                
+                                    </audio>
+                                    <% } %>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12"><h5>Audio Interférences:</h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <% if (stroop_path_audio_3 != "") { %>
+                                    <audio controls>
+                                        <source src="<%= stroop_path_audio_3 %>" type="audio/webm">                                                
+                                    </audio>
+                                    <% } %>
+                                </div>
+                            </div>                                       
+                        </div>
+                    </div>   
+                    <% } %>                    
+                    <% if (stroop_vectoria_active == 1) { %>
+                    <div class="row mt-3">
+                        <div class="col-12"><h5 class="font-weight-bold text-primary">Test de Stroop Vectoria</h5><hr /></div>                                                                        
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-12"><h5 class="font-weight-bold">Planche 1: Couleur</h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Durée = <%= stroop_vectoria_duree_1 %></h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Nombre d’erreurs = <%= stroop_vectoria_nombre_d_erreurs_1 %></h5></div>                                    
+                            </div>  
+                            <div class="row">
+                                <div class="col-12"><h5>Nombre d’erreurs corrigées = <%= stroop_vectoria_nombre_d_erreurs_corrigees_1 %></h5></div>                                    
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12"><h5 class="font-weight-bold">Planche 2: Mots</h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Durée = <%= stroop_vectoria_duree_2 %></h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Nombre d’erreurs = <%= stroop_vectoria_nombre_d_erreurs_2 %></h5></div>                                    
+                            </div>  
+                            <div class="row">
+                                <div class="col-12"><h5>Nombre d’erreurs corrigées = <%= stroop_vectoria_nombre_d_erreurs_corrigees_2 %></h5></div>                                    
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12"><h5 class="font-weight-bold">Planche 3: Interférences</h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Durée = <%= stroop_vectoria_duree_3 %></h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Nombre d’erreurs = <%= stroop_vectoria_nombre_d_erreurs_3 %></h5></div>                                    
+                            </div>  
+                            <div class="row">
+                                <div class="col-12"><h5>Nombre d’erreurs corrigées = <%= stroop_vectoria_nombre_d_erreurs_corrigees_3 %></h5></div>                                    
+                            </div>                                                  
+                        </div>
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-12"><h5>Audio Couleurs:</h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <% if (stroop_vectoria_path_audio_1 != "") { %>
+                                    <audio controls>
+                                        <source src="<%= stroop_vectoria_path_audio_1 %>" type="audio/webm">                                                
+                                    </audio>
+                                    <% } %>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12"><h5>Audio Mots:</h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <% if (stroop_vectoria_path_audio_2 != "") { %>
+                                    <audio controls>
+                                        <source src="<%= stroop_vectoria_path_audio_2 %>" type="audio/webm">                                                
+                                    </audio>
+                                    <% } %>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12"><h5>Audio Interférences:</h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <% if (stroop_vectoria_path_audio_3 != "") { %>
+                                    <audio controls>
+                                        <source src="<%= stroop_vectoria_path_audio_3 %>" type="audio/webm">                                                
+                                    </audio>
+                                    <% } %>
+                                </div>
+                            </div>                                       
+                        </div>
+                    </div>   
+                    <% } %>
+                    <% if (geria_12_active == 1) {%>
+                    <div class="row mt-3">
+                        <div class="col-12"><h5 class="font-weight-bold text-primary">Test de GERIA-12</h5><hr /></div>                                                                        
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="row">
+                                <div class="col-12"><h6 class="font-weight-bold">RAPPEL IMMEDIAT</h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Total = <%= geria_12_rappel_immediat_1 + geria_12_rappel_immediat_2 + geria_12_rappel_immediat_3 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6 class="font-weight-bold">1. Rappel Immédiat 1:</h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Total = <%= geria_12_rappel_immediat_1 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Intrusions = <%= geria_12_rappel_immediat_intrusions_1 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Persévérance: <%= geria_12_rappel_immediat_perseverations_1 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6 class="font-weight-bold">2. Rappel Immédiat 2:</h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Total = <%= geria_12_rappel_immediat_2 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Intrusions = <%= geria_12_rappel_immediat_intrusions_2 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Persévérance: <%= geria_12_rappel_immediat_perseverations_2 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6 class="font-weight-bold">3. Rappel Immédiat 3:</h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Total = <%= geria_12_rappel_immediat_3 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Intrusions = <%= geria_12_rappel_immediat_intrusions_3 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Persévérance: <%= geria_12_rappel_immediat_perseverations_3 %></h6></div>
+                            </div>                            
+                        </div>
+                        <div class="col-3">
+                            <div class="row">
+                                <div class="col-12"><h6 class="font-weight-bold">RAPPEL LIBRE ET INDICE</h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Total = <%= geria_12_rappel_first_rl + geria_12_rappel_first_ri + geria_12_rappel_second_rl + geria_12_rappel_second_ri %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Total Libre = <%= geria_12_rappel_first_rl + geria_12_rappel_second_rl %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Total Indicé = <%= geria_12_rappel_first_ri + geria_12_rappel_second_ri %></h6></div>                                
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6 class="font-weight-bold">1<sup>er</sup> Rappel:</h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Total = <%= geria_12_rappel_first_rl + geria_12_rappel_first_ri %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Libre = <%= geria_12_rappel_first_rl %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Libre Intrusions = <%= geria_12_rappel_first_intrusions_1 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Libre Persévérance = <%= geria_12_rappel_first_perseverations_1 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Indicé = <%= geria_12_rappel_first_ri %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Indicé Intrusions = <%= geria_12_rappel_first_intrusions_2 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Indicé Persévérance = <%= geria_12_rappel_first_perseverations_2 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6 class="font-weight-bold">2<sup>eme</sup> Rappel:</h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Total = <%= geria_12_rappel_second_rl + geria_12_rappel_second_ri %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Libre = <%= geria_12_rappel_second_rl %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Libre Intrusions = <%= geria_12_rappel_second_intrusions_1 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Libre Persévérance = <%= geria_12_rappel_second_perseverations_1 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Indicé = <%= geria_12_rappel_second_ri %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Indicé Intrusions = <%= geria_12_rappel_second_intrusions_2 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Indicé Persévérance = <%= geria_12_rappel_second_perseverations_2 %></h6></div>
+                            </div>                            
+                        </div>
+                        <div class="col-3">
+                            <div class="row">
+                                <div class="col-12"><h6 class="font-weight-bold">RAPPEL DIFFÉRÉ</h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Total = <%= geria_12_rappel_differe_rl + geria_12_rappel_differe_ri %></h6></div>
+                            </div>                            
+                            <div class="row">
+                                <div class="col-12"><h6>Libre = <%= geria_12_rappel_differe_rl %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Libre Intrusions = <%= geria_12_rappel_differe_intrusions_1 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Libre Persévérance = <%= geria_12_rappel_differe_perseverations_1 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Indicé = <%= geria_12_rappel_differe_ri %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Indicé Intrusions = <%= geria_12_rappel_differe_intrusions_2 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Indicé Persévérance = <%= geria_12_rappel_differe_perseverations_2 %></h6></div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="row">
+                                <div class="col-12"><h6>Reconnaissances correctes = <%= geria_12_reconnaissance_correctes %></h6></div>
+                            </div>                            
+                            <div class="row">
+                                <div class="col-12"><h6>Acceptation de distracteurs sémantique = <%= geria_12_acceptation_de_distracteurs_semantiques %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Acceptation de distracteurs phonologique = <%= geria_12_acceptation_de_distracteurs_phonologiques %></h6></div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12"><h6 class="font-weight-bold">COMMENTAIRES</h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <table class="table table-bordered">
+                                    <tr>
+                                        <td><h6><%= geria_12_commentaires %></h6></td>                                
+                                    </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6 class="font-weight-bold">AUDIO:</h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6 class="font-weight-bold">1<sup>er</sup> Rappel:</h6></div>
+                            </div>           
+                            <div class="row">
+                                <div class="col-12">
+                                    <% if (geria_12_path_audio_1 != "") { %>
+                                    <audio controls>
+                                        <source src="<%= geria_12_path_audio_1 %>" type="audio/webm">                                                
+                                    </audio>
+                                    <% } %>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12"><h6 class="font-weight-bold">2<sup>eme</sup> Rappel:</h6></div>
+                            </div>           
+                            <div class="row">
+                                <div class="col-12">
+                                    <% if (geria_12_path_audio_2 != "") { %>
+                                    <audio controls>
+                                        <source src="<%= geria_12_path_audio_2 %>" type="audio/webm">                                                
+                                    </audio>
+                                    <% } %>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12"><h6 class="font-weight-bold">3<sup>eme</sup> Rappel:</h6></div>
+                            </div>           
+                            <div class="row">
+                                <div class="col-12">
+                                    <% if (geria_12_path_audio_3 != "") { %>
+                                    <audio controls>
+                                        <source src="<%= geria_12_path_audio_3 %>" type="audio/webm">                                                
+                                    </audio>
+                                    <% } %>
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>
+                    <% } %>
+                    <% if (bref_active == 1) { %>
+                        <div class="row mt-3">
+                            <div class="col-12"><h5 class="font-weight-bold text-primary">Test: BREF</h5><hr /></div>                                                                        
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <table class="table table-borderless">      
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Total: <%= bref_total %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Similitudes = <%= bref_similitudes %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Évocation lexicale - score = <%= bref_evocation_lexicale_score %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Évocation lexicale - compte de mots = <%= bref_evocation_lexicale_compte_de_mots %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Évocation lexicale - temps = <%= bref_evocation_lexicale_temps %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Séquences motrices = <%= bref_sequences_motrices %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Consignes conflictuelles = <%= bref_consignes_conflictuelles %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold">GO - NO GO = <%= bref_go_no_go %></h5></td>                                
+                                </tr>
+                                </table>                            
+                            </div>
+                            <div class="col-6">
+                                <table class="table table-borderless">      
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Commentaires:</h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table class="table table-bordered">
+                                        <tr>
+                                            <td><h6><%= bref_commentaires %></h6></td>                                
+                                        </tr>
+                                        </table>
+                                    </td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Video: <% if (bref_path_video != "") { %> OUI <% } else { %> NON <% } %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <% if (bref_path_video != "") { %>
+                                        <video width="500" controls>
+                                            <source src="<%= bref_path_video %>" type="video/webm">                                                
+                                        </video>
+                                        <% } %>
+                                    </td>                                
+                                </tr>                            
+                                </table>                            
+                            </div>
+                        </div>
+                    <% } %>
+                    <% if (visio_const_active == 1) { %>
+                        <div class="row mt-3">
+                            <div class="col-12"><h5 class="font-weight-bold text-primary">Tests: Visio-Const</h5><hr /></div>                                                                        
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <table class="table table-borderless">      
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Total: <%= visio_const_total %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold">cube = <%= visio_const_cube %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Traingles = <%= visio_const_traingles %></h5></td>                                
+                                </tr>
+                                </table>                            
+                            </div>
+                            <div class="col-6">
+                                <table class="table table-borderless">      
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Commentaires:</h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table class="table table-bordered">
+                                        <tr>
+                                            <td><h6><%= visio_const_commentaires %></h6></td>                                
+                                        </tr>
+                                        </table>
+                                    </td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Video: <% if (visio_const_path_video != "") { %> OUI <% } else { %> NON <% } %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <% if (visio_const_path_video != "") { %>
+                                        <video width="500" controls>
+                                            <source src="<%= visio_const_path_video %>" type="video/webm">                                                
+                                        </video>
+                                        <% } %>
+                                    </td>                                
+                                </tr>                            
+                                </table>                            
+                            </div>
+                        </div>
+                    <% } %>
+                    <% if (dlta_active == 1) { %>
+                        <div class="row mt-3">
+                            <div class="col-12"><h5 class="font-weight-bold text-primary">Tests: DTLA</h5><hr /></div>                                                                        
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <table class="table table-borderless">      
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Total: <%= dlta_total %> / 100</h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold">1. Dénomination = <%= dlta_denomination %> / 12</h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold">2. Répétition = <%= dlta_repetition %> / 18</h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold">3. Fluence verbal = <%= dlta_fluence_verbale_score %> / 15 [<%= dlta_fluence_verbale_time %> seconds]</h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold">4. Alpha-Span = <%= dlta_alpha_span %> / 5</h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold">5. Lecture = <%= dlta_lecture %> / 6</h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold">6. Compréhension de phrases = <%= dlta_comprehension_de_phrases %> / 12</h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold">7. Dictée = <%= dlta_dictee %> / 12</h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold">8. Ecriture Spontanée = <%= dlta_ecriture_spontanee %> / 4</h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Ecriture Spontanée Phrase: <%= dlta_ecriture_spontanee_phrase %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold">9. Appariement sémantique = <%= dlta_appariement_semantique %> / 16</h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Trouble articulatoires = <%= dlta_trouble_articulatoires %></h5></td>                                
+                                </tr>
+                                </table>                            
+                            </div>
+                            <div class="col-6">
+                                <table class="table table-borderless">      
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Commentaires:</h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table class="table table-bordered">
+                                        <tr>
+                                            <td><h6><%= dlta_commentaires %></h6></td>                                
+                                        </tr>
+                                        </table>
+                                    </td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Video: <% if (dlta_path_video != "") { %> OUI <% } else { %> NON <% } %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <% if (dlta_path_video != "") { %>
+                                        <video width="500" controls>
+                                            <source src="<%= path_video %>" type="video/webm">                                                
+                                        </video>
+                                        <% } %>
+                                    </td>                                
+                                </tr>                            
+                                </table>                            
+                            </div>
+                        </div>
+                    <% } %>
+                    <% if (gri_ams_active == 1) { %>
+                        <div class="row mt-3">
+                            <div class="col-12"><h5 class="font-weight-bold text-primary">Grille D’Amsler</h5><hr /></div>                                                                        
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-12"><h5>Problème œil Gauche: <%= gri_ams_po_g == 1 ? 'OUI' : 'NON' %></h5></div>                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-12"><h5>Problème œil droit: <%= gri_ams_po_d == 1 ? 'OUI' : 'NON' %></h5></div>                                    
+                                </div>                            
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-12"><h5>Commentaires:</h5></div>                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <table class="table table-bordered">
+                                        <tr>
+                                            <td><%= gri_ams_commentaires %></td>                                
+                                        </tr>
+                                        </table>
+                                    </div>
+                                </div>                                                                 
+                            </div>
+                        </div>
+                    <% } %>
+                    <% if (inv_apa_active == 1) { %>
+                        <div class="row mt-3">
+                            <div class="col-12"><h5 class="font-weight-bold text-primary">Inventaire Apathie</h5><hr /></div>                                                                        
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-12"><h5>Total = <%= inv_apa_emoussement_affectif + inv_apa_perte_d_initiative + inv_apa_perte_d_interet %></h5></div>                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-12"><h5>Emoussement Affectif = <%= inv_apa_emoussement_affectif %></h5></div>                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-12"><h5>Perte d’Initiative = <%= inv_apa_perte_d_initiative %></h5></div>                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-12"><h5>Perte d’Intérêt = <%= inv_apa_perte_d_interet %></h5></div>                                    
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
+                    <% if (GDS_active == 1) { %>
+                        <div class="row mt-3">
+                            <div class="col-12"><h5 class="font-weight-bold text-primary">Echelle GDS</h5><hr /></div>                                                                        
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-12"><h5>Score = <%= GDS_Score %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12"><h5>GDS Commentaires:</h5></div>                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <table class="table table-bordered">
+                                        <tr>
+                                            <td><%= GDS_commentaires %></td>                                
+                                        </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
+                    <% if (FCS_active == 1) { %>
+                        <div class="row mt-3">
+                            <div class="col-12"><h5 class="font-weight-bold text-primary">Echelle FCS (SCF 4 items)</h5><hr /></div>                                                                        
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-12"><h5>Score = <%= FCS_S1 + FCS_S2 + FCS_S3 + FCS_S4 %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12"><h5>Mémoire = <%= FCS_S1 %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12"><h5>Concentration = <%= FCS_S2 %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12"><h5>Capacité Mentale = <%= FCS_S3 %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12"><h5>Vitalité = <%= FCS_S4 %></h5></div>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
+                    <% if (CDA_2018_active == 1) { %>
+                        <div class="row mt-3">
+                            <div class="col-12"><h5 class="font-weight-bold text-primary">Critères Diagnostic de l’apathie (2018)</h5><hr /></div> 
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-12"><h5>Apathie selon les critères diagnostic: <b><%= CDA_2018_MAIN %></b></h5></div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-12"><h5>Critère A: <b><%= CDA_2018_A %></b></h5></div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-12"><h5>Critère B1.1: « Niveau d’activité général » : <b><%= CDA_2018_B11 %></b></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12"><h5>Critère B1.2: « Persistance des activités » : <b><%= CDA_2018_B12 %></b></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12"><h5>Critère B1.3: « Prendre des décisions » : <b><%= CDA_2018_B13 %></b></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12"><h5>Critère B1.4: « Intérêt pour des enjeux externes » : <b><%= CDA_2018_B14 %></b></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12"><h5>Critère B1.5: « Bien-être personnel » : <b><%= CDA_2018_B15 %></b></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12"><h5>Critère B2.1: « Emotions spontanées » : <b><%= CDA_2018_B21 %></b></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12"><h5>Critère B2.2: « Réactions émotionnelles face à l’environnement » : <b><%= CDA_2018_B22 %></b></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12"><h5>Critère B2.3: « Impact sur autrui » : <b><%= CDA_2018_B23 %></b></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12"><h5>Critère B2.4: « Empathie » : <b><%= CDA_2018_B24 %></b></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12"><h5>Critère B2.5: « Expression verbales ou physiques » : <b><%= CDA_2018_B25 %></b></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12"><h5>Critère B3.1: « Initiatives sociales spontanées » : <b><%= CDA_2018_B31 %></b></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12"><h5>Critère B3.2: « Interactions sociales stimulées par l’environnement » : <b><%= CDA_2018_B32 %></b></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12"><h5>Critère B3.3: « Relations avec les proches » : <b><%= CDA_2018_B33 %></b></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12"><h5>Critère B3.4: « Interactions verbales » : <b><%= CDA_2018_B34 %></b></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12"><h5>Critère B3.5: « Domicile » : <b><%= CDA_2018_B35 %></b></h5></div>
+                                </div>                                
+                                <br />
+                                <div class="row">
+                                    <div class="col-12"><h5>Critère C : <b><%= CDA_2018_C %></b></h5></div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-12"><h5>Critère D : <b><%= CDA_2018_D %></b></h5></div>
+                                </div>                            
+                            </div>
+                        </div>
+                    <% } %>
+                    <% if (mmse_spa_active == 1) { %>
+                        <div class="row mt-3">
+                            <div class="col-12"><h5 class="font-weight-bold text-primary">MMSE Spanish - Chile</h5><hr /></div> 
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-3 text-left"><h5>1 -> <%= mmse_spa_score_1 %></h5></div>
+                                    <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>8 -> <%= mmse_spa_score_8 %></h5></div>
+                                    <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>15 -> <%= mmse_spa_score_15 %></h5></div>
+                                    <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>22 -> <%= mmse_spa_score_22 %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-3 text-left"><h5>2 -> <%= mmse_spa_score_2 %></h5></div>
+                                    <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>9 -> <%= mmse_spa_score_9 %></h5></div>
+                                    <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>16 -> <%= mmse_spa_score_16 %></h5></div>
+                                    <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>23 -> <%= mmse_spa_score_23 %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-3 text-left"><h5>3 -> <%= mmse_spa_score_3 %></h5></div>
+                                    <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>10 -> <%= mmse_spa_score_10 %></h5></div>
+                                    <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>17 -> <%= mmse_spa_score_17 %></h5></div>
+                                    <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>24 -> <%= mmse_spa_score_24 %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-3 text-left"><h5>4 -> <%= mmse_spa_score_4 %></h5></div>
+                                    <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>11 -> <%= mmse_spa_score_11 %></h5></div>
+                                    <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>18 -> <%= mmse_spa_score_18 %></h5></div>
+                                    <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>22 -> <%= mmse_spa_score_22 %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-3 text-left"><h5>5 -> <%= mmse_spa_score_5 %></h5></div>
+                                    <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>12 -> <%= mmse_spa_score_12 %></h5></div>
+                                    <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>19 -> <%= mmse_spa_score_19 %></h5></div>
+                                    <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>23 -> <%= mmse_spa_score_23 %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-3 text-left"><h5>6 -> <%= mmse_spa_score_6 %></h5></div>
+                                    <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>13 -> <%= mmse_spa_score_13 %></h5></div>
+                                    <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>20 -> <%= mmse_spa_score_20 %></h5></div>
+                                    <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>27 -> <%= mmse_spa_score_27 %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-3 text-left"><h5>7 -> <%= mmse_spa_score_7 %></h5></div>
+                                    <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>14 -> <%= mmse_spa_score_14 %></h5></div>
+                                    <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>21 -> <%= mmse_spa_score_21 %></h5></div>
+                                    <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>28 -> <%= mmse_spa_score_28 %></h5></div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-12 text-left"><h5><b>PUNTUACIONES = <%= mmse_spa_score_total %> / 30</b></h5></div>
+                                </div>       
+                                <div class="row mt-3">
+                                    <div class="col-12 text-left"><h5>11-12-13 (Número de repeticiones) -> <%= mmse_spa_number_of_repetitions %></h5></div>
+                                </div>   
+                                <div class="row mt-3">
+                                    <div class="col-12 text-left"><h5>18a -> <%= mmse_spa_score_18a %></h5></div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-12 text-left"><h5>1 -> <%= mmse_spa_answer_1 %></h5></div>
+                                </div>    
+                                <div class="row">
+                                    <div class="col-12 text-left"><h5>2 -> <%= mmse_spa_answer_2 %></h5></div>
+                                </div> 
+                                <div class="row">
+                                    <div class="col-12 text-left"><h5>3 -> <%= mmse_spa_answer_3 %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-left"><h5>4 -> <%= mmse_spa_answer_4 %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-left"><h5>5 -> <%= mmse_spa_answer_5 %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-left"><h5>6 -> <%= mmse_spa_answer_6 %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-left"><h5>7 -> <%= mmse_spa_answer_7 %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-left"><h5>8 -> <%= mmse_spa_answer_8 %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-left"><h5>9 -> <%= mmse_spa_answer_9 %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-left"><h5>10 -> <%= mmse_spa_answer_1 %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-left"><h5>11 -> <%= mmse_spa_answer_11 %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-left"><h5>12 -> <%= mmse_spa_answer_12 %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-left"><h5>13 -> <%= mmse_spa_answer_13 %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-left"><h5>14 -> <%= mmse_spa_answer_14 %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-left"><h5>15 -> <%= mmse_spa_answer_15 %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-left"><h5>16 -> <%= mmse_spa_answer_16 %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-left"><h5>17 -> <%= mmse_spa_answer_17 %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-left"><h5>18 -> <%= mmse_spa_answer_18 %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-left"><h5>18a -> <%= mmse_spa_answer_18a %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-left"><h5>19 -> <%= mmse_spa_answer_19 %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-left"><h5>20 -> <%= mmse_spa_answer_20 %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-left"><h5>21 -> <%= mmse_spa_answer_21 %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-left"><h5>22 -> <%= mmse_spa_answer_22 %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-left"><h5>23 -> <%= mmse_spa_answer_23 %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-left"><h5>24 -> <%= mmse_spa_answer_24 %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-left"><h5>25 -> <%= mmse_spa_answer_25 %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-left"><h5>26 -> <%= mmse_spa_answer_26 %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-left"><h5>27 -> <%= mmse_spa_answer_27 %></h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-left"><h5>28 -> <%= mmse_spa_answer_28 %></h5></div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <% if (mmse_spa_path_video_main != "") { %>
+                                <div class="row">
+                                    <div class="col-12 text-left">
+                                        <h5>Video</h5>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-center">                                    
+                                        <video width="500" controls>
+                                            <source src="<%= mmse_spa_path_video_main %>" type="video/webm">                                                
+                                        </video>                                    
+                                    </div>
+                                </div>
+                                <% } %>
+                                <% for(let i = 1; i <= mmse_spa_dibujo_number_of_images; i++) { %>
+                                    <div class="row mt-5">
+                                        <div class="col-12 text-left">
+                                            <h5>Dibujo <%= i %></h5>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 text-center">
+                                            <img src="<%= mmse_spa_path_images + 'Dibujo_' + i + '.png' %>" width="500" />
+                                        </div>
+                                    </div>
+                                <% } %>
+                                <% for(let i = 1; i <= mmse_spa_oracion_number_of_images; i++) { %>
+                                    <div class="row mt-5">
+                                        <div class="col-12 text-left">
+                                            <h5>Oraciton <%= i %></h5>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 text-center">
+                                            <img src="<%= mmse_spa_path_images + 'Oracion_' + i + '.png' %>" width="500" />
+                                        </div>
+                                    </div>
+                                <% } %>
+                            </div>
+                        </div>
+                    <% } %>
+                    <% if (moca_active == 1) { %>
+                        <div class="row mt-3">
+                            <div class="col-12"><h5 class="font-weight-bold text-primary">MOCA</h5><hr /></div> 
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <table class="table table-borderless">      
+                                <tr>
+                                    <td><h5 class="font-weight-bold"><%= moca_textResult1 %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold"><%= moca_textResult2 %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold"><%= moca_textResult3 %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold"><%= moca_textResult4 %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold"><%= moca_textResult5 %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold"><%= moca_textResult6 %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold"><%= moca_textResult7 %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold"><%= moca_textResult8 %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold"><%= moca_textResult9 %></h5></td>                                
+                                </tr>                            
+                                </table>                            
+                            </div>
+                            <div class="col-6">
+                                <table class="table table-borderless">
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Remarques:</h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table class="table table-bordered">
+                                        <tr>
+                                            <td><h6><%= moca_remarques %></h6></td>                                
+                                        </tr>
+                                        </table>
+                                    </td>                                
+                                </tr> 
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Video: <% if (moca_path_video != "") { %> OUI <% } else { %> NON <% } %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <% if (moca_path_video != "") { %>
+                                        <video width="500" controls>
+                                            <source src="<%= moca_path_video %>" type="video/webm">                                                
+                                        </video>
+                                        <% } %>
+                                    </td>                                
+                                </tr>                            
+                                </table>                            
+                            </div>
+                        </div>
+                    <% } %>
+                    <% if (d2_active == 1) { %>
+                        <div class="row mt-3">
+                            <div class="col-12"><h5 class="font-weight-bold text-primary">D2</h5><hr /></div> 
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <table class="table table-borderless">      
+                                <tr>
+                                    <td><h5 class="font-weight-bold"><%= d2_test_time %></h5></td>                                
+                                </tr>                            
+                                </table>                            
+                            </div>
+                            <div class="col-6">
+                                <table class="table table-borderless">
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Video: <% if (d2_path_video != "") { %> OUI <% } else { %> NON <% } %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <% if (d2_path_video != "") { %>
+                                        <video width="500" controls>
+                                            <source src="<%= d2_path_video %>" type="video/webm">                                                
+                                        </video>
+                                        <% } %>
+                                    </td>                                
+                                </tr>                            
+                                </table>                            
+                            </div>
+                        </div>
+                    <% } %>
+                    <% if (wais_iv_active == 1) { %>
+                        <div class="row mt-3">
+                            <div class="col-12"><h5 class="font-weight-bold text-primary">Sequence Letters-Chiffres</h5><hr /></div> 
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <table class="table table-borderless">      
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Score: <%= wais_iv_score %> / 30</h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold">ESLC = <%= wais_iv_eslc %></h5></td>                                
+                                </tr>                            
+                                </table>                            
+                            </div>
+                            <div class="col-6">
+                                <table class="table table-borderless">
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Video: <% if (wais_iv_path_video != "") { %> OUI <% } else { %> NON <% } %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <% if (wais_iv_path_video != "") { %>
+                                        <video width="500" controls>
+                                            <source src="<%= wais_iv_path_video %>" type="video/webm">                                                
+                                        </video>
+                                        <% } %>
+                                    </td>                                
+                                </tr>                            
+                                </table>                            
+                            </div>
+                        </div>
+                    <% } %>
+                    <% if (zoo_active == 1) { %>
+                        <div class="row mt-3">
+                            <div class="col-12"><h5 class="font-weight-bold text-primary">Test du Zoo</h5><hr /></div> 
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="table table-borderless">
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Video: <% if (zoo_path_video != "") { %> OUI <% } else { %> NON <% } %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <% if (zoo_path_video != "") { %>
+                                        <video width="500" controls>
+                                            <source src="<%= zoo_path_video %>" type="video/webm">                                                
+                                        </video>
+                                        <% } %>
+                                    </td>                                
+                                </tr>                            
+                                </table>                            
+                            </div>
+                        </div>
+                    <% } %>
+                    <% if (code_wais_active == 1) { %>
+                        <div class="row mt-3">
+                            <div class="col-12"><h5 class="font-weight-bold text-primary">Code WAIS</h5><hr /></div> 
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="table table-borderless">
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Video: <% if (code_wais_path_video != "") { %> OUI <% } else { %> NON <% } %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <% if (code_wais_path_video != "") { %>
+                                        <video width="500" controls>
+                                            <source src="<%= code_wais_path_video %>" type="video/webm">                                                
+                                        </video>
+                                        <% } %>
+                                    </td>                                
+                                </tr>                            
+                                </table>                            
+                            </div>
+                        </div>
+                    <% } %>  
+                    <% if (npi_active == 1) { %>
+                        <div class="row mt-3">
+                            <div class="col-12"><h5 class="font-weight-bold text-primary">Inventaire Neuropsychiatrique</h5><hr /></div> 
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <table class="table table-bordered table-striped text-center">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col"></th>
+                                            <th scope="col">Fré x Gra</th>
+                                            <th scope="col">Fréquence</th>
+                                            <th scope="col">Gravité</th>
+                                            <th scope="col">Retentissement</th>
+                                        </tr>
+                                    </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row" class="text-left">Idées Délirantes</th>
+                                        <td><%= npi_FG1 %></td>
+                                        <td><%= npi_F1 %></td>
+                                        <td><%= npi_G1 %></td>
+                                        <td><%= npi_R1 %></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-left">Hallucination</th>
+                                        <td><%= npi_FG2 %></td>
+                                        <td><%= npi_F2 %></td>
+                                        <td><%= npi_G2 %></td>
+                                        <td><%= npi_R2 %></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-left">Agitation / Agressivité</th>
+                                        <td><%= npi_FG3 %></td>
+                                        <td><%= npi_F3 %></td>
+                                        <td><%= npi_G3 %></td>
+                                        <td><%= npi_R3 %></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-left">Dépression / Dysphorie</th>
+                                        <td><%= npi_FG4 %></td>
+                                        <td><%= npi_F4 %></td>
+                                        <td><%= npi_G4 %></td>
+                                        <td><%= npi_R4 %></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-left">Anxiété</th>
+                                        <td><%= npi_FG5 %></td>
+                                        <td><%= npi_F5 %></td>
+                                        <td><%= npi_G5 %></td>
+                                        <td><%= npi_R5 %></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-left">Exaltation de l'humeur / Euphorie</th>
+                                        <td><%= npi_FG6 %></td>
+                                        <td><%= npi_F6 %></td>
+                                        <td><%= npi_G6 %></td>
+                                        <td><%= npi_R6 %></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-left">Apathie / Indifférence</th>
+                                        <td><%= npi_FG7 %></td>
+                                        <td><%= npi_F7 %></td>
+                                        <td><%= npi_G7 %></td>
+                                        <td><%= npi_R7 %></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-left">Désinhibition</th>
+                                        <td><%= npi_FG8 %></td>
+                                        <td><%= npi_F8 %></td>
+                                        <td><%= npi_G8 %></td>
+                                        <td><%= npi_R8 %></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-left">Irritabilité / Instabilité de l'humeur</th>
+                                        <td><%= npi_FG9 %></td>
+                                        <td><%= npi_F9 %></td>
+                                        <td><%= npi_G9 %></td>
+                                        <td><%= npi_R9 %></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-left">Comportement moteur aberrant</th>
+                                        <td><%= npi_FG10 %></td>
+                                        <td><%= npi_F10 %></td>
+                                        <td><%= npi_G10 %></td>
+                                        <td><%= npi_R10 %></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-left">Sommeil</th>
+                                        <td><%= npi_FG11 %></td>
+                                        <td><%= npi_F11 %></td>
+                                        <td><%= npi_G11 %></td>
+                                        <td><%= npi_R11 %></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-left">Appétit / Trouble de l'appétit</th>
+                                        <td><%= npi_FG12 %></td>
+                                        <td><%= npi_F12 %></td>
+                                        <td><%= npi_G12 %></td>
+                                        <td><%= npi_R12 %></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-left">TOTAL</th>
+                                        <td><b><%= npi_sumFG %></b></td>
+                                        <td><b><%= npi_sumF %></b></td>
+                                        <td><b><%= npi_sumG %></b></td>
+                                        <td><b><%= npi_sumR %></b></td>
+                                    </tr>
+                                </tbody>
+                                </table>                            
+                            </div>
+                            <div class="col-6">
+                                <table class="table table-borderless">      
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Commentaires:</h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table class="table table-bordered">
+                                        <tr>
+                                            <td><h6><%= npi_commentaires %></h6></td>                                
+                                        </tr>
+                                        </table>
+                                    </td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Video: <% if (npi_path_video != "") { %> OUI <% } else { %> NON <% } %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <% if (npi_path_video != "") { %>
+                                        <video width="500" controls>
+                                            <source src="<%= npi_path_video %>" type="video/webm">                                                
+                                        </video>
+                                        <% } %>
+                                    </td>                                
+                                </tr>                            
+                                </table>                            
+                            </div>
+                        </div>
+                    <% } %>
+                    <% if (digital_span_active == 1) { %>
+                        <div class="row mt-3">
+                            <div class="col-12"><h5 class="font-weight-bold text-primary">Digital Span</h5><hr /></div> 
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <table class="table table-borderless">      
+                                <tr>
+                                    <td><h5 class="font-weight-bold">VOR = <%= digital_span_vor %> / 12</h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold">RUC = <%= digital_span_ruc %> / 12</h5></td>                                
+                                </tr>                            
+                                </table>                            
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-12"><h5>Audio:</h5></div>                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <% if (digital_span_path_audio != "") { %>
+                                        <audio controls>
+                                            <source src="<%= digital_span_path_audio %>" type="audio/webm">                                                
+                                        </audio>
+                                        <% } %>
+                                    </div>
+                                </div>                                                       
+                            </div>
+                        </div>
+                    <% } %>
+                    <% if (bnt_15_active == 1) { %>
+                        <div class="row mt-3">
+                            <div class="col-12"><h5 class="font-weight-bold text-primary">BNT-15</h5><hr /></div> 
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <table class="table table-borderless">
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Scores:</h5></td>                                
+                                </tr>   
+                                <tr>
+                                    <td><h5>HÄUFIG = <b><%= bnt_15_haufig %></b> / 5</h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>MITTEL = <b><%= bnt_15_mittel %></b> / 5</h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>SELTEN = <b><%= bnt_15_selten %></b> / 5</h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>TOTAL = <b><%= bnt_15_total %></b> / 15</h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Antworten:</h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>1. [Baum]: <%= bnt_15_baum %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>2. [Bett]: <%= bnt_15_bett %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>3. [Pfeife]: <%= bnt_15_pfeife %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>4. [Blume]: <%= bnt_15_blume %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>5. [Haus]: <%= bnt_15_haus %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>6. [Kanu]: <%= bnt_15_kanu %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>7. [Zahnburste]: <%= bnt_15_zahnburste %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>8. [Vulkan]: <%= bnt_15_vulkan %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>9. [Maske]: <%= bnt_15_maske %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>10. [Kamel]: <%= bnt_15_kamel %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>11. [Mundharmonika]: <%= bnt_15_mundharmonika %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>12. [Zange]: <%= bnt_15_zange %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>13. [Hangematte]: <%= bnt_15_hangematte %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>14. [Trichter]: <%= bnt_15_trichter %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>15. [Dominosteine]: <%= bnt_15_dominosteine %></h5></td>                                
+                                </tr>                            
+                                </table>                                                       
+                            </div>
+                            <div class="col-6">
+                                <table class="table table-borderless">                            
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Video: <% if (bnt_15_path_video != "") { %> OUI <% } else { %> NON <% } %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <% if (bnt_15_path_video != "") { %>
+                                        <video width="500" controls>
+                                            <source src="<%= bnt_15_path_video %>" type="video/webm">                                                
+                                        </video>
+                                        <% } %>
+                                    </td>                                
+                                </tr>                            
+                                </table>                            
+                            </div>
+                        </div>
+                    <% } %>
+                    <% if (words_list_active == 1) { %>
+                        <div class="row mt-3">
+                            <div class="col-12"><h5 class="font-weight-bold text-primary">Words List</h5><hr /></div> 
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <table class="table table-borderless">
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Wortliste Lernen 1</h5></td>                                
+                                </tr>   
+                                <tr>
+                                    <td><h5>Kann nicht lesen = <b><%= words_list_knl_1 %></b> / 10</h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Kann nicht lesen - Liste = <b><%= words_list_wortliste_knl_1 %></b></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Richtig erinnerten Wörter = <b><%= words_list_lernen_1 %></b> / 10</h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Richtig erinnerten Wörter - Liste = <b><%= words_list_rew_list_1 %></b></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Intrusionen = <b><%= words_list_lernen_1_int %></b></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Intrusionen - Liste = <b><%= words_list_lernen_1_int_text %></b></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Wortliste Lernen 2</h5></td>                                
+                                </tr>   
+                                <tr>
+                                    <td><h5>Kann nicht lesen = <b><%= words_list_knl_2 %></b> / 10</h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Kann nicht lesen - Liste = <b><%= words_list_wortliste_knl_2 %></b></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Richtig erinnerten Wörter = <b><%= words_list_lernen_2 %></b> / 10</h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Richtig erinnerten Wörter - Liste = <b><%= words_list_rew_list_2 %></b></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Intrusionen = <b><%= words_list_lernen_2_int %></b></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Intrusionen - Liste = <b><%= words_list_lernen_2_int_text %></b></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Wortliste Lernen 3</h5></td>                                
+                                </tr>   
+                                <tr>
+                                    <td><h5>Kann nicht lesen = <b><%= words_list_knl_3 %></b> / 10</h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Kann nicht lesen - Liste = <b><%= words_list_wortliste_knl_3 %></b></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Richtig erinnerten Wörter = <b><%= words_list_lernen_3 %></b> / 10</h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Richtig erinnerten Wörter - Liste = <b><%= words_list_rew_list_3 %></b></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Intrusionen = <b><%= words_list_lernen_3_int %></b></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Intrusionen - Liste = <b><%= words_list_lernen_3_int_text %></b></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Wortliste Abrufen</h5></td>                                
+                                </tr>   
+                                <tr>
+                                    <td><h5>Richtig abgerufenes Wörter = <b><%= words_list_abrufen %></b> / 10</h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Richtig abgerufenes Wörter - Liste = <b><%= words_list_rew_list_abrufen %></b></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Intrusionen = <b><%= words_list_abrufen_int %></b></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Intrusionen - Liste = <b><%= words_list_abrufen_int_text %></b></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Intrusion (Wort für Wort)</h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Butter = <b><%= words_list_butter %></b></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Arm = <b><%= words_list_arm %></b></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Strand = <b><%= words_list_strand %></b></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Brief = <b><%= words_list_brief %></b></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Königin = <b><%= words_list_konigin %></b></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Hütte = <b><%= words_list_hutte %></b></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Stange = <b><%= words_list_stange %></b></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Karte = <b><%= words_list_karte %></b></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Gras = <b><%= words_list_gras %></b></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Motor = <b><%= words_list_motor %></b></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Wortliste Wiedererkennen</h5></td>                                
+                                </tr>   
+                                <tr>
+                                    <td><h5>Total richtige 'JA' = <b><%= words_list_r_ja %></b></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Liste = <b><%= words_list_r_ja_list %></b></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Total richtige 'NEIN' = <b><%= words_list_r_nein %></b></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Liste = <b><%= words_list_r_nein_list %></b></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Total falsch 'JA' = <b><%= words_list_f_ja %></b></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Liste = <b><%= words_list_f_ja_list %></b></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Total falsch 'NEIN' = <b><%= words_list_f_nein %></b></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td><h5>Liste = <b><%= words_list_f_nein_list %></b></h5></td>                                
+                                </tr>         
+                                </table>                                                       
+                            </div>
+                            <div class="col-6">
+                                <table class="table table-borderless">                            
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Video: <% if (words_list_path_video != "") { %> OUI <% } else { %> NON <% } %></h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <% if (words_list_path_video != "") { %>
+                                        <video width="500" controls>
+                                            <source src="<%= words_list_path_video %>" type="video/webm">                                                
+                                        </video>
+                                        <% } %>
+                                    </td>                                
+                                </tr>                            
+                                </table>                            
+                            </div>
+                        </div>
+                    <% } %>
+                    <% if (stroop_victoria_2_active == 1) { %>
+                        <div class="row mt-3">
+                            <div class="col-12"><h5 class="font-weight-bold text-primary">Test de Stroop Vectoria 2</h5><hr /></div>                                                                        
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-12"><h5 class="font-weight-bold">Planche 1: Couleur</h5></div>                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-12"><h5>Durée = <%= stroop_victoria_2_duree_1 %></h5></div>                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-12"><h5>Nombre d’erreurs = <%= stroop_victoria_2_nombre_d_erreurs_1 %></h5></div>                                    
+                                </div>  
+                                <div class="row">
+                                    <div class="col-12"><h5>Nombre d’erreurs corrigées = <%= stroop_victoria_2_nombre_d_erreurs_corrigees_1 %></h5></div>                                    
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-12"><h5 class="font-weight-bold">Planche 2: Mots</h5></div>                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-12"><h5>Durée = <%= stroop_victoria_2_duree_2 %></h5></div>                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-12"><h5>Nombre d’erreurs = <%= stroop_victoria_2_nombre_d_erreurs_2 %></h5></div>                                    
+                                </div>  
+                                <div class="row">
+                                    <div class="col-12"><h5>Nombre d’erreurs corrigées = <%= stroop_victoria_2_nombre_d_erreurs_corrigees_2 %></h5></div>                                    
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-12"><h5 class="font-weight-bold">Planche 3: Interférences</h5></div>                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-12"><h5>Durée = <%= stroop_victoria_2_duree_3 %></h5></div>                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-12"><h5>Nombre d’erreurs = <%= stroop_victoria_2_nombre_d_erreurs_3 %></h5></div>                                    
+                                </div>  
+                                <div class="row">
+                                    <div class="col-12"><h5>Nombre d’erreurs corrigées = <%= stroop_victoria_2_nombre_d_erreurs_corrigees_3 %></h5></div>                                    
+                                </div>                                                  
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-12"><h5>Audio Couleurs:</h5></div>                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <% if (stroop_victoria_2_path_audio_1 != "") { %>
+                                        <audio controls>
+                                            <source src="<%= stroop_victoria_2_path_audio_1 %>" type="audio/webm">                                                
+                                        </audio>
+                                        <% } %>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-12"><h5>Audio Mots:</h5></div>                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <% if (stroop_victoria_2_path_audio_2 != "") { %>
+                                        <audio controls>
+                                            <source src="<%= stroop_victoria_2_path_audio_2 %>" type="audio/webm">                                                
+                                        </audio>
+                                        <% } %>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-12"><h5>Audio Interférences:</h5></div>                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <% if (stroop_victoria_2_path_audio_3 != "") { %>
+                                        <audio controls>
+                                            <source src="<%= stroop_victoria_2_path_audio_3 %>" type="audio/webm">                                                
+                                        </audio>
+                                        <% } %>
+                                    </div>
+                                </div>                                       
+                            </div>
+                        </div>   
+                    <% } %>
+                </div>                
+            </div>
+            <div class="row">
+                <div class="col-1">
+                    <a href="javascript:document.documentElement.scrollTop = 0;"><img src="/images/icons/top.png" alt="Edit" height="64" width="64"></a>
+                </div>
+                <div class="col-11"></div>                
+            </div>
+            <div class="row">
+                <div class="col-1">&nbsp;</div>
+                <div class="col-11"></div>                
+            </div>
+        </div>
+    </main>
+</body>
+
+<%- include('../includes/end.ejs') %>

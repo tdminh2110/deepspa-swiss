@@ -1,0 +1,117 @@
+<%- include('../includes/head.ejs') %>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-1">
+                    <a href="/clinician/report-tests-effectues?idsession=<%= id_session %>"><img src="/images/icons/retour.png" alt="Edit" height="40" width="63"></a>
+                </div>
+                <div class="col-11">
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="font-weight-bold text-success">Patient: <%= patient_family_name %> <%= patient_name %></h5>
+                        </div>                                                
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="font-weight-bold text-success">
+                                Session <%= session_created_date.slice(0,2) %>/<%= session_created_date.slice(2,4) %>/<%= session_created_date.slice(4) %>
+                            </h5>
+                        </div>                                                
+                    </div>
+                    <div class="row">
+                        <div class="col-12"><h5 class="font-weight-bold text-primary">Tests: Sequence Letters-Chiffres</h5><hr /></div>                                                                        
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-6 text-left">
+                                    <h5 class="font-weight-bold">Résultat:</h5>
+                                    <input type='hidden' id='IDSession' value='<%= id_session %>'>
+                                    <input type='hidden' id='TestName' value='<%= test_name %>'>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <button id="Save_Results_Report" class="btn btn-info" type="button" style="display:none">Save</button>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-12">
+                                    <textarea class="form-control rounded-0" id="TextArea_Results_Report" rows="10"><%= results %></textarea>
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-12 text-left">
+                                    <h5 class="font-weight-bold text-success">Résultats après avoir exécuté le test:</h5>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-12">
+                                    <table class="table table-borderless">      
+                                    <tr>
+                                        <td><h5 class="font-weight-bold"><%= textResult1 %></h5></td>                                
+                                    </tr>
+                                    <tr>
+                                        <td><h5 class="font-weight-bold"><%= textResult2 %></h5></td>                                
+                                    </tr>
+                                    <tr>
+                                        <td><h5 class="font-weight-bold"><%= textResult3 %></h5></td>                                
+                                    </tr>
+                                    <tr>
+                                        <td><h5 class="font-weight-bold"><%= textResult4 %></h5></td>                                
+                                    </tr>
+                                    <tr>
+                                        <td><h5 class="font-weight-bold"><%= textResult5 %></h5></td>                                
+                                    </tr>
+                                    <tr>
+                                        <td><h5 class="font-weight-bold"><%= textResult6 %></h5></td>                                
+                                    </tr>
+                                    <tr>
+                                        <td><h5 class="font-weight-bold"><%= textResult7 %></h5></td>                                
+                                    </tr>
+                                    <tr>
+                                        <td><h5 class="font-weight-bold"><%= textResult8 %></h5></td>                                
+                                    </tr>
+                                    <tr>
+                                        <td><h5 class="font-weight-bold"><%= textResult9 %></h5></td>                                
+                                    </tr>                            
+                                    </table>
+                                </div>
+                            </div>                   
+                        </div>
+                        <div class="col-6">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td><h5 class="font-weight-bold">Remarques:</h5></td>                                
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table class="table table-bordered">
+                                        <tr>
+                                            <td><h6><%= remarques %></h6></td>                                
+                                        </tr>
+                                        </table>
+                                    </td>                                
+                                </tr> 
+                            <tr>
+                                <td><h5 class="font-weight-bold">Video: <% if (path_video != "") { %> OUI <% } else { %> NON <% } %></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <% if (path_video != "") { %>
+                                    <video width="500" controls>
+                                        <source src="<%= path_video %>" type="video/webm">                                                
+                                    </video>
+                                    <% } %>
+                                </td>                                
+                            </tr>                            
+                            </table>                            
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+<script src="../js/clinician/interaction/control_reports.js"></script>
+<%- include('../includes/end.ejs') %>

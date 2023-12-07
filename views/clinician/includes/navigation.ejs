@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-sm menu navbar-light bg-light"> 
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link <%= path === '/clinician/list-patients' ? 'btn btn-info' : 'btn' %>" href="javascript:runLinkNav('/clinician/list-patients');" >List of Patients</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link <%= path === '/clinician/add-patient' ? 'btn btn-info' : 'btn' %>" href="javascript:runLinkNav('/clinician/add-patient');" >Add a Patient</a>
+        </li>
+        <% if (manageClinicians == 1) { %>
+        <li class="nav-item">
+            <a class="nav-link <%= path === '/clinician/list-clinicians' ? 'btn-info' : 'btn' %>" href="javascript:runLinkNav('/clinician/list-clinicians');" >List of Clinicians</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link <%= path === '/clinician/add-clinician' ? 'btn-info' : 'btn' %>" href="javascript:runLinkNav('/clinician/add-clinician');" >Add a Clinician</a>
+        </li>        
+        <% } %>
+        <li class="nav-item">
+            <a class="nav-link <%= path === '/clinician/open-room' ? 'btn btn-info' : 'btn' %>" href="/clinician/open-room" >Open Room</a>
+        </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a id="LogOut" href="javascript:runLinkNav('/logout');" class="nav-link btn btn-logout">Logout</a>
+        </li>
+    </ul>
+</nav>
+
+<script language="javascript">
+    function runLinkNav(link) {
+        delCookie("openroom");
+        window.location.href = link;        
+    }
+</script>

@@ -1,0 +1,187 @@
+<%- include('../../includes/head.ejs') %>
+<body>
+    <%- include('../../includes/navigation.ejs') %>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-1">
+                    <a href="/clinician/report-tests-effectues?idsession=<%= id_session %>"><img src="/images/icons/retour.png" alt="Edit" height="40" width="63"></a>
+                </div>
+                <div class="col-11">
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="font-weight-bold text-success">Patient: <%= patient_family_name %> <%= patient_name %></h5>
+                        </div>                                                
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="font-weight-bold text-success">
+                                Session <%= session_created_date.slice(0,2) %>/<%= session_created_date.slice(2,4) %>/<%= session_created_date.slice(4) %>
+                            </h5>
+                        </div>                                                
+                    </div>
+                    <div class="row">
+                        <div class="col-12"><h5 class="font-weight-bold text-primary"><a href="/clinician/report-test08-gro_bus?id=<%= id_session %>" class="text-info">Scores - Grober & Buschke</a>&nbsp;&nbsp;&nbsp;Calcul des performances</h5><hr /></div> 
+                    </div>
+                    <div>
+                        <table class="table table-bordered">
+                            <thead class="thead-light">
+                              <tr>
+                                <th scope="col">Données patient :</th>
+                                <th scope="col" class="text-center">Valeur d'origine</th>
+                                <th scope="col" class="text-center">Valeure calculee</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">Age</th>
+                                <td class="text-center"><%- age_o %></td>
+                                <td class="text-center"><%- age_c %></td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Niveau socio-culturel</th>
+                                <td class="text-center"><%- patient_education %></td>
+                                <td class="text-center"><%- nsc %></td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Sexe</th>
+                                <td class="text-center"><%= type_of_sex %></td>
+                                <td class="text-center"><%= sexe %></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>    
+                    <div>
+                        <table class="table table-bordered">
+                            <thead class="thead-light">
+                              <tr>
+                                <th scope="col" colspan="2">Rappel Libre - Performance attendue:</th>
+                                <th scope="col" class="text-center">1ET</th>
+                                <th scope="col" class="text-center">2ET</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr class="text-center">
+                                <th scope="row">RL1</th>
+                                <td><%= RL1a %></td>
+                                <td><%= RL1_1ET %></td>
+                                <td><%= RL1_2ET %></td>
+                              </tr>
+                              <tr class="text-center">
+                                <th scope="row">RL2</th>
+                                <td><%= RL2a %></td>
+                                <td><%= RL2_1ET %></td>
+                                <td><%= RL2_2ET %></td>
+                              </tr>
+                              <tr class="text-center">
+                                <th scope="row">RL3</th>
+                                <td><%= RL3a %></td>
+                                <td><%= RL3_1ET %></td>
+                                <td><%= RL3_2ET %></td>
+                              </tr>
+                              <tr class="text-center">
+                                <th scope="row">RLD</th>
+                                <td><%= RLDa %></td>
+                                <td><%= RLD_1ET %></td>
+                                <td><%= RLD_2ET %></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>
+                    <div>
+                        <table class="table table-bordered">
+                            <thead class="thead-light">
+                              <tr>
+                                <th scope="col" colspan="2">Rappel Libre - Performance effective:</th>
+                                <th scope="col" class="text-center">Score Z</th>
+                                <th scope="col" class="text-center">Indication</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr class="text-center">
+                                <th scope="row">RL1</th>
+                                <td><%= RL1 %></td>
+                                <td><%= RL1b %></td>
+                                <td><%= RL1_Indication %></td>
+                              </tr>
+                              <tr class="text-center">
+                                <th scope="row">RL2</th>
+                                <td><%= RL2 %></td>
+                                <td><%= RL2b %></td>
+                                <td><%= RL2_Indication %></td>
+                              </tr>
+                              <tr class="text-center">
+                                <th scope="row">RL3</th>
+                                <td><%= RL3 %></td>
+                                <td><%= RL3b %></td>
+                                <td><%= RL3_Indication %></td>
+                              </tr>
+                              <tr class="text-center">
+                                <th scope="row">RLD</th>
+                                <td><%= RLD %></td>
+                                <td><%= RLDb %></td>
+                                <td><%= RLD_Indication %></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>
+                    <div>
+                        <table class="table table-bordered">
+                            <thead class="thead-light">
+                              <tr>
+                                <th scope="col" colspan="3">Rappel Total - Performance effective:</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr class="text-center">
+                                <th scope="row">RIM</th>
+                                <td><%= RIM %></td>
+                                <td><%= RIM_c %></td>
+                              </tr>
+                              <tr class="text-center">
+                                <th scope="row">RT1</th>
+                                <td><%= RT1 %></td>
+                                <td><%= RT1_c %></td>
+                              </tr>
+                              <tr class="text-center">
+                                <th scope="row">RT2</th>
+                                <td><%= RT2 %></td>
+                                <td><%= RT2_c %></td>
+                              </tr>
+                              <tr class="text-center">
+                                <th scope="row">RT3</th>
+                                <td><%= RT3 %></td>
+                                <td><%= RT3_c %></td>
+                              </tr>
+                              <tr class="text-center">
+                                <th scope="row">RTD</th>
+                                <td><%= RTD %></td>
+                                <td><%= RTD_c %></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>
+                    <div>
+                        <table class="table table-bordered">
+                            <thead class="thead-light">
+                              <tr>
+                                <th scope="col">Reconnaissance:</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td><b>Attention !!!</b><br>
+                                    Un score inférieur d'un point pour la reconnaissance doit être considéré comme anormal.<br>
+                                    Il est anormal d'accepter plus d'un distracteur, qu'il soit sémantique ou neutre.
+                                </td>
+                              </tr>                              
+                            </tbody>
+                          </table>
+                    </div>     
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+<%- include('../../includes/end.ejs') %>

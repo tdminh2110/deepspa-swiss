@@ -1,0 +1,97 @@
+<%- include('../includes/head.ejs') %>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-1">
+                    <a href="/clinician/report-tests-effectues?idsession=<%= id_session %>"><img src="/images/icons/retour.png" alt="Edit" height="40" width="63"></a>
+                </div>
+                <div class="col-11">
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="font-weight-bold text-success">Patient: <%= patient_family_name %> <%= patient_name %></h5>
+                        </div>                                                
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="font-weight-bold text-success">
+                                Session <%= session_created_date.slice(0,2) %>/<%= session_created_date.slice(2,4) %>/<%= session_created_date.slice(4) %>
+                            </h5>
+                        </div>                                                
+                    </div>
+                    <div class="row">
+                        <div class="col-12"><h5 class="font-weight-bold text-primary">Critères Diagnostic de l’apathie (2018)</h5><hr /></div>                                                                        
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-12"><h5>Apathie selon les critères diagnostic: <b><%= CDA_2018_MAIN %></b></h5></div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-12"><h5>Critère A: <b><%= CDA_2018_A %></b></h5></div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-12"><h5>Critère B1.1: « Niveau d’activité général » : <b><%= CDA_2018_B11 %></b></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Critère B1.2: « Persistance des activités » : <b><%= CDA_2018_B12 %></b></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Critère B1.3: « Prendre des décisions » : <b><%= CDA_2018_B13 %></b></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Critère B1.4: « Intérêt pour des enjeux externes » : <b><%= CDA_2018_B14 %></b></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Critère B1.5: « Bien-être personnel » : <b><%= CDA_2018_B15 %></b></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Critère B2.1: « Emotions spontanées » : <b><%= CDA_2018_B21 %></b></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Critère B2.2: « Réactions émotionnelles face à l’environnement » : <b><%= CDA_2018_B22 %></b></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Critère B2.3: « Impact sur autrui » : <b><%= CDA_2018_B23 %></b></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Critère B2.4: « Empathie » : <b><%= CDA_2018_B24 %></b></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Critère B2.5: « Expression verbales ou physiques » : <b><%= CDA_2018_B25 %></b></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Critère B3.1: « Initiatives sociales spontanées » : <b><%= CDA_2018_B31 %></b></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Critère B3.2: « Interactions sociales stimulées par l’environnement » : <b><%= CDA_2018_B32 %></b></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Critère B3.3: « Relations avec les proches » : <b><%= CDA_2018_B33 %></b></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Critère B3.4: « Interactions verbales » : <b><%= CDA_2018_B34 %></b></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Critère B3.5: « Domicile » : <b><%= CDA_2018_B35 %></b></h5></div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-12"><h5>Critère C : <b><%= CDA_2018_C %></b></h5></div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-12"><h5>Critère D : <b><%= CDA_2018_D %></b></h5></div>
+                            </div>                            
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+<%- include('../includes/end.ejs') %>

@@ -1,0 +1,46 @@
+<%- include('includes/head.ejs') %>
+<body>
+    <%- include('includes/navigation.ejs') %>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1>List of Patients</h1>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Birthday</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">&nbsp;</th>
+                </tr>
+            </thead>  
+            <tbody>
+            <% for (let pati of patis) { %>         
+            <tr>
+                <td><%= pati.DSUserName %> <%= pati.family_name %></td>
+                <td><%= pati.birthday %></td>
+                <td><%= pati.phone %></td>
+                <td><%= pati.email %></td>
+                <td><a href="/clinician/report-patient?email=<%= pati.email %>"><img src="/images/icons/eye.png" alt="View" height="24" width="24"></a>&nbsp;&nbsp;<a href="/clinician/edit-patient?email=<%= pati.email %>"><img src="/images/icons/edit.png" alt="Edit" height="16" width="16"></a>&nbsp;&nbsp;<a href="javascript:removePatient('<%= pati.email %>');"><img src="/images/icons/delete.png" alt="Remove" height="16" width="16"></a></td>
+            </tr>
+            <% } %>
+            </tbody>   
+        </table>
+    </main>    
+</body>
+
+<script language="javascript">
+    function removePatient(email) {
+        var r = confirm("Est-vous sure de supprimer ce patient ?");
+        if (r == true) {
+            window.location.href = "/clinician/remove-patient?email=" + email;
+        }
+    }
+</script>
+
+<%- include('includes/end.ejs') %>

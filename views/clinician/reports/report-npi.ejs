@@ -1,0 +1,168 @@
+<%- include('../includes/head.ejs') %>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-1">
+                    <a href="/clinician/report-tests-effectues?idsession=<%= id_session %>"><img src="/images/icons/retour.png" alt="Edit" height="40" width="63"></a>
+                </div>
+                <div class="col-11">
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="font-weight-bold text-success">Patient: <%= patient_family_name %> <%= patient_name %></h5>
+                        </div>                                                
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="font-weight-bold text-success">
+                                Session <%= session_created_date.slice(0,2) %>/<%= session_created_date.slice(2,4) %>/<%= session_created_date.slice(4) %>
+                            </h5>
+                        </div>                                                
+                    </div>
+                    <div class="row">
+                        <div class="col-12"><h5 class="font-weight-bold text-primary">Tests: Inventaire Neuropsychiatrique</h5><hr /></div>                                                                        
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <table class="table table-bordered table-striped text-center">
+                                <thead>
+                                    <tr>
+                                        <th scope="col"></th>
+                                        <th scope="col">Fré x Gra</th>
+                                        <th scope="col">Fréquence</th>
+                                        <th scope="col">Gravité</th>
+                                        <th scope="col">Retentissement</th>
+                                    </tr>
+                                </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row" class="text-left">Idées Délirantes</th>
+                                    <td><%= text_2_2 %></td>
+                                    <td><%= text_2_3 %></td>
+                                    <td><%= text_2_4 %></td>
+                                    <td><%= text_2_5 %></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="text-left">Hallucination</th>
+                                    <td><%= text_3_2 %></td>
+                                    <td><%= text_3_3 %></td>
+                                    <td><%= text_3_4 %></td>
+                                    <td><%= text_3_5 %></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="text-left">Agitation / Agressivité</th>
+                                    <td><%= text_4_2 %></td>
+                                    <td><%= text_4_3 %></td>
+                                    <td><%= text_4_4 %></td>
+                                    <td><%= text_4_5 %></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="text-left">Dépression / Dysphorie</th>
+                                    <td><%= text_5_2 %></td>
+                                    <td><%= text_5_3 %></td>
+                                    <td><%= text_5_4 %></td>
+                                    <td><%= text_5_5 %></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="text-left">Anxiété</th>
+                                    <td><%= text_6_2 %></td>
+                                    <td><%= text_6_3 %></td>
+                                    <td><%= text_6_4 %></td>
+                                    <td><%= text_6_5 %></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="text-left">Exaltation de l'humeur / Euphorie</th>
+                                    <td><%= text_7_2 %></td>
+                                    <td><%= text_7_3 %></td>
+                                    <td><%= text_7_4 %></td>
+                                    <td><%= text_7_5 %></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="text-left">Apathie / Indifférence</th>
+                                    <td><%= text_8_2 %></td>
+                                    <td><%= text_8_3 %></td>
+                                    <td><%= text_8_4 %></td>
+                                    <td><%= text_8_5 %></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="text-left">Désinhibition</th>
+                                    <td><%= text_9_2 %></td>
+                                    <td><%= text_9_3 %></td>
+                                    <td><%= text_9_4 %></td>
+                                    <td><%= text_9_5 %></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="text-left">Irritabilité / Instabilité de l'humeur</th>
+                                    <td><%= text_10_2 %></td>
+                                    <td><%= text_10_3 %></td>
+                                    <td><%= text_10_4 %></td>
+                                    <td><%= text_10_5 %></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="text-left">Comportement moteur aberrant</th>
+                                    <td><%= text_11_2 %></td>
+                                    <td><%= text_11_3 %></td>
+                                    <td><%= text_11_4 %></td>
+                                    <td><%= text_11_5 %></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="text-left">Sommeil</th>
+                                    <td><%= text_12_2 %></td>
+                                    <td><%= text_12_3 %></td>
+                                    <td><%= text_12_4 %></td>
+                                    <td><%= text_12_5 %></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="text-left">Appétit / Trouble de l'appétit</th>
+                                    <td><%= text_13_2 %></td>
+                                    <td><%= text_13_3 %></td>
+                                    <td><%= text_13_4 %></td>
+                                    <td><%= text_13_5 %></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="text-left">TOTAL</th>
+                                    <td><b><%= text_14_2 %></b></td>
+                                    <td><b><%= text_14_3 %></b></td>
+                                    <td><b><%= text_14_4 %></b></td>
+                                    <td><b><%= text_14_5 %></b></td>
+                                </tr>
+                            </tbody>
+                            </table>                            
+                        </div>
+                        <div class="col-6">
+                            <table class="table table-borderless">      
+                            <tr>
+                                <td><h5 class="font-weight-bold">Commentaires:</h5></td>                                
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table class="table table-bordered">
+                                    <tr>
+                                        <td><h6><%= commentaires %></h6></td>                                
+                                    </tr>
+                                    </table>
+                                </td>                                
+                            </tr>
+                            <tr>
+                                <td><h5 class="font-weight-bold">Video: <% if (path_video != "") { %> OUI <% } else { %> NON <% } %></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <% if (path_video != "") { %>
+                                    <video width="500" controls>
+                                        <source src="<%= path_video %>" type="video/webm">                                                
+                                    </video>
+                                    <% } %>
+                                </td>                                
+                            </tr>                            
+                            </table>                            
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+<%- include('../includes/end.ejs') %>

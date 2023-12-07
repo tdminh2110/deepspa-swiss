@@ -1,0 +1,214 @@
+<%- include('../includes/head.ejs') %>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-1">
+                    <a href="/clinician/report-tests-effectues?idsession=<%= id_session %>"><img src="/images/icons/retour.png" alt="Edit" height="40" width="63"></a>
+                </div>
+                <div class="col-11">
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="font-weight-bold text-success">Patient: <%= patient_family_name %> <%= patient_name %></h5>
+                        </div>                                                
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="font-weight-bold text-success">
+                                Session <%= session_created_date.slice(0,2) %>/<%= session_created_date.slice(2,4) %>/<%= session_created_date.slice(4) %>
+                            </h5>
+                        </div>                                                
+                    </div>
+                    <div class="row">
+                        <div class="col-12"><h5 class="font-weight-bold text-primary">Tests: MMSE Spanish - Chile</h5><hr /></div>                                                                        
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-3 text-left"><h5>1 -> <%= score_1 %></h5></div>
+                                <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>8 -> <%= score_8 %></h5></div>
+                                <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>15 -> <%= score_15 %></h5></div>
+                                <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>22 -> <%= score_22 %></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3 text-left"><h5>2 -> <%= score_2 %></h5></div>
+                                <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>9 -> <%= score_9 %></h5></div>
+                                <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>16 -> <%= score_16 %></h5></div>
+                                <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>23 -> <%= score_23 %></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3 text-left"><h5>3 -> <%= score_3 %></h5></div>
+                                <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>10 -> <%= score_10 %></h5></div>
+                                <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>17 -> <%= score_17 %></h5></div>
+                                <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>24 -> <%= score_24 %></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3 text-left"><h5>4 -> <%= score_4 %></h5></div>
+                                <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>11 -> <%= score_11 %></h5></div>
+                                <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>18 -> <%= score_18 %></h5></div>
+                                <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>22 -> <%= score_22 %></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3 text-left"><h5>5 -> <%= score_5 %></h5></div>
+                                <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>12 -> <%= score_12 %></h5></div>
+                                <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>19 -> <%= score_19 %></h5></div>
+                                <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>23 -> <%= score_23 %></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3 text-left"><h5>6 -> <%= score_6 %></h5></div>
+                                <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>13 -> <%= score_13 %></h5></div>
+                                <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>20 -> <%= score_20 %></h5></div>
+                                <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>27 -> <%= score_27 %></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3 text-left"><h5>7 -> <%= score_7 %></h5></div>
+                                <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>14 -> <%= score_14 %></h5></div>
+                                <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>21 -> <%= score_21 %></h5></div>
+                                <div class="col-3 text-left" style="border-left: 2px solid gray"><h5>28 -> <%= score_28 %></h5></div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12 text-left"><h5><b>PUNTUACIONES = <%= score_total %> / 30</b></h5></div>
+                            </div>       
+                            <div class="row mt-3">
+                                <div class="col-12 text-left"><h5>11-12-13 (Número de repeticiones) -> <%= number_of_repetitions %></h5></div>
+                            </div>   
+                            <div class="row mt-3">
+                                <div class="col-12 text-left"><h5>18a -> <%= score_18a %></h5></div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12 text-left"><h5>1 -> <%= answer_1 %></h5></div>
+                            </div>    
+                            <div class="row">
+                                <div class="col-12 text-left"><h5>2 -> <%= answer_2 %></h5></div>
+                            </div> 
+                            <div class="row">
+                                <div class="col-12 text-left"><h5>3 -> <%= answer_3 %></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-left"><h5>4 -> <%= answer_4 %></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-left"><h5>5 -> <%= answer_5 %></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-left"><h5>6 -> <%= answer_6 %></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-left"><h5>7 -> <%= answer_7 %></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-left"><h5>8 -> <%= answer_8 %></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-left"><h5>9 -> <%= answer_9 %></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-left"><h5>10 -> <%= answer_1 %></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-left"><h5>11 -> <%= answer_11 %></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-left"><h5>12 -> <%= answer_12 %></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-left"><h5>13 -> <%= answer_13 %></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-left"><h5>14 -> <%= answer_14 %></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-left"><h5>15 -> <%= answer_15 %></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-left"><h5>16 -> <%= answer_16 %></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-left"><h5>17 -> <%= answer_17 %></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-left"><h5>18 -> <%= answer_18 %></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-left"><h5>18a -> <%= answer_18a %></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-left"><h5>19 -> <%= answer_19 %></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-left"><h5>20 -> <%= answer_20 %></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-left"><h5>21 -> <%= answer_21 %></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-left"><h5>22 -> <%= answer_22 %></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-left"><h5>23 -> <%= answer_23 %></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-left"><h5>24 -> <%= answer_24 %></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-left"><h5>25 -> <%= answer_25 %></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-left"><h5>26 -> <%= answer_26 %></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-left"><h5>27 -> <%= answer_27 %></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-left"><h5>28 -> <%= answer_28 %></h5></div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <% if (path_video_main != "") { %>
+                            <div class="row">
+                                <div class="col-12 text-left">
+                                    <h5>Video</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-center">                                    
+                                    <video width="500" controls>
+                                        <source src="<%= path_video_main %>" type="video/webm">                                                
+                                    </video>                                    
+                                </div>
+                            </div>
+                            <% } %>
+                            <% for(let i = 1; i <= dibujo_number_of_images; i++) { %>
+                                <div class="row mt-5">
+                                    <div class="col-12 text-left">
+                                        <h5>Dibujo <%= i %></h5>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-center">
+                                        <img src="<%= path_images + 'Dibujo_' + i + '.png' %>" width="500" />
+                                    </div>
+                                </div>
+                            <% } %>
+                            <% for(let i = 1; i <= oracion_number_of_images; i++) { %>
+                                <div class="row mt-5">
+                                    <div class="col-12 text-left">
+                                        <h5>Oraciton <%= i %></h5>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-center">
+                                        <img src="<%= path_images + 'Oracion_' + i + '.png' %>" width="500" />
+                                    </div>
+                                </div>
+                            <% } %>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+<%- include('../includes/end.ejs') %>

@@ -1,0 +1,228 @@
+<%- include('../includes/head.ejs') %>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-1">
+                    <a href="/clinician/report-tests-effectues?idsession=<%= id_session %>"><img src="/images/icons/retour.png" alt="Edit" height="40" width="63"></a>
+                </div>
+                <div class="col-11">
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="font-weight-bold text-success">Patient: <%= patient_family_name %> <%= patient_name %></h5>
+                        </div>                                                
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="font-weight-bold text-success">
+                                Session <%= session_created_date.slice(0,2) %>/<%= session_created_date.slice(2,4) %>/<%= session_created_date.slice(4) %>
+                            </h5>
+                        </div>                                                
+                    </div>
+                    <div class="row">
+                        <div class="col-12"><h5 class="font-weight-bold text-primary">Test de GERIA-12</h5><hr /></div>                                                                        
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="row">
+                                <div class="col-12"><h6 class="font-weight-bold">RAPPEL IMMEDIAT</h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Total = <%= rappel_immediat_1 + rappel_immediat_2 + rappel_immediat_3 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6 class="font-weight-bold">1. Rappel Immédiat 1:</h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Total = <%= rappel_immediat_1 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Intrusions = <%= rappel_immediat_intrusions_1 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Persévérance: <%= rappel_immediat_perseverations_1 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6 class="font-weight-bold">2. Rappel Immédiat 2:</h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Total = <%= rappel_immediat_2 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Intrusions = <%= rappel_immediat_intrusions_2 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Persévérance: <%= rappel_immediat_perseverations_2 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6 class="font-weight-bold">3. Rappel Immédiat 3:</h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Total = <%= rappel_immediat_3 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Intrusions = <%= rappel_immediat_intrusions_3 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Persévérance: <%= rappel_immediat_perseverations_3 %></h6></div>
+                            </div>                            
+                        </div>
+                        <div class="col-3">
+                            <div class="row">
+                                <div class="col-12"><h6 class="font-weight-bold">RAPPEL LIBRE ET INDICE</h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Total = <%= rappel_first_rl + rappel_first_ri + rappel_second_rl + rappel_second_ri %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Total Libre = <%= rappel_first_rl + rappel_second_rl  %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Total Indicé = <%= rappel_first_ri + rappel_second_ri %></h6></div>                                
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6 class="font-weight-bold">1<sup>er</sup> Rappel:</h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Total = <%= rappel_first_rl + rappel_first_ri %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Libre = <%= rappel_first_rl %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Libre Intrusions = <%= rappel_first_intrusions_1 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Libre Persévérance = <%= rappel_first_perseverations_1 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Indicé = <%= rappel_first_ri %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Indicé Intrusions = <%= rappel_first_intrusions_2 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Indicé Persévérance = <%= rappel_first_perseverations_2 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6 class="font-weight-bold">2<sup>eme</sup> Rappel:</h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Total = <%= rappel_second_rl + rappel_second_ri %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Libre = <%= rappel_second_rl %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Libre Intrusions = <%= rappel_second_intrusions_1 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Libre Persévérance = <%= rappel_second_perseverations_1 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Indicé = <%= rappel_second_ri %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Indicé Intrusions = <%= rappel_second_intrusions_2 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Indicé Persévérance = <%= rappel_second_perseverations_2 %></h6></div>
+                            </div>                            
+                        </div>
+                        <div class="col-3">
+                            <div class="row">
+                                <div class="col-12"><h6 class="font-weight-bold">RAPPEL DIFFÉRÉ</h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Total = <%= rappel_differe_rl + rappel_differe_ri %></h6></div>
+                            </div>                            
+                            <div class="row">
+                                <div class="col-12"><h6>Libre = <%= rappel_differe_rl %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Libre Intrusions = <%= rappel_differe_intrusions_1 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Libre Persévérance = <%= rappel_differe_perseverations_1 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Indicé = <%= rappel_differe_ri %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Indicé Intrusions = <%= rappel_differe_intrusions_2 %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Indicé Persévérance = <%= rappel_differe_perseverations_2 %></h6></div>
+                            </div>
+                        </div>
+                        <div class="col-3">                            
+                            <div class="row">
+                                <div class="col-12"><h6>Reconnaissances correctes = <%= reconnaissance_correctes %></h6></div>
+                            </div>                            
+                            <div class="row">
+                                <div class="col-12"><h6>Acceptation de distracteurs sémantique = <%= acceptation_de_distracteurs_semantiques %></h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6>Acceptation de distracteurs phonologique = <%= acceptation_de_distracteurs_phonologiques %></h6></div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12"><h6 class="font-weight-bold">COMMENTAIRES</h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <table class="table table-bordered">
+                                    <tr>
+                                        <td><h6><%= commentaires %></h6></td>                                
+                                    </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6 class="font-weight-bold">AUDIO:</h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h6 class="font-weight-bold">1<sup>er</sup> Rappel:</h6></div>
+                            </div>           
+                            <div class="row">
+                                <div class="col-12">
+                                    <% if (path_audio_1 != "") { %>
+                                    <audio controls>
+                                        <source src="<%= path_audio_1 %>" type="audio/webm">                                                
+                                    </audio>
+                                    <% } %>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12"><h6 class="font-weight-bold">2<sup>eme</sup> Rappel:</h6></div>
+                            </div>           
+                            <div class="row">
+                                <div class="col-12">
+                                    <% if (path_audio_2 != "") { %>
+                                    <audio controls>
+                                        <source src="<%= path_audio_2 %>" type="audio/webm">                                                
+                                    </audio>
+                                    <% } %>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12"><h6 class="font-weight-bold">3<sup>eme</sup> Rappel:</h6></div>
+                            </div>           
+                            <div class="row">
+                                <div class="col-12">
+                                    <% if (path_audio_3 != "") { %>
+                                    <audio controls>
+                                        <source src="<%= path_audio_3 %>" type="audio/webm">                                                
+                                    </audio>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+<%- include('../includes/end.ejs') %>

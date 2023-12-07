@@ -1,0 +1,142 @@
+<%- include('includes/head.ejs') %>
+    <script src="/common/js/peerjs.min.js"></script>
+    <script src="../socket.io/socket.io.js"></script>
+    <style>
+        @media screen and (min-width: 1400px) {
+            #MainScreenGame {
+                height:500px;
+            }
+        }      
+
+        @media screen and (max-width: 1400px) {
+            #MainScreenGame {
+                height:350px;
+            }
+        }
+
+        @media screen and (max-width: 800px) {
+            #MainScreenGame {
+                height:200px;
+            }
+        }
+    </style>
+<body>
+    <%- include('includes/navigation.ejs') %>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <h1>Room of Clinician</h1>
+            </div>
+            <div class="col-3">
+                <div class="row text-center">
+                    <div class="col-4 connection-status-info">
+                        <h7><b>Uploading</b></h7>
+                    </div>
+                    <div class="col-4 connection-status-info">
+                        <b>Patient seeing</b>
+                    </div>
+                    <div class="col-4 connection-status-info">
+                        <b>Recording</b>
+                    </div>                
+                </div>
+                <div class="row mt-1 text-center">
+                    <div class="col-4 mt-1 connection-status-info">
+                        <img id="ImgUploadingServer" src="/images/icons/uploadtoserver.jpg" width="40px" height="40px" style="display:none" /><img id="ImgUploadingLocal" src="/images/icons/uploadtolocal.jpg" width="40px" height="40px" style="display:none" /><img id="ImgUploadingServerLocal" src="/images/icons/uploadto2.jpg" width="40px" height="40px" style="display:none" />
+                    </div>
+                    <div class="col-4 mt-1 connection-status-info">
+                        <img id="ImgSeeingContent" src="/images/icons/content.jpg" width="40px" height="40px" style="display:none" /><img id="ImgSeeingClinician" src="/images/icons/clinician.jpg" width="40px" height="40px" style="display:none" />
+                    </div>
+                    <div class="col-4 mt-1 connection-status-info">
+                        <img id="ImgRecordingVideo" src="/images/icons/video.png" width="40px" height="40px" style="display:none" /><img id="ImgRecordingAudio" src="/images/icons/audio.jpg" width="40px" height="40px" style="display:none" /><img id="ImgNoRecording" src="/images/icons/no-recording.jpg" width="40px" height="40px" style="display:none" />
+                    </div>
+                </div>
+            </div>
+        </div>    
+        <div class="row mt-2">
+            <div class="col-3">            
+                <div id="MainNavigator" class="card">
+                    <%- include('test-screens/common/navigation/navigation-left.ejs') %>                    
+                </div>                
+                <div id="Wait_Upload_Tests" class="card border-success" style="display:none">
+                </div>
+                <div id="Window_Commentaires_Session" style="display:none">                    
+                </div>                
+            </div>
+            <div id="MainScreen" class="col-6">
+                <div id="MainScreenVideo" class="text-center">
+                    <video id="LargeStream" style="width:100%;border:2px solid green;"></video> </br> </br>
+                </div> 
+                <div id="MainScreenGame" style="width:100%" class="text-center">
+                </div>
+            </div>
+            <div class="col-3">
+                <div id="RightNavigator">
+                    <div class="text-center"> 
+                        <video id="SmallStream" style="width:100%;border:2px solid blue;"></video>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-1 text-left">
+                            <i id="MuteLocal" class="fas fa-microphone-alt fa-2x"></i>
+                        </div>
+                        <div class="col-5 text-left">
+                            <i id="StatusConnectionClinician" class="fas fa-circle text-danger fa-lg"></i><br>                
+                        </div>
+                        <div class="col-6 text-right">
+                            <i id="StatusConnectionPatient" class="fas fa-circle text-danger fa-lg"></i><br>
+                        </div>
+                    </div>                    
+                    <div class="row mt-3">
+                        <div class="col-6 text-left">
+                            <button type="button" id="Session_Take_Photo" class="btn btn-warning btn-sm" style="display:none">Taking a photo</button>
+                        </div>
+                        <div class="col-6 text-right">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h4 id="Session_Timer" style="display:none">00:00:00</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <button type="button" id="Session_Timer_Start" class="btn btn-success btn-sm" style="display:none">Start</button>&nbsp;
+                                    <button type="button" id="Session_Timer_Stop" class="btn btn-danger btn-sm" style="display:none">Stop</button>&nbsp;
+                                    <button type="button" id="Session_Timer_Reset" class="btn btn-warning btn-sm" style="display:none">Reset</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="../js/common.js"></script>
+<script type="text/javascript"> 
+    var myEmail = '<%= locals.email %>';
+
+    if (getCookie("idsocketclinician") != "") {
+        socket.emit('Clinician', { 'type' : 'disconnect', 'idsocket' : getCookie("idsocketclinician") });
+        delCookie("idsocketclinician");
+    } else {
+        $(window).bind('beforeunload', function() {
+            return "";
+        });
+    }
+</script>
+<script src="../js/clinician/init_clinician.js"></script>
+<script src="../js/clinician/socket_clinician.js"></script>
+<script src="../js/clinician/webrtc_clinician.js"></script>
+<script src="../js/clinician/interaction/controls.js"></script>
+<script src="../js/clinician/interaction/test09_fvlex.js"></script>
+<script src="../js/clinician/interaction/test10_fvsem.js"></script>
+<script src="../js/clinician/interaction/test14_entr_clin.js"></script>
+<script src="../js/clinician/interaction/test17_stroop_vectoria.js"></script>
+<script src="../js/clinician/interaction/test24_gds.js"></script>
+<script src="../js/clinician/interaction/test26_deepspa.js"></script>
+<script src="../js/clinician/interaction/test31_moca.js"></script>
+<script src="../js/clinician/interaction/test37_digital_span.js"></script>
+<script src="../js/clinician/interaction/test38_bnt_15.js"></script>
+<script src="../js/clinician/interaction/test39_words_list.js"></script>
+<script src="../js/clinician/interaction/test40_stroop_victoria_2.js"></script>
+<%- include('includes/end.ejs') %>

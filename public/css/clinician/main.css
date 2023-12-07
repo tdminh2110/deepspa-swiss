@@ -1,0 +1,23 @@
+h2.session {
+	font-size: 1.5rem;
+	margin-bottom: 1rem;
+}
+
+.navbar-nav .nav-item:hover .nav-link {
+	background-color:#FCC;
+}
+
+#listOfTests:hover button, 
+#list_Of_Sessions button:hover, 
+#Create_Session:hover, 
+#bt_select_session:hover,
+#BackListTests:hover, 
+#introBack button:hover,
+#runTest button:hover,
+#Session_Take_Photo:hover {
+	background-color:#FCC !important;
+	color: black !important;
+	font-weight: bold;
+}
+
+

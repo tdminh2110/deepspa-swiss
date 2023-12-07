@@ -1,0 +1,110 @@
+<%- include('../includes/head.ejs') %>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-1">
+                    <a href="/clinician/report-tests-effectues?idsession=<%= id_session %>"><img src="/images/icons/retour.png" alt="Edit" height="40" width="63"></a>
+                </div>
+                <div class="col-11">
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="font-weight-bold text-success">Patient: <%= patient_family_name %> <%= patient_name %></h5>
+                        </div>                                                
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="font-weight-bold text-success">
+                                Session <%= session_created_date.slice(0,2) %>/<%= session_created_date.slice(2,4) %>/<%= session_created_date.slice(4) %>
+                            </h5>
+                        </div>                                                
+                    </div>
+                    <div class="row">
+                        <div class="col-12"><h5 class="font-weight-bold text-primary">Test de Stroop GREFEX</h5><hr /></div>                                                                        
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-12"><h5 class="font-weight-bold">Planche 1: Couleur</h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Durée = <%= duree_1 %></h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Nombre d’erreurs = <%= nombre_d_erreurs_1 %></h5></div>                                    
+                            </div>  
+                            <div class="row">
+                                <div class="col-12"><h5>Nombre d’erreurs corrigées = <%= nombre_d_erreurs_corrigees_1 %></h5></div>                                    
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12"><h5 class="font-weight-bold">Planche 2: Mots</h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Durée = <%= duree_2 %></h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Nombre d’erreurs = <%= nombre_d_erreurs_2 %></h5></div>                                    
+                            </div>  
+                            <div class="row">
+                                <div class="col-12"><h5>Nombre d’erreurs corrigées = <%= nombre_d_erreurs_corrigees_2 %></h5></div>                                    
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12"><h5 class="font-weight-bold">Planche 3: Interférences</h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Durée = <%= duree_3 %></h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Nombre d’erreurs = <%= nombre_d_erreurs_3 %></h5></div>                                    
+                            </div>  
+                            <div class="row">
+                                <div class="col-12"><h5>Nombre d’erreurs corrigées = <%= nombre_d_erreurs_corrigees_3 %></h5></div>                                    
+                            </div>                                                  
+                        </div>
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-12"><h5>Audio Couleurs:</h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <% if (path_audio_1 != "") { %>
+                                    <audio controls>
+                                        <source src="<%= path_audio_1 %>" type="audio/webm">                                                
+                                    </audio>
+                                    <% } %>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12"><h5>Audio Mots:</h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <% if (path_audio_2 != "") { %>
+                                    <audio controls>
+                                        <source src="<%= path_audio_2 %>" type="audio/webm">                                                
+                                    </audio>
+                                    <% } %>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12"><h5>Audio Interférences:</h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <% if (path_audio_3 != "") { %>
+                                    <audio controls>
+                                        <source src="<%= path_audio_3 %>" type="audio/webm">                                                
+                                    </audio>
+                                    <% } %>
+                                </div>
+                            </div>                                       
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+<%- include('../includes/end.ejs') %>

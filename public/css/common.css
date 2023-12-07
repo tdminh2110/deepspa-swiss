@@ -1,0 +1,118 @@
+/*
+  #5680e9
+  #84ceeb
+  #5ab9ea
+  #c1c8e4
+  #8860d0
+
+  https://visme.co/blog/website-color-schemes/ - 21
+*/
+
+h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #5ab9ea;
+  margin-top: .8rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+nav.menu {
+  font-size: 1.2rem;
+}
+
+nav.menu .navbar-nav .nav-link {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.form-control {
+  border: 1px solid #c1c8e4;
+}
+
+.btn-primary {
+  background: #5680e9 !important;
+  color: #fff !important;
+}
+
+.btn-outline-primary {
+  color: #5680e9;
+  border-color: #5680e9;
+}
+
+.text-primary {
+  color: #5680e9 !important;	
+}
+
+.btn-secondary {
+  background: #c1c8e4 !important;
+  color: #000 !important;
+}
+
+.text-secondary {
+  color: #c1c8e4 !important;	
+}
+
+.btn-info {
+  background: #5ab9ea !important;
+  color: #fff !important;
+}
+
+.text-info {
+  color: #5ab9ea !important;
+}
+
+.btn-logout {
+  background: #8860d0 !important;
+  color: #fff !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;	
+}
+
+.btn-logout:hover {
+  color: #c1c8e4 !important;
+}
+
+.m-row {
+  margin:20px; 
+  font-size:20px;
+}
+
+.room-icon {
+  font-size: 50px;
+}
+
+.room-icon-sm {
+  font-size: 25px;
+  vertical-align: top;
+}
+
+.square:before {
+  content: "";
+  display: block;
+  float: left;
+  padding-top: 100%;	
+}
+
+.image-thumbnail {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  border: 5px solid transparent;
+}
+
+.image-thumbnail-selected {
+  border: 5px solid blue;
+}
+
+.image-thumbnail-error {
+  border: 5px solid red;
+}
+
+.image-thumbnail-desc {
+  height: 20px;
+  overflow: hidden;
+  padding-top: 0.2em;
+  text-align: center;
+  font-weight: bold;
+}

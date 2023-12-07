@@ -1,0 +1,192 @@
+<%- include('../includes/head.ejs') %>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-1">
+                    <a href="/clinician/report-tests-effectues?idsession=<%= id_session %>"><img src="/images/icons/retour.png" alt="Edit" height="40" width="63"></a>
+                </div>
+                <div class="col-11">
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="font-weight-bold text-success">Patient: <%= patient_family_name %> <%= patient_name %></h5>
+                        </div>                                                
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="font-weight-bold text-success">
+                                Session <%= session_created_date.slice(0,2) %>/<%= session_created_date.slice(2,4) %>/<%= session_created_date.slice(4) %>
+                            </h5>
+                        </div>                                                
+                    </div>
+                    <div class="row">
+                        <div class="col-12"><h5 class="font-weight-bold text-primary">Tests: Words List</h5><hr /></div>                                                                        
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <table class="table table-borderless">
+                            <tr>
+                                <td><h5 class="font-weight-bold">Wortliste Lernen 1</h5></td>                                
+                            </tr>   
+                            <tr>
+                                <td><h5>Kann nicht lesen = <b><%= knl_1 %></b> / 10</h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Kann nicht lesen - Liste = <b><%= wortliste_knl_1 %></b></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Richtig erinnerten Wörter = <b><%= lernen_1 %></b> / 10</h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Richtig erinnerten Wörter - Liste = <b><%= rew_list_1 %></b></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Intrusionen = <b><%= lernen_1_int %></b></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Intrusionen - Liste = <b><%= lernen_1_int_text %></b></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5 class="font-weight-bold">Wortliste Lernen 2</h5></td>                                
+                            </tr>   
+                            <tr>
+                                <td><h5>Kann nicht lesen = <b><%= knl_2 %></b> / 10</h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Kann nicht lesen - Liste = <b><%= wortliste_knl_2 %></b></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Richtig erinnerten Wörter = <b><%= lernen_2 %></b> / 10</h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Richtig erinnerten Wörter - Liste = <b><%= rew_list_2 %></b></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Intrusionen = <b><%= lernen_2_int %></b></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Intrusionen - Liste = <b><%= lernen_2_int_text %></b></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5 class="font-weight-bold">Wortliste Lernen 3</h5></td>                                
+                            </tr>   
+                            <tr>
+                                <td><h5>Kann nicht lesen = <b><%= knl_3 %></b> / 10</h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Kann nicht lesen - Liste = <b><%= wortliste_knl_3 %></b></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Richtig erinnerten Wörter = <b><%= lernen_3 %></b> / 10</h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Richtig erinnerten Wörter - Liste = <b><%= rew_list_3 %></b></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Intrusionen = <b><%= lernen_3_int %></b></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Intrusionen - Liste = <b><%= lernen_3_int_text %></b></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5 class="font-weight-bold">Wortliste Abrufen</h5></td>                                
+                            </tr>   
+                            <tr>
+                                <td><h5>Richtig abgerufenes Wörter = <b><%= abrufen %></b> / 10</h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Richtig abgerufenes Wörter - Liste = <b><%= rew_list_abrufen %></b></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Intrusionen = <b><%= abrufen_int %></b></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Intrusionen - Liste = <b><%= abrufen_int_text %></b></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Intrusion (Wort für Wort)</h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Butter = <b><%= butter %></b></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Arm = <b><%= arm %></b></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Strand = <b><%= strand %></b></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Brief = <b><%= brief %></b></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Königin = <b><%= konigin %></b></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Hütte = <b><%= hutte %></b></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Stange = <b><%= stange %></b></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Karte = <b><%= karte %></b></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Gras = <b><%= gras %></b></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Motor = <b><%= motor %></b></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5 class="font-weight-bold">Wortliste Wiedererkennen</h5></td>                                
+                            </tr>   
+                            <tr>
+                                <td><h5>Total richtige 'JA' = <b><%= r_ja %></b></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Liste = <b><%= r_ja_list %></b></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Total richtige 'NEIN' = <b><%= r_nein %></b></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Liste = <b><%= r_nein_list %></b></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Total falsch 'JA' = <b><%= f_ja %></b></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Liste = <b><%= f_ja_list %></b></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Total falsch 'NEIN' = <b><%= f_nein %></b></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Liste = <b><%= f_nein_list %></b></h5></td>                                
+                            </tr>         
+                            </table>                                                       
+                        </div>
+                        <div class="col-6">
+                            <table class="table table-borderless">                            
+                            <tr>
+                                <td><h5 class="font-weight-bold">Video: <% if (path_video != "") { %> OUI <% } else { %> NON <% } %></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <% if (path_video != "") { %>
+                                    <video width="500" controls>
+                                        <source src="<%= path_video %>" type="video/webm">                                                
+                                    </video>
+                                    <% } %>
+                                </td>                                
+                            </tr>                            
+                            </table>                            
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+<%- include('../includes/end.ejs') %>

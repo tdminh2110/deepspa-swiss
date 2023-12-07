@@ -1,0 +1,68 @@
+<%- include('includes/head.ejs') %>    
+    <script src="/common/js/peer.min.js"></script>
+    <script src="../socket.io/socket.io.js"></script>    
+    <style>
+        @media screen and (min-width: 1400px) {
+            #MainScreenGame {
+                height:500px;
+            }
+        }      
+
+        @media screen and (max-width: 1400px) {
+            #MainScreenGame {
+                height:350px;
+            }
+        }
+
+        @media screen and (max-width: 800px) {
+            #MainScreenGame {
+                height:200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <%- include('includes/navigation.ejs') %>
+    <div class="container-fluid">        
+        <div class="row mt-3">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <div id="MainScreenVideo" class="text-center">
+                    <video id="clinicianStream" style="width:100%;border:2px solid green;"></video>
+                </div>
+                <div id="MainScreenGame" style="width:100%" class="text-center">                    
+                </div>
+            </div>
+            <div class="col-2"></div>
+        </div>        
+    </div>
+</body>
+
+<script src="../js/common.js"></script>
+<script type="text/javascript"> 
+    var myEmail = '<%= locals.email %>'; 
+
+    if (getCookie("idsocketpatient") != "") {
+        socket.emit('Patient', { 'type' : 'disconnect', 'idsocket' : getCookie("idsocketpatient") });
+        delCookie("idsocketpatient");
+    } else {
+        $(window).bind('beforeunload', function() {            
+            return "";
+        });
+    }
+</script>
+<script src="../js/patient/init_patient.js"></script>
+<script src="../js/patient/socket_patient.js"></script>
+<script src="../js/patient/webrtc_patient.js"></script>
+<script src="../js/patient/interaction/test09_fvlex.js"></script>
+<script src="../js/patient/interaction/test10_fvsem.js"></script>
+<script src="../js/patient/interaction/test14_entr_clin.js"></script>
+<script src="../js/patient/interaction/test17_stroop_vectoria.js"></script>
+<script src="../js/patient/interaction/test24_gds.js"></script>
+<script src="../js/patient/interaction/test26_deepspa.js"></script>
+<script src="../js/patient/interaction/test31_moca.js"></script>
+<script src="../js/patient/interaction/test37_digital_span.js"></script>
+<script src="../js/patient/interaction/test38_bnt_15.js"></script>
+<script src="../js/patient/interaction/test39_words_list.js"></script>
+<script src="../js/patient/interaction/test40_stroop_victoria_2.js"></script>
+<%- include('includes/end.ejs') %>

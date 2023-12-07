@@ -1,0 +1,21 @@
+<div class="row mb-3">
+    <div class="col-3"><button id="BackListTests" type="button" class="btn btn-outline-primary btn-sm btn-block">Back</button></div>
+    <div class="col-9"><h4 class="session" style="font-style:italic"><span style="font-weight:bold;color:slateblue"><%= session_name %></span> - <span style="font-weight:bold;color:red">ORTHOPHONIE</span></h4></div>
+</div>
+<%  [
+        [
+            {
+                id: "Test22_DLTA", name: "DTLA", checked: test_dlta
+            }
+        ]
+    ].forEach(function(row) { %>
+        <div class="row">
+    <%  row.forEach(function(cell) { %>
+            <div class="col-6 mb-2" id="listOfTests">
+                <button id="<%= cell.id %>" type="button" class="btn <% if (cell.checked) { %>btn-secondary<% } else {%> btn-primary <% } %> btn-md btn-block">
+                    <% if (cell.checked) { %><i class="fas fa-check"></i><% } %> <%= cell.name %>
+                </button>                
+            </div>
+    <%  }); %>
+        </div>
+<%  }); %>

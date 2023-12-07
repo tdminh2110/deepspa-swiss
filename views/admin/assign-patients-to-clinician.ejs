@@ -1,0 +1,67 @@
+<%- include('includes/head.ejs') %>
+<body>
+    <%- include('includes/navigation.ejs') %>
+    <main>
+        <div class="container">
+            <form action="/admin/assign-patients-to-clinician" method="POST">
+            <div class="row">
+                <div class="col-6">
+                    <h2>List of Unsigned Patients</h2>
+                </div>
+                <div class="col-6">
+                    <h2>List of Clinicians</h2>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-6">
+                    <div class="row text-light bg-dark h-25">
+                        <div class="col-1">&nbsp;</div>
+                        <div class="col-5 align-self-center">Full Name</div>
+                        <div class="col-5 align-self-center">Email</div>
+                        <div class="col-1">&nbsp;</div>
+                    </div>                        
+                <% for (let pati of patis) { %>         
+                    <div class="row mt-3">
+                        <div class="col-1"><input class="form-check-input" type="checkbox" name="chk_patient" id="chk_patient" value="<%= pati.email %>"></div>
+                        <div class="col-5 align-self-center"><%= pati.DSUserName %> <%= pati.family_name %></div>
+                        <div class="col-5 align-self-center"><%= pati.email %></div>
+                        <div class="col-1 align-self-center"><a href="javascript:removePatient('<%= pati.email %>');"><img src="/images/icons/delete.png" alt="Remove" height="16" width="16"></a></div>
+                    </div>
+                <% } %>                        
+                </div>
+                <div class="col-1"></div>
+                <div class="col-5">
+                    <div class="row text-light bg-dark h-25">
+                        <div class="col-12">Choose a clinician</div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <select class="form-control" id="email_clinician" name="email_clinician">
+                            <% for (let clin of clins) { %>
+                                <option value="<%= clin.email %>"><%= clin.DSUserName %> <%= clin.family_name %> - <%= clin.email %></option>
+                            <% } %>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <button class="btn btn-primary btn-lg" type="submit">Assign</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>        
+    </main>
+</body>
+
+<script language="javascript">
+    function removeClinician(email) {
+        var r = confirm("Est-vous sure de supprimer ce clinician ?");
+        if (r == true) {
+            window.location.href = "/admin/remove-clinician?email=" + email;
+        }
+    }
+</script>
+
+<%- include('includes/end.ejs') %>

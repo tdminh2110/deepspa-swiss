@@ -1,0 +1,79 @@
+<%- include('../includes/head.ejs') %>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-1">
+                    <a href="/clinician/report-patient?email=<%= patient_email %>"><img src="/images/icons/retour.png" alt="Edit" height="40" width="63"></a>
+                </div>
+                <div class="col-11">
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="font-weight-bold text-success">Patient: <%= patient_family_name %> <%= patient_name %></h5>
+                        </div>                                                
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="font-weight-bold text-success">
+                                Session <%= session_created_date.slice(0,2) %>/<%= session_created_date.slice(2,4) %>/<%= session_created_date.slice(4) %>
+                                <hr />
+                            </h5>
+                        </div>                                                
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <table class="table table-sm table-borderless">      
+                            <tr>
+                                <td class="align-middle"><h6 class="font-weight-bold text-primary">Commentaires de la session</h6></td>
+                                <td class="text-right"><button id="Save_Commentaires_Session" class="btn btn-info" type="button" style="display:none">Save</button></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><textarea class="form-control rounded-0" id="Commentaires_Session" rows="5"><%= session_commentaires %></textarea></td>
+                            </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <table class="table table-sm table-borderless">      
+                            <tr>
+                                <td class="align-middle"><h6 class="font-weight-bold text-primary">Historique du patient</h6></td>
+                                <td class="text-right"><button id="Save_Historique_Du_Patient" class="btn btn-info" type="button" style="display:none">Save</button></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><textarea class="form-control rounded-0" id="Historique_Du_Patient" rows="5"><%= test_deepspa_historique_du_patient %></textarea></td>
+                            </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <table class="table table-sm table-borderless">      
+                            <tr>
+                                <td class="align-middle"><h6 class="font-weight-bold text-primary">Conclusions</h6></td>
+                                <td class="text-right"><button id="Save_Conclusions" class="btn btn-info" type="button" style="display:none">Save</button></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><textarea class="form-control rounded-0" id="Conclusions" rows="5"><%= test_deepspa_conclusions %></textarea></td>
+                            </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4"><a class="btn btn-primary btn-lg btn-block" href="/clinician/report-etude-clinique-deepspa?idsession=<%= id_session %>">Etude Clinique DeepSpA</a></div>
+                        <div class="col-4"><a class="btn btn-primary btn-lg btn-block" href="/clinician/report-tests-effectues?idsession=<%= id_session %>">Tests Effectués</a></div>
+                        <div class="col-4"><a class="btn btn-primary btn-lg btn-block" href="/clinician/generate-report?idsession=<%= id_session %>">Générer un Rapport</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+<script type="text/javascript"> 
+    var idSession = <%= id_session %>; 
+</script>
+<script src="../js/clinician/report/report-session.js"></script>
+
+<%- include('../includes/end.ejs') %>

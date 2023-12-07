@@ -1,0 +1,375 @@
+<%- include('../includes/head.ejs') %>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-1">
+                    <a href="<%= fromPage %><% 
+                                if (fromPage == 'generate-report-upd-rmc') { %>?idsession=<%= id_session %> <% } 
+                                if (fromPage == 'report-patient') { %>?email=<%= email %> <% } %>">
+                                <img src="/images/icons/retour.png" alt="Edit" height="40" width="63"></a>
+                </div>
+                <div class="col-11">
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="font-weight-bold text-success">Patient: <%= patient_family_name %> <%= patient_name %></h5>
+                        </div>                                                
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="font-weight-bold text-success">
+                                Session <%= session_created_date.slice(0,2) %>/<%= session_created_date.slice(2,4) %>/<%= session_created_date.slice(4) %>
+                                <hr />
+                            </h5>
+                        </div>                                                
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12"><h5><b>Patient ID:</b> <%= patient_id %></h5></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12"><h5><b>Geburtsdatum:</b> <%= birthday %></h5></div>                         
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12"><h5><b>Alter:</b> <%= age %></h5></div>                         
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12"><h5><b>Geschlecht:</b> <%= sex %></h5></div>                         
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12"><h5><b>Bildungsniveau:</b> <%= bildungsniveau %></h5></div>                         
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12"><h5><b>Datum der Testung:</b> <%= session_created_date.slice(0,2) %>/<%= session_created_date.slice(2,4) %>/<%= session_created_date.slice(4) %></h5></div>                         
+                    </div>
+                    <hr />
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <canvas id="myChart" width="900" height="600"></canvas>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row mt-3">
+                        <div class="col-12"><h5><b>Liste der durchgeführten Tests und Gesamtpunktzahl: </b></h5></div>                         
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <table class="table table-bordered">
+                                <thead>
+                                  <tr class="text-center">
+                                    <th><h5><b>Test</b></h5></th>
+                                    <th><h5><b>Ergebnis</b></h5></th>
+                                    <th><h5><b>Z-Wert</b></h5></th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td><h5>MOCA</h5></td>
+                                    <td><h5><%= test_moca_total %> / 30</h5></td>
+                                    <td>N/A</td>
+                                  </tr>
+                                  <tr>
+                                    <td><h5>GDS - 15 items</h5></td>
+                                    <td><h5><%= test_gds_score %> / 15</h5></td>
+                                    <td>N/A</td>
+                                  </tr>
+                                  <tr>
+                                    <td><h5>Stroop Victoria</h5></td>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-12"><h5><b>Karte A:</b></h5></div>                         
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12"><h5>Zeit = <%= test_stroop_victoria_2_duree_1 %> Sek. - Fehler = <%= test_stroop_victoria_2_nombre_d_erreurs_1 %> - korrigiert = <%= test_stroop_victoria_2_nombre_d_erreurs_corrigees_1 %></h5></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12"><h5><b>Karte B:</b></h5></div>                         
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12"><h5>Zeit = <%= test_stroop_victoria_2_duree_2 %> Sek. - Fehler = <%= test_stroop_victoria_2_nombre_d_erreurs_2 %> - korrigiert = <%= test_stroop_victoria_2_nombre_d_erreurs_corrigees_2 %></h5></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12"><h5><b>Karte C:</b></h5></div>                                                                   
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12"><h5>Zeit = <%= test_stroop_victoria_2_duree_3 %> Sek. - Fehler = <%= test_stroop_victoria_2_nombre_d_erreurs_3 %> - korrigiert = <%= test_stroop_victoria_2_nombre_d_erreurs_corrigees_3 %></h5></div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-12"><h5>Karte A = <%= test_stroop_victoria_2_z_score_svA.toFixed(2) %></h5></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12"><h5>Karte B = <%= test_stroop_victoria_2_z_score_svB.toFixed(2) %></h5></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12"><h5>Karte C = <%= test_stroop_victoria_2_z_score_svC.toFixed(2) %></h5></div>
+                                        </div>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td><h5>Digit Span<br /><i>[!] CAVE keine Normwerte für diesen Rohwert</i></h5></td>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-12"><h5>Vorwärts = <%= test_digital_span_vor %></h5></div>
+                                        </div>                                        
+                                        <div class="row">
+                                            <div class="col-12"><h5>Rückwärts = <%= test_digital_span_ruc %></h5></div>
+                                        </div>                                        
+                                    </td>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-12"><h5>Vorwärts <%= test_digital_span_CAV_vorwarts ? "[!]" : "" %> = <%= test_digital_span_z_score_dsv %></h5></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12"><h5>Rückwärts <%= test_digital_span_CAV_score_ruckwarts ? "[!]" : "" %> = <%= test_digital_span_z_score_dsr %></h5></div>
+                                        </div>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td><h5>Verbale Flüssigkeit Tiere</h5></td>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-12"><h5>Richtige = <%= test_fvsem_animaux_reponses %></h5></div>
+                                        </div>                                        
+                                        <div class="row">
+                                            <div class="col-12"><h5>Intrusionen = <%= test_fvsem_animaux_intrusions %></h5></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12"><h5>Fehler = <%= test_fvsem_animaux_erreurs %></h5></div>
+                                        </div>                                        
+                                    </td>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-12"><h5>Tiere = <%= test_fvsem_z_score_vft.toFixed(2) %></h5></div>
+                                        </div>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td><h5>Phonematische Flüssigkeit S-Wörter</h5></td>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-12"><h5>Richtige = <%= test_fvlex_p_reponses %></h5></div>
+                                        </div>                                        
+                                        <div class="row">
+                                            <div class="col-12"><h5>Intrusionen = <%= test_fvlex_p_intrusions %></h5></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12"><h5>Fehler = <%= test_fvlex_p_erreurs %></h5></div>
+                                        </div>                                        
+                                    </td>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-12"><h5>S-Wörter = <%= test_fvlex_z_score_pfs.toFixed(2) %></h5></div>
+                                        </div>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td><h5>Boston Naming Test</h5></td>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-12"><h5>HÄUFIG = <%= test_bnt_15_haufig %> / 5</h5></div>
+                                        </div>                                        
+                                        <div class="row">
+                                            <div class="col-12"><h5>MITTEL = <%= test_bnt_15_mittel %> / 5</h5></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12"><h5>SELTEN = <%= test_bnt_15_selten %> / 5</h5></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12"><h5>TOTAL = <%= test_bnt_15_total %> / 15</h5></div>
+                                        </div>                                        
+                                    </td>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-12"><h5>Total = <%= test_bnt_15_z_score_bnt.toFixed(2) %></h5></div>
+                                        </div>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td><h5>Wortliste Lernen</h5></td>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-12"><h5><b>1. Durchgang</b></h5></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-1"></div>
+                                            <div class="col-11"><h5>Richtige = <%= test_words_list_lernen_1 %></h5></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-1"></div>
+                                            <div class="col-11"><h5>Intrusionen = <%= test_words_list_lernen_1_int %></h5></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12"><h5><b>2. Durchgang</b></h5></div>
+                                        </div>                                      
+                                        <div class="row">
+                                            <div class="col-1"></div>
+                                            <div class="col-11"><h5>Richtige = <%= test_words_list_lernen_2 %></h5></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-1"></div>
+                                            <div class="col-11"><h5>Intrusionen = <%= test_words_list_lernen_2_int %></h5></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12"><h5><b>3. Durchgang</b></h5></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-1"></div>
+                                            <div class="col-11"><h5>Richtige = <%= test_words_list_lernen_3 %></h5></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-1"></div>
+                                            <div class="col-11"><h5>Intrusionen = <%= test_words_list_lernen_3_int %></h5></div>
+                                        </div>                                      
+                                    </td>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-12"><h5>Total = <%= test_words_list_z_score_wlt.toFixed(2) %></h5></div>
+                                        </div>                                        
+                                        <div class="row">
+                                            <div class="col-12"><h5>Durchgang 1 = <%= test_words_list_z_score_wld1.toFixed(2) %></h5></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12"><h5>Durchgang 2 = <%= test_words_list_z_score_wld2.toFixed(2) %></h5></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12"><h5>Durchgang 3 = <%= test_words_list_z_score_wld3.toFixed(2) %></h5></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12"><h5>Intrusionen = <%= test_words_list_z_score_wli.toFixed(2) %></h5></div>
+                                        </div>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td><h5>Wortliste Abrufen</h5></td>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-12"><h5>Richtige = <%= test_words_list_abrufen %></h5></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12"><h5>Intrusionen = <%= test_words_list_abrufen_int %></h5></div>
+                                        </div>                                                                       
+                                    </td>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-12"><h5>Abrufen = <%= test_words_list_z_score_wab.toFixed(2) %></h5></div>
+                                        </div>                                        
+                                        <div class="row">
+                                            <div class="col-12"><h5>Savings = <%= test_words_list_z_score_swo.toFixed(2) %></h5></div>
+                                        </div>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td><h5>Wortliste Wiedererkennen</h5></td>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-12"><h5>Total richtige 'JA' = <%= test_words_list_r_ja %></h5></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12"><h5>Total richtige 'NEIN' = <%= test_words_list_r_nein %></h5></div>
+                                        </div>                                                                       
+                                    </td>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-12"><h5>Wiedererkennen = <%= test_words_list_z_score_dis.toFixed(2) %></h5></div>
+                                        </div>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                        </div>                         
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+<script src="/common/js/chart.min.js"></script>
+<script src="/common/js/chartjs-plugin-datalabels@2.0.0-rc"></script>
+      
+<script>
+    var ctx = document.getElementById('myChart');
+    Chart.register(ChartDataLabels);
+
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        plugins: [ChartDataLabels],
+        data: {
+            labels: [
+                        'Verbale Flüssigkeit Tiere', 
+                        'Boston Naming Test', 
+                        'Wortliste Lernen Total', 
+                        'Wortliste Lernen Durchgang 1', 
+                        'Wortliste Lernen Durchgang 2', 
+                        'Wortliste Lernen Durchgang 3',
+                        'Wortliste Abrufen',
+                        'Wortliste Intrisionen',
+                        'Wortliste Savings',
+                        'Wortliste Wiedererkennen Diskriminabiliät',
+                        'Phonematische Flüssigkeit S-Wörter',
+                        'Digit Span Vorwärts',
+                        'Digit Span Rückwärts',
+                        'Stroop Victoria Karte A',
+                        'Stroop Victoria Karte B',
+                        'Stroop Victoria Karte C'
+                    ],
+            datasets: [{
+                label: 'Z-Wert',
+                data: [
+                        <%= test_fvsem_z_score_vft.toFixed(2) %>, 
+                        <%= test_bnt_15_z_score_bnt.toFixed(2) %>, 
+                        <%= test_words_list_z_score_wlt.toFixed(2) %>, 
+                        <%= test_words_list_z_score_wld1.toFixed(2) %>,
+                        <%= test_words_list_z_score_wld2.toFixed(2) %>, 
+                        <%= test_words_list_z_score_wld3.toFixed(2) %>, 
+                        <%= test_words_list_z_score_wab.toFixed(2) %>, 
+                        <%= test_words_list_z_score_wli.toFixed(2) %>,
+                        <%= test_words_list_z_score_swo.toFixed(2) %>, 
+                        <%= test_words_list_z_score_dis.toFixed(2) %>, 
+                        <%= test_fvlex_z_score_pfs.toFixed(2) %>, 
+                        <%= test_digital_span_z_score_dsv %>,
+                        <%= test_digital_span_z_score_dsr %>,
+                        <%= test_stroop_victoria_2_z_score_svA.toFixed(2) %>, 
+                        <%= test_stroop_victoria_2_z_score_svB.toFixed(2) %>, 
+                        <%= test_stroop_victoria_2_z_score_svC.toFixed(2) %>,
+                    ],
+                borderWidth: 1,
+                backgroundColor: 'rgb(150,210,246)',
+                barThickness: 25,
+                datalabels: {
+                    color: '#FFCE56'
+                }
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: false,
+            plugins: {
+                datalabels: {
+                anchor: (ctx) => { 
+                    if (ctx.dataset.data[ctx.dataIndex] > 0)
+                        return 'end';
+                    else
+                        return 'start';
+                },
+                align: (ctx) => { 
+                    if (ctx.dataset.data[ctx.dataIndex] > 0)
+                        return 'end';
+                    else
+                        return 'start';
+                },
+                labels: {
+                    value: {
+                    color: 'blue'
+                    }
+                }
+
+                }
+            }
+        }
+    });
+</script>
+
+<%- include('../includes/end.ejs') %>

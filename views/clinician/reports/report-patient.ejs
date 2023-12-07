@@ -1,0 +1,151 @@
+<%- include('../includes/head.ejs') %>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-1">
+                    <a href="/clinician/list-patients"><img src="/images/icons/retour.png" alt="Edit" height="40" width="63"></a>
+                </div>
+                <div class="col-11">
+                    <div class="row">
+                        <div class="col-12"><h4 class="font-weight-bold text-success">Rapport sur les bilans cognitifs d'un patient:</h4></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-12"><h5 class="font-weight-bold text-primary">Information sur le patient:</h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-1"></div>
+                                <div class="col-11">
+                                    <div class="row">
+                                        <div class="col-6"><h5>Nom:</h5></div>
+                                        <div class="col-6"><h5><%= patient_name %></h5></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6"><h5>Prénom:</h5></div>
+                                        <div class="col-6"><h5><%= patient_family_name %></h5></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6"><h5>Date de naissance:</h5></div>
+                                        <div class="col-6"><h5><%= patient_birthday %></h5></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6"><h5>Sexe:</h5></div>
+                                        <div class="col-6"><h5><%= patient_sex %></h5></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6"><h5>Niveau d’étude:</h5></div>
+                                        <div class="col-6"><h5><%= patient_education %></h5></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6"><h5>Adresse:</h5></div>
+                                        <div class="col-6"><h5><%= patient_address %></h5></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6"><h5>Téléphone:</h5></div>
+                                        <div class="col-6"><h5><%= patient_phone %></h5></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6"><h5>Email:</h5></div>
+                                        <div class="col-6"><h5><%= patient_email %></h5></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12"><h5 class="font-weight-bold text-primary">Information sur le médecin traitant:</h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-1"></div>
+                                <div class="col-11">
+                                    <div class="row">
+                                        <div class="col-6"><h5>Nom et Prénom:</h5></div>
+                                        <div class="col-6"><h5><%= clinician_name %> <%= clinician_family_name %></h5></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6"><h5>Téléphone:</h5></div>
+                                        <div class="col-6"><h5><%= clinician_phone %></h5></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6"><h5>Email:</h5></div>
+                                        <div class="col-6"><h5><%= clinician_email %></h5></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12"><h5 class="font-weight-bold text-primary">Personne à contacter an cas de besoin:</h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-1"></div>
+                                <div class="col-11">
+                                    <div class="row">
+                                        <div class="col-6"><h5>Nom et Prénom:</h5></div>
+                                        <div class="col-6"><h5><%= patient_cp_name %> <%= patient_cp_family_name %></h5></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6"><h5>Adresse:</h5></div>
+                                        <div class="col-6"><h5><%= patient_cp_address %></h5></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6"><h5>Téléphone:</h5></div>
+                                        <div class="col-6"><h5><%= patient_cp_phone %></h5></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6"><h5>Email:</h5></div>
+                                        <div class="col-6"><h5><%= patient_cp_email %></h5></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <table class="table table-sm table-borderless">      
+                                    <tr>
+                                        <td class="align-middle"><h5 class="font-weight-bold text-primary">Informations sur le patient:</h5></td>
+                                        <td class="text-right"><button id="Save_Informations_Patient" class="btn btn-info" type="button" style="display:none">Save</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"><textarea class="form-control rounded-0" id="Informations_Patient" rows="8"><%= patient_informations %></textarea></td>
+                                    </tr>
+                                    </table>
+                                </div>
+                            </div>                    
+                        </div>
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-12"><h5 class="font-weight-bold text-primary">Historique du suivi du patient:</h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-1"></div>
+                                <div class="col-11">
+                                    <% for (let sess of sessions) { %>
+                                    <div class="row">
+                                        <div class="col-4"><h5>Visite <%= sess.created_number %></h5></div>
+                                        <div class="col-4"><h5><%= sess.created_date.slice(0,2) %>/<%= sess.created_date.slice(2,4) %>/<%= sess.created_date.slice(4) %></h5></div>
+                                        <div class="col-4"><a href="/clinician/report-session?id=<%= sess.id %>"><img src="/images/icons/eye.png" alt="View" height="24" width="24"></a>&nbsp;&nbsp;<a href="javascript:removeSession('<%= sess.id %>','<%= patient_email %>');"><img src="/images/icons/delete.png" alt="Remove" height="20" width="20"></a>&nbsp;&nbsp;<a href="/clinician/generate-report-upd-rmc-detail?idsession=<%= sess.id %>&from=report-patient"><img src="/images/icons/rmc.jpg" alt="View" height="24" width="24"></a></div>
+                                    </div>                                    
+                                    <% } %>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+<script language="javascript">
+    function removeSession(idSession, email) {
+        var r = confirm("Est-vous sure de supprimer cette session ?");
+        if (r == true) {
+            window.location.href = "/clinician/remove-session?id=" + idSession + "&email=" + email;
+        }
+    }
+</script>
+<script type="text/javascript"> 
+    var patient_email = '<%= patient_email %>';
+</script>
+<script src="../js/clinician/report/report-patient.js"></script>
+
+<%- include('../includes/end.ejs') %>

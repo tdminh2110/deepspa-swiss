@@ -1,0 +1,183 @@
+<%- include('includes/head.ejs') %>
+<body>
+    <%- include('includes/navigation.ejs') %>
+
+    <main class="container">
+        <form action="/clinician/add-patient" method="POST">
+        <div class="row">
+            <div class="col-12">
+                <h1>Add a Patient</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" class="form-control" id="name">
+                </div>                                                 
+            </div>
+            <div class="col-6">
+                <div class="row mt-3">
+                    <div class="col-12 text-left">
+                        <input class="fas" type="radio" name="store_data" id="RadioLocalStoragePatient" value="local_storage_patient">
+                        <label for="RadioLocalStoragePatient">
+                            Local Storage - Patient's Side
+                        </label>
+                    </div>
+                    <div class="col-12 text-left">
+                        <input class="fas" type="radio" name="store_data" id="RadioLocalStorageClinician" value="local_storage_clinician">
+                        <label for="RadioLocalStorageClinician">
+                            Local Storage - Clinician's Side
+                        </label>
+                    </div>
+                    <div class="col-12 text-left">
+                        <input class="fas" type="radio" name="store_data" id="RadioServerStorage" value="server_storage" checked>
+                        <label for="RadioServerStorage">
+                            Server Storage
+                        </label>
+                    </div>
+                    <div class="col-12 text-left">
+                        <input class="fas" type="radio" name="store_data" id="RadioMixedStorage" value="mixed_storage">
+                        <label for="RadioMixedStorage">
+                            Mixed Storage - Patient's Side
+                        </label>
+                    </div>
+                </div>                             
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="family_name">Family name</label>
+                    <input type="text" name="family_name" class="form-control" id="family_name">                
+                </div>            
+            </div>
+            <div class="col-6">                                     
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="birthday">Birthday</label>
+                    <input type="text" name="birthday" class="form-control" id="birthday">
+                </div>            
+            </div>
+            <div class="col-6">                                     
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" name="address" class="form-control" id="address">                
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="cp_name">Contact Person: Name</label>
+                    <input type="text" name="cp_name" class="form-control" id="cp_name">                
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="text" name="phone" class="form-control" id="phone">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="cp_family_name">Contact Person: Family name</label>
+                    <input type="text" name="cp_family_name" class="form-control" id="cp_family_name">                
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" class="form-control" id="email">                
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="cp_address">Contact Person: Address</label>
+                    <input type="text" name="cp_address" class="form-control" id="cp_address">                
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" class="form-control" id="password">                
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="cp_phone">Contact Person: Phone</label>
+                    <input type="text" name="cp_phone" class="form-control" id="cp_phone">                
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="re_password">Re-type Password</label>
+                    <input type="password" name="re_password" class="form-control" id="re_password">                
+                </div>                                    
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="cp_email">Contact Person: Email</label>
+                    <input type="text" name="cp_email" class="form-control" id="cp_email">                
+                </div>                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label>Sexe</label>
+                    <select class="form-control" id="sex" name="sex">
+                        <option value="0">Femme</option>
+                        <option value="1">Homme</option> 
+                    </select>
+                </div>                                    
+            </div>
+            <div class="col-6">                              
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label>Niveau d’éducation</label>
+                    <select class="form-control" id="education" name="education">
+                        <% for (let edu of edus) { %>
+                            <option value="<%= edu.id %>"><%= edu.name %></option> 
+                        <% } %>
+                    </select>
+                </div>                                    
+            </div>
+            <div class="col-6">                              
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="bildungsniveau">UPD - RMC / Bildungsniveau</label>
+                    <input type="text" name="bildungsniveau" class="form-control" id="bildungsniveau">                
+                </div>
+            </div>
+            <div class="col-6">                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <button class="btn btn-primary btn-lg" type="submit">Add Patient</button>
+            </div>
+        </div>
+        </form>
+    </main>
+</body>
+</html>

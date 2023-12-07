@@ -1,0 +1,138 @@
+<%- include('../includes/head.ejs') %>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-1">
+                    <a href="/clinician/report-session?id=<%= id_session %>"><img src="/images/icons/retour.png" alt="Edit" height="40" width="63"></a>
+                </div>
+                <div class="col-11">
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="font-weight-bold text-success">Patient: <%= patient_family_name %> <%= patient_name %></h5>
+                        </div>                                                
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="font-weight-bold text-success">
+                                Session <%= session_created_date.slice(0,2) %>/<%= session_created_date.slice(2,4) %>/<%= session_created_date.slice(4) %> - DeepSpA
+                                <hr />
+                            </h5>
+                        </div>                                                
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="row">                                
+                                <div class="col-12">
+                                    <table class="table table-sm table-borderless">      
+                                    <tr>
+                                        <td class="align-middle"><h6 class="font-weight-bold text-primary">Discussion libre</h6></td>
+                                        <td class="text-right"><button id="Save_Discussion_Libre" class="btn btn-info" type="button" style="display:none">Save</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"><textarea class="form-control rounded-0" id="Discussion_Libre" rows="5"><%= test_deepspa_entretien_clinique_commentaires %></textarea></td>
+                                    </tr>
+                                    </table>
+                                </div>
+                                <div class="col-12">
+                                    <table class="table table-sm table-borderless">      
+                                    <tr>
+                                        <td class="align-middle"><h6 class="font-italic text-primary">Nombre de vidéos: <%= test_deepspa_entretien_clinique_number_files %></h6></td>                                        
+                                    </tr>
+                                    <% 
+                                        if (test_deepspa_entretien_clinique_number_files != 0) {
+                                            for (let i = 1; i <= test_deepspa_entretien_clinique_number_files; i++) { %>
+                                    <tr>
+                                        <td class="align-middle"><video width="500" controls><source src="<%= test_deepspa_path_video %>video_entretien_clinique_<%= i %>.webm" type="video/webm"></video></td>                                        
+                                    </tr>                                                
+                                    <%
+                                            }
+                                        } 
+                                    %>                                    
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="col-12">
+                                <table class="table table-sm table-borderless">      
+                                <tr>
+                                    <td class="align-middle"><h6 class="font-weight-bold text-primary">Raconter une journée</h6></td>
+                                    <td class="text-right"><button id="Save_Raconter_Journee" class="btn btn-info" type="button" style="display:none">Save</button></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><textarea class="form-control rounded-0" id="Raconter_Journee" rows="5"><%= test_deepspa_raconter_journee_commentaires %></textarea></td>
+                                </tr>
+                                </table>
+                            </div>
+                            <div class="col-12">
+                                <table class="table table-sm table-borderless">      
+                                <tr>
+                                    <td class="align-middle"><h6 class="font-italic text-primary">Nombre de vidéos: <%= test_deepspa_raconter_journee_number_files %></h6></td>                                        
+                                </tr>
+                                <% 
+                                    if (test_deepspa_raconter_journee_number_files != 0) {
+                                        for (let i = 1; i <= test_deepspa_raconter_journee_number_files; i++) { %>
+                                <tr>
+                                    <td class="align-middle"><video width="500" controls><source src="<%= test_deepspa_path_video %>video_raconter_journee_<%= i %>.webm" type="video/webm"></video></td>                                        
+                                </tr>                                                
+                                <%
+                                        }
+                                    } 
+                                %>                                    
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <%  if (negposq_active == 1) { %>
+                    <div class="row mt-3">
+                        <div class="col-12"><h5 class="font-weight-bold text-primary">Question Positive et Négative</h5><hr /></div>                                                                        
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <table class="table table-borderless">
+                            <tr>
+                                <td class="text-center"><h5 class="font-weight-bold">Positive</h5></td>                                
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <% if (negposq_path_video_p != "") { %>
+                                    <video width="500" controls>
+                                        <source src="<%= negposq_path_video_p %>" type="video/webm">                                                
+                                    </video>
+                                    <% } %>
+                                </td>                                
+                            </tr>                            
+                            </table>                            
+                        </div>
+                        <div class="col-6">
+                            <table class="table table-borderless">
+                            <tr>
+                                <td class="text-center"><h5 class="font-weight-bold">Negative</h5></td>                                
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <% if (negposq_path_video_n != "") { %>
+                                    <video width="500" controls>
+                                        <source src="<%= negposq_path_video_n %>" type="video/webm">                                                
+                                    </video>
+                                    <% } %>
+                                </td>                                
+                            </tr>                            
+                            </table>                            
+                        </div>
+                    </div>
+                    <% } %>
+                </div>                
+            </div>
+        </div>
+    </main>
+</body>
+
+<script type="text/javascript"> 
+    var idSession = <%= id_session %>; 
+</script>
+<script src="../js/clinician/report/report-etude-clinique-deepspa.js"></script>
+
+<%- include('../includes/end.ejs') %>

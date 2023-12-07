@@ -1,0 +1,35 @@
+<div class="row mb-3">
+    <div class="col-3"><button id="BackListTests" type="button" class="btn btn-outline-primary btn-sm btn-block">Back</button></div>
+    <div class="col-9"><h4 class="session" style="font-style:italic"><span style="font-weight:bold;color:slateblue"><%= session_name %></span> - <span style="font-weight:bold;color:red">DÉSCRIPTIONS</span></h4></div>
+</div>
+<%  [
+        [
+            {
+                id: "Test02_BDAE_CTPD", name: "Cookie-Theft", checked: test_bdae_ctpd
+            },
+            {
+                id: "Test32_D2", name: "D2", checked: test_d2
+            }
+        ],[
+            {
+                id: "Test33_WAIS_IV", name: "Sequence Letters-Chiffres", checked: test_wais_iv
+            },
+            {
+                id: "Test34_Zoo", name: "Test du Zoo", checked: test_zoo
+            }
+        ],[
+            {
+                id: "Test35_Code_WAIS", name: "Code WAIS", checked: test_code_wais
+            }
+        ]    
+    ].forEach(function(row) { %>
+        <div class="row">
+    <%  row.forEach(function(cell) { %>
+            <div class="col-6 mb-2" id="listOfTests">
+                <button id="<%= cell.id %>" type="button" class="btn <% if (cell.checked) { %>btn-secondary<% } else {%> btn-primary <% } %> btn-md btn-block">
+                    <% if (cell.checked) { %><i class="fas fa-check"></i><% } %> <%= cell.name %>
+                </button>                
+            </div>
+    <%  }); %>
+        </div>
+<%  }); %>

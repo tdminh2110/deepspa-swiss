@@ -1,0 +1,102 @@
+<%- include('../includes/head.ejs') %>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-1">
+                    <a href="/clinician/report-tests-effectues?idsession=<%= id_session %>"><img src="/images/icons/retour.png" alt="Edit" height="40" width="63"></a>
+                </div>
+                <div class="col-11">
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="font-weight-bold text-success">Patient: <%= patient_family_name %> <%= patient_name %></h5>
+                        </div>                                                
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="font-weight-bold text-success">
+                                Session <%= session_created_date.slice(0,2) %>/<%= session_created_date.slice(2,4) %>/<%= session_created_date.slice(4) %>
+                            </h5>
+                        </div>                                                
+                    </div>
+                    <div class="row">
+                        <div class="col-12"><h5 class="font-weight-bold text-primary">Tests: DTLA</h5><hr /></div>                                                                        
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <table class="table table-borderless">      
+                            <tr>
+                                <td><h5 class="font-weight-bold">Total: <%= total %> / 100</h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5 class="font-weight-bold">1. Dénomination = <%= denomination %> / 12</h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5 class="font-weight-bold">2. Répétition = <%= repetition %> / 18</h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5 class="font-weight-bold">3. Fluence verbal = <%= fluence_verbale_score %> / 15 [<%= fluence_verbale_time %> seconds]</h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5 class="font-weight-bold">4. Alpha-Span = <%= alpha_span %> / 5</h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5 class="font-weight-bold">5. Lecture = <%= lecture %> / 6</h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5 class="font-weight-bold">6. Compréhension de phrases = <%= comprehension_de_phrases %> / 12</h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5 class="font-weight-bold">7. Dictée = <%= dictee %> / 12</h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5 class="font-weight-bold">8. Ecriture Spontanée = <%= ecriture_spontanee %> / 4</h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5>Ecriture Spontanée Phrase: <%= ecriture_spontanee_phrase %></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5 class="font-weight-bold">9. Appariement sémantique = <%= appariement_semantique %> / 16</h5></td>                                
+                            </tr>
+                            <tr>
+                                <td><h5 class="font-weight-bold">Trouble articulatoires = <%= trouble_articulatoires %></h5></td>                                
+                            </tr>
+                            </table>                            
+                        </div>
+                        <div class="col-6">
+                            <table class="table table-borderless">      
+                            <tr>
+                                <td><h5 class="font-weight-bold">Commentaires:</h5></td>                                
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table class="table table-bordered">
+                                    <tr>
+                                        <td><h6><%= commentaires %></h6></td>                                
+                                    </tr>
+                                    </table>
+                                </td>                                
+                            </tr>
+                            <tr>
+                                <td><h5 class="font-weight-bold">Video: <% if (path_video != "") { %> OUI <% } else { %> NON <% } %></h5></td>                                
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <% if (path_video != "") { %>
+                                    <video width="500" controls>
+                                        <source src="<%= path_video %>" type="video/webm">                                                
+                                    </video>
+                                    <% } %>
+                                </td>                                
+                            </tr>                            
+                            </table>                            
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+<%- include('../includes/end.ejs') %>

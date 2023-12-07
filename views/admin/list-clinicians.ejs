@@ -1,0 +1,48 @@
+<%- include('includes/head.ejs') %>
+<body>
+    <%- include('includes/navigation.ejs') %>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1>List of Clinicians</h1>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Full Name</th>
+                    <th>Birthday</th>
+                    <th>Phone</th>
+                    <th>Function</th>
+                    <th>Establishment</th>
+                    <th>Email</th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <% for (let clin of clins) { %>
+            <tr>
+                <td><%= clin.DSUserName %> <%= clin.family_name %></td>
+                <td><%= clin.birthday %></td>
+                <td><%= clin.phone %></td>
+                <td><%= clin.DSFunctionName %></td>
+                <td><%= clin.DSEstablishmentName %></td>
+                <td><%= clin.email %></td>                
+                <td><a href="/admin/edit-clinician?email=<%= clin.email %>"><img src="/images/icons/edit.png" alt="Edit" height="16" width="16"></a>&nbsp;&nbsp;<a href="javascript:removeClinician('<%= clin.email %>');"><img src="/images/icons/delete.png" alt="Remove" height="16" width="16"></a></td>
+            </tr>
+                <% } %>             
+          </table>
+    </main>
+</body>
+
+<script language="javascript">
+    function removeClinician(email) {
+        var r = confirm("Est-vous sure de supprimer ce clinician ?");
+        if (r == true) {
+            window.location.href = "/admin/remove-clinician?email=" + email;
+        }
+    }
+</script>
+
+<%- include('includes/end.ejs') %>

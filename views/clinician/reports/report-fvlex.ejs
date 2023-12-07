@@ -1,0 +1,77 @@
+<%- include('../includes/head.ejs') %>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-1">
+                    <a href="/clinician/report-tests-effectues?idsession=<%= id_session %>"><img src="/images/icons/retour.png" alt="Edit" height="40" width="63"></a>
+                </div>
+                <div class="col-11">
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="font-weight-bold text-success">Patient: <%= patient_family_name %> <%= patient_name %></h5>
+                        </div>                                                
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="font-weight-bold text-success">
+                                Session <%= session_created_date.slice(0,2) %>/<%= session_created_date.slice(2,4) %>/<%= session_created_date.slice(4) %>
+                            </h5>
+                        </div>                                                
+                    </div>
+                    <div class="row">
+                        <div class="col-12"><h5 class="font-weight-bold text-primary">Fluence Verbale Lexicale</h5><hr /></div>                                                                        
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-12"><h5 class="font-weight-bold"><%= name_of_report %></h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Durée = <%= duree %></h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Réponses = <%= reponses %></h5></div>                                    
+                            </div>  
+                            <div class="row">
+                                <div class="col-12"><h5>Intrusions = <%= intrusions %></h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Oublis à Mesure = <%= oublis_a_mesure %></h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Erreurs = <%= erreurs %></h5></div>                                    
+                            </div>                                           
+                        </div>
+                        <div class="col-6">
+                            <div class="row mt-3">
+                                <div class="col-12"><h5>Commentaire:</h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <table class="table table-bordered">
+                                    <tr>
+                                        <td><%= text_zone %></td>                                
+                                    </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12">
+                                    <% if (path_video != "") { %>
+                                    <video width="500" controls>
+                                        <source src="<%= path_video %>" type="video/webm">                                                
+                                    </video>
+                                    <% } %>
+                                </div>
+                            </div>                                                                           
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+<%- include('../includes/end.ejs') %>

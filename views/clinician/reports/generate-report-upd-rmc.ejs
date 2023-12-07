@@ -1,0 +1,57 @@
+<%- include('../includes/head.ejs') %>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-1">
+                    <a href="/clinician/generate-report?idsession=<%= id_session %>"><img src="/images/icons/retour.png" alt="Edit" height="40" width="63"></a>
+                </div>
+                <div class="col-11">
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="font-weight-bold text-success">Patient: <%= patient_family_name %> <%= patient_name %></h5>
+                        </div>                                                
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="font-weight-bold text-success">
+                                Session <%= session_created_date.slice(0,2) %>/<%= session_created_date.slice(2,4) %>/<%= session_created_date.slice(4) %>
+                                <hr />
+                            </h5>
+                        </div>                                                
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12"><h5><b>Patient ID:</b> <%= patient_id %></h5></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12"><h5><b>Geburtsdatum:</b> <%= birthday %></h5></div>                         
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12"><h5><b>Alter:</b> <%= age %></h5></div>                         
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12"><h5><b>Geschlecht:</b> <%= sex %></h5></div>                         
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12"><h5><b>Bildungsniveau:</b> <%= bildungsniveau %></h5></div>                         
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12"><h5><b>Datum der Testung:</b> <%= session_created_date.slice(0,2) %>/<%= session_created_date.slice(2,4) %>/<%= session_created_date.slice(4) %></h5></div>                         
+                    </div>
+                    <hr />
+                    <div class="row mt-3">
+                        <div class="col-6 text-left">
+                            <a href="/clinician/generate-report?idsession=<%= id_session %>" class="btn btn-primary btn-lg" role="button" aria-pressed="true">Absagen</a>
+                        </div>
+                        <div class="col-6 text-right">
+                            <a href="/clinician/generate-report-upd-rmc-detail?idsession=<%= id_session %>&from=generate-report-upd-rmc" class="btn btn-primary btn-lg" role="button" aria-pressed="true">Weiter</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+<%- include('../includes/end.ejs') %>

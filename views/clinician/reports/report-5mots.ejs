@@ -1,0 +1,83 @@
+<%- include('../includes/head.ejs') %>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-1">
+                    <a href="/clinician/report-tests-effectues?idsession=<%= id_session %>"><img src="/images/icons/retour.png" alt="Edit" height="40" width="63"></a>
+                </div>
+                <div class="col-11">
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="font-weight-bold text-success">Patient: <%= patient_family_name %> <%= patient_name %></h5>
+                        </div>                                                
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="font-weight-bold text-success">
+                                Session <%= session_created_date.slice(0,2) %>/<%= session_created_date.slice(2,4) %>/<%= session_created_date.slice(4) %>
+                            </h5>
+                        </div>                                                
+                    </div>
+                    <div class="row">
+                        <div class="col-12"><h5 class="font-weight-bold text-primary">Test des 5 Mots</h5><hr /></div>                                                                        
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-12"><h5>LISTE CHOISIE: <%= list_choice %></div>                                    
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12"><h5>Score total = <%= score_total %> / 10</h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Rappel Immédiat = <%= rappel_immediat %> [<%= Ri %>, <%= Ri1 %>, <%= Ri2 %>]</h5></div>                                    
+                            </div>  
+                            <div class="row">
+                                <div class="col-12"><h5>Rappel Immédiat Indicé 1 = <%= Ri1 %></h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Rappel Immédiat Indicé 2 = <%= Ri2 %></h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Rappel Différé = <%= rappel_differe %> [<%= Rd %>, <%= Rd1 %>]</h5></div>                                    
+                            </div>   
+                            <div class="row">
+                                <div class="col-12"><h5>Rappel Différé Indicé = <%= Rd1 %></h5></div>                                    
+                            </div>                                               
+                        </div>
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-12"><h5>Audio Partie 1:</h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <% if (path_audio_1 != "") { %>
+                                    <audio controls>
+                                        <source src="<%= path_audio_1 %>" type="audio/webm">                                                
+                                    </audio>
+                                    <% } %>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12"><h5>Audio Partie 2:</h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <% if (path_audio_2 != "") { %>
+                                    <audio controls>
+                                        <source src="<%= path_audio_2 %>" type="audio/webm">                                                
+                                    </audio>
+                                    <% } %>
+                                </div>
+                            </div>                                                  
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+<%- include('../includes/end.ejs') %>

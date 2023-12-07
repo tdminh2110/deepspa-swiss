@@ -1,0 +1,48 @@
+<%- include('../includes/head.ejs') %>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-1">
+                    <a href="/clinician/report-tests-effectues?idsession=<%= id_session %>"><img src="/images/icons/retour.png" alt="Edit" height="40" width="63"></a>
+                </div>
+                <div class="col-11">
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="font-weight-bold text-success">Patient: <%= patient_family_name %> <%= patient_name %></h5>
+                        </div>                                                
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="font-weight-bold text-success">
+                                Session <%= session_created_date.slice(0,2) %>/<%= session_created_date.slice(2,4) %>/<%= session_created_date.slice(4) %>
+                            </h5>
+                        </div>                                                
+                    </div>
+                    <div class="row">
+                        <div class="col-12"><h5 class="font-weight-bold text-primary">Inventaire Apathie</h5><hr /></div>                                                                        
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-12"><h5>Total = <%= inventaire_apathie_emoussement_affectif + inventaire_apathie_perte_d_initiative + inventaire_apathie_perte_d_interet %></h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Emoussement Affectif = <%= inventaire_apathie_emoussement_affectif %></h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Perte d’Initiative = <%= inventaire_apathie_perte_d_initiative %></h5></div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>Perte d’Intérêt = <%= inventaire_apathie_perte_d_interet %></h5></div>                                    
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+<%- include('../includes/end.ejs') %>
