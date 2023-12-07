@@ -1,0 +1,25 @@
+{
+  "name": "deepspa",
+  "version": "2.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "nodemon main.js --ignore './public/uploads/'",
+    "start-server": "nodemon test.js --ignore './public/uploads/'"
+  },
+  "author": "Tran Duc Minh",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^2.7.4",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "fluent-ffmpeg": "^2.1.2",
+    "multer": "^1.4.2",
+    "mysql2": "^1.7.0",
+    "nodemon": "^1.19.4",
+    "peer": "^0.5.3",
+    "socket.io": "^2.3.0",
+    "socket.io-client": "^2.3.0"
+  },
+  "description": ""
+}
