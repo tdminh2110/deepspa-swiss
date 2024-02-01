@@ -59,6 +59,7 @@ exports.getReportTest39WordsList  = (req, res, next) => {
                                                 let rew_list_3 = test_words_list[0].rew_list_3;
                                                 let lernen_3_int = test_words_list[0].lernen_3_int;
                                                 let lernen_3_int_text = test_words_list[0].lernen_3_int_text;
+                                                let fiabz = test_words_list[0].fiabz;
                                                 let abrufen = test_words_list[0].abrufen;
                                                 let rew_list_abrufen = test_words_list[0].rew_list_abrufen;
                                                 let abrufen_int = test_words_list[0].abrufen_int;
@@ -111,6 +112,7 @@ exports.getReportTest39WordsList  = (req, res, next) => {
                                                     rew_list_3 : rew_list_3,
                                                     lernen_3_int : lernen_3_int,
                                                     lernen_3_int_text : lernen_3_int_text,
+                                                    fiabz : fiabz,
                                                     abrufen : abrufen,
                                                     rew_list_abrufen : rew_list_abrufen,
                                                     abrufen_int : abrufen_int,

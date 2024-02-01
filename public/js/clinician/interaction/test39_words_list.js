@@ -39,6 +39,19 @@ socket.on('Test39', function(data) {
             $('#bt-test39-page' + data['page'] + '-continuer').css("display", "none");
             break;
 
+        case "hide-image": {
+            $("#bt-test39-page70-1").text("ANZEIGEN");
+            $('#img-test39-page70').css('display','none');
+
+            if (test39_record_video == true) {
+                setPatientStatus(1, 0, 0, 1);
+            } else {
+                setPatientStatus(1, 0, 0, 0);
+            }
+
+            break;
+        }    
+
         case "hide-word":
             $('#bt-test39-page' + data['page'] + '-1').text("Wort anzeigen ['Kirche']");
             $('#bt-test39-page' + data['page'] + '-1').attr("class","btn btn-secondary btn-lg btn-block");
@@ -60,6 +73,8 @@ socket.on('Test39', function(data) {
             if ((page == 16) || (page == 29) || (page == 42) || (page == 46) || 
                 ((page >= 49) && (page <= 68)))
                 $('#bt-test39-page' + page + '-' + number_word).attr("class","btn btn-warning btn-lg btn-block");
+            else if (page == 70)
+                $('#bt-test39-page' + page + '-' + (number_word + 1)).attr("class","btn btn-warning btn-lg btn-block");
             else
                 $('#bt-test39-page' + page).attr("class","btn btn-warning btn-lg btn-block");
 
@@ -73,6 +88,19 @@ socket.on('Test39', function(data) {
         case "show-error":
             $('#lbl-test39-page1').text(data['error']);
             break;
+
+        case "show-image": {
+            $("#bt-test39-page70-1").text("VERSTECKEN");                                            
+            $('#img-test39-page70').css('display','inline');
+            
+            if (test39_record_video == true) {
+                setPatientStatus(0, 1, 0, 1);
+            } else {
+                setPatientStatus(0, 1, 0, 0);
+            }
+
+            break;
+        }
 
         case "show-number": {
             $('#txt-test39-page' + data['page'] + '-' + data['word']).val(data['value']);
@@ -207,6 +235,36 @@ socket.on('Test39', function(data) {
                         }
                     });  
                     break;
+
+                case 70:
+                    $('#MainScreenGame').load('/tests/words_list?page=' + page, 
+                    function(strResponse, strStatus, xhr) {
+                        if (strStatus == "success") {                         
+                            test39_OnDocumentEventsOnPage(socket, page);
+                            if (test39_record_video == true) {
+                                setPatientStatus(1, 0, 0, 1);
+                            } else {
+                                setPatientStatus(1, 0, 0, 0);
+                            }
+                            socket.emit('Test39', { 'type' : 'old-status-of-page', 'page' : page });
+                        }
+                    });  
+                    break;
+
+                case 71:
+                    $('#MainScreenGame').load('/tests/words_list?page=' + page + 
+                        '&fiabz=' + data['fiabz'],
+                    function(strResponse, strStatus, xhr) {
+                        if (strStatus == "success") {                         
+                            test39_OnDocumentEventsOnPage(socket, page);
+                            if (test39_record_video == true) {
+                                setPatientStatus(1, 0, 0, 1);
+                            } else {
+                                setPatientStatus(1, 0, 0, 0);
+                            }
+                        }
+                    });  
+                    break;
             }            
             break;
         }
@@ -300,6 +358,8 @@ socket.on('Test39', function(data) {
             if ((page == 16) || (page == 29) || (page == 42) || (page == 46) ||
                 ((page >= 49) && (page <= 68)) )
                 $('#bt-test39-page' + page + '-' + number_word).attr("class","btn btn-secondary btn-lg btn-block");
+            else if (page == 70)
+                $('#bt-test39-page' + page + '-' + (number_word + 1)).attr("class","btn btn-secondary btn-lg btn-block");
             else
                 $('#bt-test39-page' + page).attr("class","btn btn-secondary btn-lg btn-block");
             break;
@@ -327,6 +387,7 @@ function test39_OnDocumentEventsOnPage(socket, page) {
             test39_DocumentEvents.push('#bt-test39-page' + page + '-1');
             test39_DocumentEvents.push('#bt-test39-page' + page + '-2');
             test39_DocumentEvents.push('#bt-test39-page' + page + '-3');
+            test39_DocumentEvents.push('#bt-test39-page' + page + '-4');
             test39_DocumentEvents.push('#bt-test39-page' + page + '-terminer');
             test39_DocumentEvents.push('#bt-test39-page' + page + '-continuer');
 
@@ -340,6 +401,10 @@ function test39_OnDocumentEventsOnPage(socket, page) {
 
             $(document).on("click", "#bt-test39-page" + page + "-3", function(e) {            
                 socket.emit('Test39', { 'type' : 'select-subtest', 'page' : page, 'value' : 3 });
+            });
+
+            $(document).on("click", "#bt-test39-page" + page + "-4", function(e) {            
+                socket.emit('Test39', { 'type' : 'select-subtest', 'page' : page, 'value' : 4 });
             });
 
             $(document).on("click", "#bt-test39-page" + page + "-terminer", function(e) {
@@ -434,7 +499,7 @@ function test39_OnDocumentEventsOnPage(socket, page) {
 
             break;        
         
-        case 43: case 47: case 69:
+        case 43: case 47: case 69: case 71:
             test39_DocumentEvents.push('#bt-test39-page' + page + '-retour');
             test39_DocumentEvents.push('#bt-test39-page' + page + '-terminer');
 
@@ -529,6 +594,28 @@ function test39_OnDocumentEventsOnPage(socket, page) {
                 socket.emit('Test39', { 'type' : 'show-page', 'page' : (page + 1) });
             });        
 
+            break;
+
+        case 70:
+            for(let i = 1; i <= 4; i++) {
+                test39_DocumentEvents.push('#bt-test39-page' + page + '-' + i);
+            }
+            test39_DocumentEvents.push('#bt-test39-page' + page + '-continuer');
+
+            $(document).on("click", '#bt-test39-page' + page + "-1", function(e) { 
+                socket.emit('Test39', { 'type' : 'show-image', 'page' : page });
+            });
+
+            for(let i = 2; i <= 4; i++) {
+                $(document).on("click", '#bt-test39-page' + page + '-' + i, function(e) { 
+                    socket.emit('Test39', { 'type' : 'select-word', 'page' : page, 'word' : (i - 1) });
+                });
+            }
+            
+            $(document).on("click", "#bt-test39-page" + page + "-continuer", function(e) {
+                socket.emit('Test39', { 'type' : 'hide-image', 'page' : page });
+                socket.emit('Test39', { 'type' : 'show-page', 'page' : (page + 1) });
+            });
             break;
     }
 }

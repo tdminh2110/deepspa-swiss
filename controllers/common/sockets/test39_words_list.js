@@ -15,6 +15,11 @@ let test39_vars = {};
 
 exports.test39_words_list_socket = function(socket, data) {
     switch (data['type']) {
+        case "hide-image":
+            test39_vars[socket.id]['test39_page70_show_image'] = 0;            
+            sock.sendData(socket, false, test39_vars[socket.id]['IDSocket_Patient'], 'Test39', { 'type' : 'hide-image' });
+            break;
+
         case 'minus-number': {
             let page = data['page'];
             
@@ -64,6 +69,11 @@ exports.test39_words_list_socket = function(socket, data) {
                 if ((test39_vars[socket.id]['test39_page' + page + '_selected_scores'][0] == 1) ||
                     (test39_vars[socket.id]['test39_page' + page + '_selected_scores'][1] == 1))
                     sock.sendData(socket, true, null, 'Test39', { 'type' : 'show-continuer', 'page' : page });
+            } else if (page == 70) {
+                for(let i = 0; i <= 2; i++) {
+                    if (test39_vars[socket.id]['test39_page70_selected_scores'][i] == 1)
+                        sock.sendData(socket, true, null, 'Test39', { 'type' : 'select-word', 'page' : page, 'word' : (i + 1) });
+                }
             } else {            
                 if (test39_vars[socket.id]['test39_page' + page + '_selected_scores'] == 1) 
                     sock.sendData(socket, true, null, 'Test39', { 'type' : 'select-word', 'page' : page });
@@ -104,14 +114,22 @@ exports.test39_words_list_socket = function(socket, data) {
                     sock.sendData(socket, true, null, 'Test39', { 'type' : 'select-subtest', 'value' : value });
                     sock.sendData(socket, true, null, 'Test39', { 'type' : 'unselect-subtest', 'value' : 2 });
                     sock.sendData(socket, true, null, 'Test39', { 'type' : 'unselect-subtest', 'value' : 3 });
+                    sock.sendData(socket, true, null, 'Test39', { 'type' : 'unselect-subtest', 'value' : 4 });
                 } else if (value == 2) {
                     sock.sendData(socket, true, null, 'Test39', { 'type' : 'select-subtest', 'value' : value });
                     sock.sendData(socket, true, null, 'Test39', { 'type' : 'unselect-subtest', 'value' : 1 });
                     sock.sendData(socket, true, null, 'Test39', { 'type' : 'unselect-subtest', 'value' : 3 });
+                    sock.sendData(socket, true, null, 'Test39', { 'type' : 'unselect-subtest', 'value' : 4 });
                 } else if (value == 3) {
                     sock.sendData(socket, true, null, 'Test39', { 'type' : 'select-subtest', 'value' : value });
                     sock.sendData(socket, true, null, 'Test39', { 'type' : 'unselect-subtest', 'value' : 1 });
                     sock.sendData(socket, true, null, 'Test39', { 'type' : 'unselect-subtest', 'value' : 2 });
+                    sock.sendData(socket, true, null, 'Test39', { 'type' : 'unselect-subtest', 'value' : 4 });
+                } else if (value == 4) {
+                    sock.sendData(socket, true, null, 'Test39', { 'type' : 'select-subtest', 'value' : value });
+                    sock.sendData(socket, true, null, 'Test39', { 'type' : 'unselect-subtest', 'value' : 1 });
+                    sock.sendData(socket, true, null, 'Test39', { 'type' : 'unselect-subtest', 'value' : 2 });
+                    sock.sendData(socket, true, null, 'Test39', { 'type' : 'unselect-subtest', 'value' : 3 });
                 }
                 sock.sendData(socket, true, null, 'Test39', { 'type' : 'show-continuer', 'page' : page });    
             }
@@ -122,7 +140,7 @@ exports.test39_words_list_socket = function(socket, data) {
         case "select-word": {
             let page = data['page'];
 
-            if ((page == 16) || (page == 29) || (page == 42) || (page == 46)) {
+            if ((page == 16) || (page == 29) || (page == 42) || (page == 46) || (page == 70)) {
                 let number_word = data['word'];
 
                 if (test39_vars[socket.id]['test39_page' + page + '_selected_scores'][number_word - 1] == 0) {
@@ -174,6 +192,20 @@ exports.test39_words_list_socket = function(socket, data) {
 
             break;
         }
+
+        case "show-image":            
+            if (test39_vars[socket.id]['test39_page70_show_image'] == 0) {
+                test39_vars[socket.id]['test39_page70_show_image'] = 1;
+
+                sock.sendData(socket, true, null, 'Test39', { 'type' : 'show-image' });
+                sock.sendData(socket, false, test39_vars[socket.id]['IDSocket_Patient'], 'Test39', { 'type' : 'show-image' });
+            } else {
+                test39_vars[socket.id]['test39_page70_show_image'] = 0;
+
+                sock.sendData(socket, true, null, 'Test39', { 'type' : 'hide-image' });
+                sock.sendData(socket, false, test39_vars[socket.id]['IDSocket_Patient'], 'Test39', { 'type' : 'hide-image' });
+            }
+            break;
             
         case 'show-page': {
             let page = data['page'];
@@ -190,16 +222,22 @@ exports.test39_words_list_socket = function(socket, data) {
                         if (test39_vars[socket.id]['test39_page1_selected_words_list'] == 1) {
                             sock.sendData(socket, true, null, 'Test39', { 'type' : data['type'], 'page' : page });
                         } else if (test39_vars[socket.id]['test39_page1_selected_words_list'] == 2) {
-                            if ((test_done != 4) && (test_done != 6) && (test_done != 7)) {
-                                sock.sendData(socket, true, null, 'Test39', { 'type' : 'show-error', 'error' : 'Das Lernen wurde noch nicht durchgeführt !' });
+                            if ((test_done == 8) || (test_done == 12) || (test_done == 14) || (test_done == 15)) {
+                                sock.sendData(socket, true, null, 'Test39', { 'type' : data['type'], 'page' : 70 });
                             } else {
-                                sock.sendData(socket, true, null, 'Test39', { 'type' : data['type'], 'page' : 44 });
+                                sock.sendData(socket, true, null, 'Test39', { 'type' : 'show-error', 'error' : 'Das Lernen wurde noch nicht durchgeführt !' });                                
                             }
                         } else if (test39_vars[socket.id]['test39_page1_selected_words_list'] == 3) {
-                            if ((test_done != 6) && (test_done != 7)) {
-                                sock.sendData(socket, true, null, 'Test39', { 'type' : 'show-error', 'error' : 'Das Lernen oder Wiedererkennen ist noch nicht erfolgt !' });
+                            if ((test_done == 12) || (test_done == 14) || (test_done == 15)) {
+                                sock.sendData(socket, true, null, 'Test39', { 'type' : data['type'], 'page' : 44 });
                             } else {
-                                sock.sendData(socket, true, null, 'Test39', { 'type' : data['type'], 'page' : 48 });
+                                sock.sendData(socket, true, null, 'Test39', { 'type' : 'show-error', 'error' : 'Das Lernen wurde noch nicht durchgeführt !' });                                
+                            }
+                        } else if (test39_vars[socket.id]['test39_page1_selected_words_list'] == 4) {
+                            if ((test_done == 14) || (test_done == 15)) {
+                                sock.sendData(socket, true, null, 'Test39', { 'type' : data['type'], 'page' : 48 });                                
+                            } else {
+                                sock.sendData(socket, true, null, 'Test39', { 'type' : 'show-error', 'error' : 'Das Lernen oder Wiedererkennen ist noch nicht erfolgt !' });
                             }
                         }
                             
@@ -209,7 +247,7 @@ exports.test39_words_list_socket = function(socket, data) {
                     break;
                 
                 case 3: case 4:  
-                case 44: case 45: case 46: case 48:  
+                case 44: case 45: case 46: case 48: case 70:  
                     sock.sendData(socket, true, null, 'Test39', { 'type' : data['type'], 'page' : page });
                     break;
 
@@ -320,7 +358,23 @@ exports.test39_words_list_socket = function(socket, data) {
 
                     sock.sendData(socket, true, null, 'Test39', { 'type' : data['type'], 'page' : page,
                             'r_ja' : r_ja, 'r_nein' : r_nein, 'f_ja' : f_ja, 'f_nein' : f_nein });
-                    sock.sendData(socket, false, test39_vars[socket.id]['IDSocket_Patient'], 'Test39', { 'type' : data['type'], 'page' : page });                  
+                    sock.sendData(socket, false, test39_vars[socket.id]['IDSocket_Patient'], 'Test39', { 'type' : data['type'], 'page' : page });
+
+                    break;
+                }
+
+                case 71: {
+                    let fiabz = 0;
+
+                    fiabz += test39_vars[socket.id]['test39_page70_selected_scores'][0] + 
+                             test39_vars[socket.id]['test39_page70_selected_scores'][1] + 
+                             test39_vars[socket.id]['test39_page70_selected_scores'][2];
+
+                    sock.sendData(socket, true, null, 'Test39', { 'type' : data['type'], 'page' : page,
+                             'fiabz' : fiabz });
+                    sock.sendData(socket, false, test39_vars[socket.id]['IDSocket_Patient'], 'Test39', { 'type' : data['type'], 'page' : page });
+
+                    break;
                 }
                 
             }
@@ -496,7 +550,9 @@ exports.test39_words_list_socket = function(socket, data) {
                 'test39_page65_selected_scores' : [0, 0],
                 'test39_page66_selected_scores' : [0, 0],
                 'test39_page67_selected_scores' : [0, 0],
-                'test39_page68_selected_scores' : [0, 0]
+                'test39_page68_selected_scores' : [0, 0],
+                'test39_page70_show_image' : 0,
+                'test39_page70_selected_scores' : [0, 0, 0],
             }
 
             MySession.select_by_id(test39_vars[socket.id]['idSelectedSession'])
@@ -598,7 +654,7 @@ exports.test39_words_list_socket = function(socket, data) {
                                 test39_vars[socket.id]['idSelectedSession'], 0, record_video,  
                                 0, '', 0, '', 0, '',
                                 0, '', 0, '', 0, '',
-                                0, '', 0, '', 0, '',
+                                0, '', 0, '', 0, '', 0,
                                 0, '', 0, '', 
                                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
                                 0, '', 0, '', 0, '', 0, '')
@@ -715,7 +771,7 @@ exports.test39_words_list_socket = function(socket, data) {
                 Test39_Words_List.select_testDone_by_idSession(test39_vars[socket.id]['idSelectedSession'])
                 .then(([test39_words_list]) => {
                     if (test39_words_list.length == 1) {
-                        let test_done = test39_words_list[0].test_done | 4;
+                        let test_done = test39_words_list[0].test_done | 8;
 
                         Test39_Words_List.update_lernen_by_idSession(test39_vars[socket.id]['idSelectedSession'],
                             test_done, knl_1, wortliste_knl_1, lernen_1, rew_list_1, lernen_1_int, lernen_1_int_text,
@@ -749,11 +805,11 @@ exports.test39_words_list_socket = function(socket, data) {
                         .catch(err => console.log(err));
                     } else {
                         const test39_Words_List = new Test39_Words_List(null, 
-                                test39_vars[socket.id]['idSelectedSession'], 4, 0,  
+                                test39_vars[socket.id]['idSelectedSession'], 8, 0,  
                                 knl_1, wortliste_knl_1, lernen_1, rew_list_1, lernen_1_int, lernen_1_int_text,
                                 knl_2, wortliste_knl_2, lernen_2, rew_list_2, lernen_2_int, lernen_2_int_text,
                                 knl_3, wortliste_knl_3, lernen_3, rew_list_3, lernen_3_int, lernen_3_int_text,
-                                0, '', 0, '', 
+                                0, 0, '', 0, '',
                                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                 0, '', 0, '', 0, '', 0, '')
                         test39_Words_List
@@ -902,7 +958,32 @@ exports.test39_words_list_socket = function(socket, data) {
                     }
                 })
                 .catch(err => console.log(err));
+            } else if (page == 71) {
+                let fiabz = 0;
 
+                fiabz += test39_vars[socket.id]['test39_page70_selected_scores'][0] + 
+                            test39_vars[socket.id]['test39_page70_selected_scores'][1] + 
+                            test39_vars[socket.id]['test39_page70_selected_scores'][2];
+
+                Test39_Words_List.select_testDone_by_idSession(test39_vars[socket.id]['idSelectedSession'])
+                .then(([test39_words_list]) => {
+                    if (test39_words_list.length == 1) {
+                        let test_done = test39_words_list[0].test_done | 4;
+
+                        Test39_Words_List.update_figur_abzeichnen_by_idSession(test39_vars[socket.id]['idSelectedSession'],
+                            test_done, fiabz)
+                        .then(() => {
+                            MyJson.updateData(test39_vars[socket.id]['idPathFolder'], 
+                                                test39_vars[socket.id]['pathSession'], "Words_List", {
+                                "FiAbz" : fiabz
+                            });
+
+                            sock.sendData(socket, true, null, 'Test39', { 'type' : 'finish_subtest' });
+                        })
+                        .catch(err => console.log(err));
+                    }
+                })
+                .catch(err => console.log(err));
             }
 
             break;

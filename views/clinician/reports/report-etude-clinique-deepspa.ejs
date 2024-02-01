@@ -84,46 +84,7 @@
                                 </table>
                             </div>
                         </div>
-                    </div>
-                    <%  if (negposq_active == 1) { %>
-                    <div class="row mt-3">
-                        <div class="col-12"><h5 class="font-weight-bold text-primary">Question Positive et Négative</h5><hr /></div>                                                                        
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <table class="table table-borderless">
-                            <tr>
-                                <td class="text-center"><h5 class="font-weight-bold">Positive</h5></td>                                
-                            </tr>
-                            <tr>
-                                <td class="text-center">
-                                    <% if (negposq_path_video_p != "") { %>
-                                    <video width="500" controls>
-                                        <source src="<%= negposq_path_video_p %>" type="video/webm">                                                
-                                    </video>
-                                    <% } %>
-                                </td>                                
-                            </tr>                            
-                            </table>                            
-                        </div>
-                        <div class="col-6">
-                            <table class="table table-borderless">
-                            <tr>
-                                <td class="text-center"><h5 class="font-weight-bold">Negative</h5></td>                                
-                            </tr>
-                            <tr>
-                                <td class="text-center">
-                                    <% if (negposq_path_video_n != "") { %>
-                                    <video width="500" controls>
-                                        <source src="<%= negposq_path_video_n %>" type="video/webm">                                                
-                                    </video>
-                                    <% } %>
-                                </td>                                
-                            </tr>                            
-                            </table>                            
-                        </div>
-                    </div>
-                    <% } %>
+                    </div>                    
                 </div>                
             </div>
         </div>

@@ -15,6 +15,7 @@ exports.test39_words_list_showpage = function(req, res) {
                 let test1_done = "";
                 let test2_done = "";
                 let test3_done = "";
+                let test4_done = "";
 
                 Test39_Words_List.select_testDone_by_idSession(idSelectedSession)
                 .then(([test39_words_list]) => {
@@ -22,19 +23,26 @@ exports.test39_words_list_showpage = function(req, res) {
                         test_done = test39_words_list[0].test_done;
 
                         switch(test_done) {
-                            case 4:
+                            case 8:
                                 test1_done = "<span style='font-size:18px'>&#9745;</span>";
                                 break;
                             
-                            case 6:
+                            case 12:
                                 test1_done = "<span style='font-size:18px'>&#9745;</span>";
                                 test2_done = "<span style='font-size:18px'>&#9745;</span>";
                                 break;
 
-                            case 7:
+                            case 14:
                                 test1_done = "<span style='font-size:18px'>&#9745;</span>";
                                 test2_done = "<span style='font-size:18px'>&#9745;</span>";
                                 test3_done = "<span style='font-size:18px'>&#9745;</span>";
+                                break;
+
+                            case 15:
+                                test1_done = "<span style='font-size:18px'>&#9745;</span>";
+                                test2_done = "<span style='font-size:18px'>&#9745;</span>";
+                                test3_done = "<span style='font-size:18px'>&#9745;</span>";
+                                test4_done = "<span style='font-size:18px'>&#9745;</span>";
                                 break;
 
                         }
@@ -46,10 +54,13 @@ exports.test39_words_list_showpage = function(req, res) {
                         txtButton1: "Wortliste Lernen",
                         IDButton2: "bt-test39-page" + page + "-2",
                         test2_done: test2_done,
-                        txtButton2: "Wortliste Abrufen",
+                        txtButton2: "Figur abzeichnen",
                         IDButton3: "bt-test39-page" + page + "-3",
                         test3_done: test3_done,
-                        txtButton3: "Wortliste Wiedererkennen",
+                        txtButton3: "Wortliste Abrufen",
+                        IDButton4: "bt-test39-page" + page + "-4",
+                        test4_done: test4_done,
+                        txtButton4: "Wortliste Wiedererkennen",
                         IDLabel: "lbl-test39-page" + page,
                         IDButtonLeft: "bt-test39-page" + page + "-terminer",
                         txtButtonLeft: "Beenden",
@@ -417,6 +428,47 @@ exports.test39_words_list_showpage = function(req, res) {
                 });
                 break;
             }
+
+            case 70:
+                res.render('clinician/test-screens/words_list/page15', {
+                    text1: "Figur abzeichnen",
+                    text2: "<b>Durchführung:</b> Der Untersucher gibt die folgende Instruktion und zeigt dabei auf die drei Figuren:",
+                    text3: "<span class='text-primary'><i>\"Bitte kopieren Sie diese Zeichnungen so genau wie möglich auf das Papier, das vor Ihnen liegt\"</i></span>",
+                    text4: "<b>Bewertung:</b> Ein Punkt wird jeweils vergeben für eine korrekt durchgeführte Zeichnung.",
+                    text5: "Würfel und Rhombus:",
+                    text6: "Der Würfel muss dreidimensional sein.",
+                    text7: "Alle Linien müssen gezeichnet sein",
+                    text8: "Keine Linie darf ergänzt werden",
+                    text9: "Die Linien sind relative parallel und ihre Länge ist ähnlich",
+                    text10: "Kreis:",
+                    text11: "Der Umriss muss kreisförmig sein mit nur geringer Verzerrung (z.B. leichte Ungenauigkeit beim Kreisschluss)",
+                    IDImage: "img-test39-page" + page,
+                    urlImage: "/tests/words_list/image-70.png",
+                    IDButton1: "bt-test39-page" + page + "-1",
+                    txtButton1: "ANZEIGEN",
+                    IDButton2: "bt-test39-page" + page + "-2",
+                    txtButton2: "Würfel",
+                    IDButton3: "bt-test39-page" + page + "-3",
+                    txtButton3: "Rhombus",
+                    IDButton4: "bt-test39-page" + page + "-4",
+                    txtButton4: "Kreis",
+                    IDButton: "bt-test39-page" + page + "-continuer",
+                    txtButton: "Weiter"
+                });
+                break;
+
+            case 71:
+                let fiabz = Number(req.query.fiabz);
+                
+                res.render('clinician/test-screens/words_list/page16', {
+                    text1: "Figur abzeichnen",
+                    text2: "Score = " + fiabz,
+                    IDButtonLeft: "bt-test39-page" + page + "-retour",
+                    txtButtonLeft: "Zurück",
+                    IDButtonRight: "bt-test39-page" + page + "-terminer",
+                    txtButtonRight: "Beenden"
+                });
+                break;
         }
                
     } else if (session.checkSession(req, 3)) {
@@ -470,6 +522,12 @@ exports.test39_words_list_showpage = function(req, res) {
                     text: show_word,
                 });
 
+                break;
+
+            case 70:            
+                res.render('patient/test-screens/words_list/page02', {
+                    urlImage: "/tests/words_list/image-70.png"
+                });
                 break;
         }
     } else {

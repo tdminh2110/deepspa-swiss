@@ -10,17 +10,23 @@ socket.on('Test39', function(data) {
     let type = data['type'];
 
     switch (type) {
-        case "hide-word":
+        case "hide-image": case "hide-word":
             $('#MainScreenVideo').show();
             $('#MainScreenGame').empty();
             $('#MainScreenGame').hide();
+            break;
+
+        case "show-image":
+            $('#MainScreenVideo').hide();
+            $('#MainScreenGame').show(); 
+            $('#MainScreenGame').load('/tests/words_list?page=70');                                  
             break;
 
         case "show-page": {
             let page = data['page'];
 
             switch(page) {
-                case 5: case 16: case 18: case 29: case 31: case 42: case 48: case 69:
+                case 5: case 16: case 18: case 29: case 31: case 42: case 48: case 69: case 71:
                     $('#MainScreenVideo').show();
                     $('#MainScreenGame').empty();
                     $('#MainScreenGame').hide();                    

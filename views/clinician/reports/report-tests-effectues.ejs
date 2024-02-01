@@ -32,37 +32,7 @@
                                 <div class="col-2"></div>
                                 <div class="col-8">
                                     <table class="table table-striped">                                        
-                                    <tbody>
-                                    <% if (test_mmse_exist == true) { %>                                        
-                                    <tr>
-                                        <td class="align-middle"><h6><i class='fas fa-arrow-alt-circle-right'></i> MMSE</h6></td>
-                                        <td class="text-right"><a href="/clinician/report-test06-mmse?id=<%= id_session %>" class="btn btn-success active" role="button" aria-pressed="true" style="width:150px">CONSULTER</a></td>
-                                    </tr>
-                                    <% } %>
-                                    <% if (test_do80_exist == true) { %>
-                                    <tr>
-                                        <td class="align-middle"><h6><i class='fas fa-arrow-alt-circle-right'></i> Test DO80</h6></td>
-                                        <td class="text-right"><a href="/clinician/report-test01-do80?id=<%= id_session %>" class="btn btn-success active" role="button" aria-pressed="true" style="width:150px">CONSULTER</a></td>
-                                    </tr>
-                                    <% } %>
-                                    <% if (test_deno_lexis_exist == true) { %>
-                                    <tr>
-                                        <td class="align-middle"><h6><i class='fas fa-arrow-alt-circle-right'></i> Test Dénomination lexicale</h6></td>
-                                        <td class="text-right"><a href="/clinician/report-test11-deno_lexis?id=<%= id_session %>" class="btn btn-success active" role="button" aria-pressed="true" style="width:150px">CONSULTER</a></td>
-                                    </tr>
-                                    <% } %>
-                                    <% if (test_portes_exist == true) { %>
-                                    <tr>
-                                        <td class="align-middle"><h6><i class='fas fa-arrow-alt-circle-right'></i> Test des portes</h6></td>
-                                        <td class="text-right"><a href="/clinician/report-test04-portes?id=<%= id_session %>" class="btn btn-success active" role="button" aria-pressed="true" style="width:150px">CONSULTER</a></td>
-                                    </tr>
-                                    <% } %>
-                                    <% if (test_gro_bus_exist == true) { %>
-                                    <tr>
-                                        <td class="align-middle"><h6><i class='fas fa-arrow-alt-circle-right'></i> Test de Grober et Buschke</h6></td>
-                                        <td class="text-right"><a href="/clinician/report-test08-gro_bus?id=<%= id_session %>" class="btn btn-success active" role="button" aria-pressed="true" style="width:150px">CONSULTER</a></td>
-                                    </tr>
-                                    <% } %>
+                                    <tbody>   
                                     <% if (test_fvlex_p_exist == true) { %>     
                                     <tr>
                                         <td class="align-middle"><h6><i class='fas fa-arrow-alt-circle-right'></i> Fluence Verbale Lexicale - P</h6></td>
@@ -87,100 +57,10 @@
                                         <td class="text-right"><a href="/clinician/report-test10-fvsem-fruits?id=<%= id_session %>" class="btn btn-success active" role="button" aria-pressed="true" style="width:150px">CONSULTER</a></td>
                                     </tr>
                                     <% } %>
-                                    <% if (test_5mots_exist == true) { %>
-                                    <tr>
-                                        <td class="align-middle"><h6><i class='fas fa-arrow-alt-circle-right'></i> Test des 5 Mots</h6></td>
-                                        <td class="text-right"><a href="/clinician/report-test05-5mots?id=<%= id_session %>" class="btn btn-success active" role="button" aria-pressed="true" style="width:150px">CONSULTER</a></td>
-                                    </tr>
-                                    <% } %>
-                                    <% if (test_pra_ges_exist == true) { %>
-                                    <tr>
-                                        <td class="align-middle"><h6><i class='fas fa-arrow-alt-circle-right'></i> Praxis Gestuels</h6></td>
-                                        <td class="text-right"><a href="/clinician/report-test12-pra_ges?id=<%= id_session %>" class="btn btn-success active" role="button" aria-pressed="true" style="width:150px">CONSULTER</a></td>
-                                    </tr>
-                                    <% } %>
-                                    <% if (test_empan_exist == true) { %>
-                                    <tr>
-                                        <td class="align-middle"><h6><i class='fas fa-arrow-alt-circle-right'></i> Empan de chiffre</h6></td>
-                                        <td class="text-right"><a href="/clinician/report-test07-empan?id=<%= id_session %>" class="btn btn-success active" role="button" aria-pressed="true" style="width:150px">CONSULTER</a></td>
-                                    </tr>
-                                    <% } %>
-                                    <% if (test_bdae_ctpd_exist == true) { %>
-                                    <tr>
-                                        <td class="align-middle"><h6><i class='fas fa-arrow-alt-circle-right'></i> Description d'image (CTPD)</h6></td>
-                                        <td class="text-right"><a href="/clinician/report-test02-bdae_ctpd?id=<%= id_session %>" class="btn btn-success active" role="button" aria-pressed="true" style="width:150px">CONSULTER</a></td>
-                                    </tr>
-                                    <% } %>
-                                    <% if (test_stroop_exist == true) { %>
-                                    <tr>
-                                        <td class="align-middle"><h6><i class='fas fa-arrow-alt-circle-right'></i> Stroop GREFEX</h6></td>
-                                        <td class="text-right"><a href="/clinician/report-test13-stroop?id=<%= id_session %>" class="btn btn-success active" role="button" aria-pressed="true" style="width:150px">CONSULTER</a></td>
-                                    </tr>
-                                    <% } %>
-                                    <% if (test_stroop_vectoria_exist == true) { %>
-                                    <tr>
-                                        <td class="align-middle"><h6><i class='fas fa-arrow-alt-circle-right'></i> Stroop Victoria</h6></td>
-                                        <td class="text-right"><a href="/clinician/report-test17-stroop-vectoria?id=<%= id_session %>" class="btn btn-success active" role="button" aria-pressed="true" style="width:150px">CONSULTER</a></td>
-                                    </tr>
-                                    <% } %>
-                                    <% if (test_geria_12_exist == true) { %>
-                                    <tr>
-                                        <td class="align-middle"><h6><i class='fas fa-arrow-alt-circle-right'></i> GERIA-12</h6></td>
-                                        <td class="text-right"><a href="/clinician/report-test18-geria-12?id=<%= id_session %>" class="btn btn-success active" role="button" aria-pressed="true" style="width:150px">CONSULTER</a></td>
-                                    </tr>
-                                    <% } %>
-                                    <% if (test_bref_exist == true) { %>
-                                    <tr>
-                                        <td class="align-middle"><h6><i class='fas fa-arrow-alt-circle-right'></i> BREF</h6></td>
-                                        <td class="text-right"><a href="/clinician/report-test20-bref?id=<%= id_session %>" class="btn btn-success active" role="button" aria-pressed="true" style="width:150px">CONSULTER</a></td>
-                                    </tr>
-                                    <% } %>
-                                    <% if (test_visio_const_exist == true) { %>
-                                    <tr>
-                                        <td class="align-middle"><h6><i class='fas fa-arrow-alt-circle-right'></i> Visio-Const</h6></td>
-                                        <td class="text-right"><a href="/clinician/report-test21-visio-const?id=<%= id_session %>" class="btn btn-success active" role="button" aria-pressed="true" style="width:150px">CONSULTER</a></td>
-                                    </tr>
-                                    <% } %>
-                                    <% if (test_dlta_exist == true) { %>
-                                    <tr>
-                                        <td class="align-middle"><h6><i class='fas fa-arrow-alt-circle-right'></i> DTLA</h6></td>
-                                        <td class="text-right"><a href="/clinician/report-test22-dlta?id=<%= id_session %>" class="btn btn-success active" role="button" aria-pressed="true" style="width:150px">CONSULTER</a></td>
-                                    </tr>
-                                    <% } %>
-                                    <% if (test_gri_ams_exist == true) { %>
-                                    <tr>
-                                        <td class="align-middle"><h6><i class='fas fa-arrow-alt-circle-right'></i> Grille d'Amsler</h6></td>
-                                        <td class="text-right"><a href="/clinician/report-test16-gri-ams?id=<%= id_session %>" class="btn btn-success active" role="button" aria-pressed="true" style="width:150px">CONSULTER</a></td>
-                                    </tr>
-                                    <% } %>
-                                    <% if (test_inv_apa_exist == true) { %>
-                                    <tr>
-                                        <td class="align-middle"><h6><i class='fas fa-arrow-alt-circle-right'></i> Inventaire Apathie</h6></td>
-                                        <td class="text-right"><a href="/clinician/report-test25-inv-apa?id=<%= id_session %>" class="btn btn-success active" role="button" aria-pressed="true" style="width:150px">CONSULTER</a></td>
-                                    </tr>
-                                    <% } %>
                                     <% if (test_gds_exist == true) { %>
                                     <tr>
                                         <td class="align-middle"><h6><i class='fas fa-arrow-alt-circle-right'></i> Echelle GDS</h6></td>
                                         <td class="text-right"><a href="/clinician/report-test24-gds?id=<%= id_session %>" class="btn btn-success active" role="button" aria-pressed="true" style="width:150px">CONSULTER</a></td>
-                                    </tr>
-                                    <% } %>
-                                    <% if (test_fcs_exist == true) { %>
-                                    <tr>
-                                        <td class="align-middle"><h6><i class='fas fa-arrow-alt-circle-right'></i> FCS (SCF 4 items)</h6></td>
-                                        <td class="text-right"><a href="/clinician/report-test23-fcs?id=<%= id_session %>" class="btn btn-success active" role="button" aria-pressed="true" style="width:150px">CONSULTER</a></td>
-                                    </tr>
-                                    <% } %>
-                                    <% if (test_cda_2018_exist == true) { %>
-                                    <tr>
-                                        <td class="align-middle"><h6><i class='fas fa-arrow-alt-circle-right'></i> Critères Diagnostic de l’apathie (2018)</h6></td>
-                                        <td class="text-right"><a href="/clinician/report-test28-cda-2018?id=<%= id_session %>" class="btn btn-success active" role="button" aria-pressed="true" style="width:150px">CONSULTER</a></td>
-                                    </tr>
-                                    <% } %>
-                                    <% if (test_mmse_spa_exist == true) { %>
-                                    <tr>
-                                        <td class="align-middle"><h6><i class='fas fa-arrow-alt-circle-right'></i> MMSE Spanish - Chile</h6></td>
-                                        <td class="text-right"><a href="/clinician/report-test29-mmse-spa?id=<%= id_session %>" class="btn btn-success active" role="button" aria-pressed="true" style="width:150px">CONSULTER</a></td>
                                     </tr>
                                     <% } %>
                                     <% if (test_moca_exist == true) { %>

@@ -5,7 +5,7 @@ module.exports = class DS_Test_Words_List {
                     knl_1, wortliste_knl_1, lernen_1, rew_list_1, lernen_1_int, lernen_1_int_text,
                     knl_2, wortliste_knl_2, lernen_2, rew_list_2, lernen_2_int, lernen_2_int_text,
                     knl_3, wortliste_knl_3, lernen_3, rew_list_3, lernen_3_int, lernen_3_int_text,
-                    abrufen, rew_list_abrufen, abrufen_int, abrufen_int_text,
+                    fiabz, abrufen, rew_list_abrufen, abrufen_int, abrufen_int_text,
                     butter, arm, strand, brief, konigin, hutte, stange, karte, gras, motor, 
                     r_ja, r_ja_list, r_nein, r_nein_list, f_ja, f_ja_list, f_nein, f_nein_list) {
         this.idTest = idTest;
@@ -30,6 +30,7 @@ module.exports = class DS_Test_Words_List {
         this.rew_list_3 = rew_list_3;
         this.lernen_3_int = lernen_3_int;
         this.lernen_3_int_text = lernen_3_int_text;
+        this.fiabz = fiabz;
         this.abrufen = abrufen;        
         this.rew_list_abrufen = rew_list_abrufen;
         this.abrufen_int = abrufen_int;
@@ -59,14 +60,14 @@ module.exports = class DS_Test_Words_List {
                             "knl_1, wortliste_knl_1, lernen_1, rew_list_1, lernen_1_int, lernen_1_int_text, " +
                             "knl_2, wortliste_knl_2, lernen_2, rew_list_2, lernen_2_int, lernen_2_int_text, " +
                             "knl_3, wortliste_knl_3, lernen_3, rew_list_3, lernen_3_int, lernen_3_int_text, " +
-                            "abrufen, rew_list_abrufen, abrufen_int, abrufen_int_text, " +
+                            "fiabz, abrufen, rew_list_abrufen, abrufen_int, abrufen_int_text, " +
                             "butter, arm, strand, brief, konigin, hutte, stange, karte, gras, motor, " + 
                             "r_ja, r_ja_list, r_nein, r_nein_list, f_ja, f_ja_list, f_nein, f_nein_list) " +
                         "VALUES (?, ?, ?, " + 
                                "?, ?, ?, ?, ?, ?, " + 
                                "?, ?, ?, ?, ?, ?, " + 
                                "?, ?, ?, ?, ?, ?, " + 
-                               "?, ?, ?, ?, " + 
+                               "?, ?, ?, ?, ?, " + 
                                "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " +
                                "?, ?, ?, ?, ?, ?, ?, ?) ";     
 
@@ -78,7 +79,7 @@ module.exports = class DS_Test_Words_List {
                 this.lernen_2_int, this.lernen_2_int_text,
                 this.knl_3, this.wortliste_knl_3, this.lernen_3, this.rew_list_3, 
                 this.lernen_3_int, this.lernen_3_int_text,
-                this.abrufen, this.rew_list_abrufen, this.abrufen_int, this.abrufen_int_text,
+                this.fiabz, this.abrufen, this.rew_list_abrufen, this.abrufen_int, this.abrufen_int_text,
                 this.butter, this.arm, this.strand, this.brief, this.konigin, this.hutte, 
                 this.stange, this.karte, this.gras, this.motor,
                 this.r_ja, this.r_ja_list, this.r_nein, this.r_nein_list, 
@@ -120,7 +121,7 @@ module.exports = class DS_Test_Words_List {
     // Fields: [DS_Test_Words_List] - record_video, knl_1, wortliste_knl_1, lernen_1, rew_list_1, lernen_1_int, lernen_1_int_text,
     //                            knl_2, wortliste_knl_2, lernen_2, rew_list_2, lernen_2_int, lernen_2_int_text,
     //                            knl_3, wortliste_knl_3, lernen_3, rew_list_3, lernen_3_int, lernen_3_int_text,
-    //                            abrufen, rew_list_abrufen, abrufen_int, abrufen_int_text,
+    //                            fiabz, abrufen, rew_list_abrufen, abrufen_int, abrufen_int_text,
     //                            butter, arm, strand, brief, konigin, hutte, stange, karte, gras, motor,
     //                            r_ja, r_ja_list, r_nein, r_nein_list, f_ja, f_ja_list, f_nein, f_nein_list
     // Tables: [DS_Test_Words_List]
@@ -130,7 +131,7 @@ module.exports = class DS_Test_Words_List {
                             'knl_1, wortliste_knl_1, lernen_1, rew_list_1, lernen_1_int, lernen_1_int_text, ' +
                             'knl_2, wortliste_knl_2, lernen_2, rew_list_2, lernen_2_int, lernen_2_int_text, ' +
                             'knl_3, wortliste_knl_3, lernen_3, rew_list_3, lernen_3_int, lernen_3_int_text, ' +
-                            'abrufen, rew_list_abrufen, abrufen_int, abrufen_int_text, ' +
+                            'fiabz, abrufen, rew_list_abrufen, abrufen_int, abrufen_int_text, ' +
                             'butter, arm, strand, brief, konigin, hutte, stange, karte, gras, motor, ' +
                             'r_ja, r_ja_list, r_nein, r_nein_list, f_ja, f_ja_list, f_nein, f_nein_list ' +
                        'FROM DS_Test_Words_List ' + 
@@ -168,8 +169,21 @@ module.exports = class DS_Test_Words_List {
                                      rew_list_3, lernen_3_int, lernen_3_int_text, idSession]);
     }
 
+    // Fields: [DS_Test_Words_List] - test_done, fiabz
+    // Tables: [DS_Test_Words_List]
+    // Conditions: [DS_Test_Words_List] - id_session    
+    static update_figur_abzeichnen_by_idSession(idSession, test_done, fiabz) {
+        let strQuery = 'UPDATE DS_Test_Words_List ' +
+                        'SET test_done = ?, ' + 
+                            'fiabz = ? ' +
+                        'WHERE id_session = ? ';
+
+        return db.execute(strQuery, [test_done, fiabz, idSession]);
+    }
+
     // Fields: [DS_Test_Words_List] - test_done, 
     //                                abrufen, rew_list_abrufen, abrufen_int, abrufen_int_text
+    //                                butter, arm, strand, brief, konigin, hutte, stange, karte, gras, motor
     // Tables: [DS_Test_Words_List]
     // Conditions: [DS_Test_Words_List] - id_session    
     static update_abrufen_by_idSession(idSession, test_done, 

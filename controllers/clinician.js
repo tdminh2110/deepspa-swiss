@@ -985,6 +985,7 @@ exports.getGenerateReportUPDRMCDetail = (req, res, next) => {
                                                             let test_words_list_lernen_2_int = 0;
                                                             let test_words_list_lernen_3 = 0;
                                                             let test_words_list_lernen_3_int = 0;
+                                                            let test_words_list_fiabz = 0;
                                                             let test_words_list_abrufen = 0;
                                                             let test_words_list_abrufen_int = 0;
                                                             let test_words_list_r_ja = 0;
@@ -999,6 +1000,7 @@ exports.getGenerateReportUPDRMCDetail = (req, res, next) => {
                                                                     test_words_list_lernen_2_int = test_words_list[0].lernen_2_int;
                                                                     test_words_list_lernen_3 = test_words_list[0].lernen_3;
                                                                     test_words_list_lernen_3_int = test_words_list[0].lernen_3_int;
+                                                                    test_words_list_fiabz = test_words_list[0].fiabz;
                                                                     test_words_list_abrufen = test_words_list[0].abrufen;
                                                                     test_words_list_abrufen_int = test_words_list[0].abrufen_int;
                                                                     test_words_list_r_ja = test_words_list[0].r_ja;
@@ -1246,6 +1248,7 @@ exports.getGenerateReportUPDRMCDetail = (req, res, next) => {
                                                                     test_words_list_z_score_wld3 : test_words_list_z_score_wld3,
                                                                     test_words_list_z_score_wlt : test_words_list_z_score_wlt,
                                                                     test_words_list_z_score_wli : test_words_list_z_score_wli,
+                                                                    test_words_list_fiabz : test_words_list_fiabz,
                                                                     test_words_list_abrufen : test_words_list_abrufen,
                                                                     test_words_list_abrufen_int : test_words_list_abrufen_int,
                                                                     test_words_list_z_score_wab : test_words_list_z_score_wab,
@@ -2261,6 +2264,7 @@ exports.getReportAllTests = (req, res, next) => {
                                                                                     let words_list_rew_list_2, words_list_lernen_2_int, words_list_lernen_2_int_text;
                                                                                     let words_list_knl_3, words_list_wortliste_knl_3, words_list_lernen_3;
                                                                                     let words_list_rew_list_3, words_list_lernen_3_int, words_list_lernen_3_int_text;
+                                                                                    let words_list_fiabz;
                                                                                     let words_list_abrufen, words_list_rew_list_abrufen;
                                                                                     let words_list_abrufen_int, words_list_abrufen_int_text;
                                                                                     let words_list_butter, words_list_arm, words_list_strand;
@@ -2292,6 +2296,7 @@ exports.getReportAllTests = (req, res, next) => {
                                                                                             words_list_rew_list_3 = test_words_list[0].rew_list_3;
                                                                                             words_list_lernen_3_int = test_words_list[0].lernen_3_int;
                                                                                             words_list_lernen_3_int_text = test_words_list[0].lernen_3_int_text;
+                                                                                            words_list_fiabz = test_words_list[0].fiabz;
                                                                                             words_list_abrufen = test_words_list[0].abrufen;
                                                                                             words_list_rew_list_abrufen = test_words_list[0].rew_list_abrufen;
                                                                                             words_list_abrufen_int = test_words_list[0].abrufen_int;
@@ -2553,6 +2558,7 @@ exports.getReportAllTests = (req, res, next) => {
                                                                                                 words_list_rew_list_3 : words_list_rew_list_3,
                                                                                                 words_list_lernen_3_int : words_list_lernen_3_int,
                                                                                                 words_list_lernen_3_int_text : words_list_lernen_3_int_text,
+                                                                                                words_list_fiabz : words_list_fiabz,
                                                                                                 words_list_abrufen : words_list_abrufen,
                                                                                                 words_list_rew_list_abrufen : words_list_rew_list_abrufen,
                                                                                                 words_list_abrufen_int : words_list_abrufen_int,
