@@ -10,6 +10,7 @@ const Test37_Digital_Span_ShowPage = require('./tests/test37_digital_span');
 const Test38_BNT_15_ShowPage = require('./tests/test38_bnt_15');
 const Test39_Words_List_ShowPage = require('./tests/test39_words_list');
 const Test40_Stroop_Victoria_2_ShowPage = require('./tests/test40_stroop_victoria_2');
+const Test41_Trial_Making_Test_ShowPage = require('./tests/test41_trial_making_test');
 
 exports.tests_ShowMainNavigator = (req, res, next) => {    
     if (session.checkSession(req, 2)) {
@@ -154,6 +155,14 @@ exports.tests_InputForm = (req, res, next) => {
                 run_button_id: 'Test40_Stroop_Victoria_2_SC1',
                 back_id: 'BackListTests_Stroop_Victoria_2_SC1'
             });
+        } else if (test === "test41_trial_making_test") {
+            res.render('clinician/test-screens/common/test41_trial_making_test', {
+                session_name : session_name,
+                languages: ['de'],
+                default_language: 'de',
+                run_button_id: 'Test41_Trial_Making_Test',
+                back_id: 'BackListTests_Trial_Making_Test'
+            });
         }
     }
 };
@@ -196,4 +205,8 @@ exports.test39_Words_List_GetPage = (req, res, next) => {
 
 exports.test40_Stroop_Victoria_2_GetPage = (req, res, next) => {
     Test40_Stroop_Victoria_2_ShowPage.test40_stroop_victoria_2_showpage(req, res);
+};
+
+exports.test41_Trial_Making_Test_GetPage = (req, res, next) => {
+    Test41_Trial_Making_Test_ShowPage.test41_trial_making_test_showpage(req, res);
 };

@@ -8,17 +8,12 @@ const Test_Eval_Acc = require('../models/test_eval_acc');
 const Test_Eval_Acc_V2 = require('../models/test_eval_acc_v2');
 const Test_GDS = require('../models/test_gds');
 const Test_DeepSpa = require('../models/test_deepspa');
-const Test_Dessin_Horloge = require('../models/test_dessin_horloge');
 const Test_MOCA = require('../models/test_moca');
-const Test_D2 = require('../models/test_d2');
-const Test_WAIS_IV = require('../models/test_wais_iv');
-const Test_Zoo = require('../models/test_zoo');
-const Test_Code_WAIS = require('../models/test_code_wais');
-const Test_NPI = require('../models/test_npi');
 const Test_Digital_Span = require('../models/test_digital_span');
 const Test_BNT_15 = require('../models/test_bnt_15');
 const Test_Words_List = require('../models/test_words_list');
 const Test_Stroop_Victoria_2 = require('../models/test_stroop_victoria_2');
+const Test_Trial_Making_Test = require('../models/test_trial_making_test');
 
 const session = require('./common/session');
 const fileSystem = require('./common/filesystem');
@@ -107,7 +102,8 @@ exports.getLoadListOfTests = (req, res, next) => {
         let b_test_fvsem = false;
         let b_test_fvlex = false;
         let b_test_bnt_15 = false;
-        let b_test_words_list = false;        
+        let b_test_words_list = false;
+        let b_test_trial_making_test = false;    
 
         Test_MOCA.select_by_idSession(idSession)
         .then(([test_moca]) => {
@@ -140,18 +136,28 @@ exports.getLoadListOfTests = (req, res, next) => {
                                     Test_Words_List.select_by_idSession(idSession)
                                     .then(([test_words_list]) => {
                                         b_test_words_list = test_words_list.length > 0;
+
+                                        Test_Trial_Making_Test.select_by_idSession(idSession)
+                                        .then(([test_trial_making_test]) => {
+                                            b_test_trial_making_test = test_trial_making_test.length > 0;
                                                             
-                                        res.render('clinician/test-screens/common/navigation/navigation-left-list-of-tests', {
-                                            idsession : idSession,
-                                            session_name : session_name,
-                                            test_moca : b_test_moca,
-                                            test_gds_15 : b_test_gds_15,
-                                            test_stroop_victoria_2 : b_test_stroop_victoria_2,
-                                            test_digital_span : b_test_digital_span,
-                                            test_fvsem : b_test_fvsem,
-                                            test_fvlex : b_test_fvlex,
-                                            test_bnt_15 : b_test_bnt_15,
-                                            test_words_list : b_test_words_list                              
+                                            res.render('clinician/test-screens/common/navigation/navigation-left-list-of-tests', {
+                                                idsession : idSession,
+                                                session_name : session_name,
+                                                test_moca : b_test_moca,
+                                                test_gds_15 : b_test_gds_15,
+                                                test_stroop_victoria_2 : b_test_stroop_victoria_2,
+                                                test_digital_span : b_test_digital_span,
+                                                test_fvsem : b_test_fvsem,
+                                                test_fvlex : b_test_fvlex,
+                                                test_bnt_15 : b_test_bnt_15,
+                                                test_words_list : b_test_words_list,
+                                                test_trial_making_test : b_test_trial_making_test                          
+                                            });
+                                        })
+                                        .catch(err => {
+                                            console.log(err);
+                                            res.redirect('/error');
                                         });
                                     })
                                     .catch(err => {

@@ -22,6 +22,7 @@ const Test_Stroop_Victoria_2 = require('../models/test_stroop_victoria_2');
 const Test_WAIS_IV = require('../models/test_wais_iv');
 const Test_Words_List = require('../models/test_words_list');
 const Test_Zoo = require('../models/test_zoo');
+const Test_Trial_Making_Test = require('../models/test_trial_making_test');
 
 const session = require('./common/session');
 const string_process = require('./common/stringprocess');
@@ -990,6 +991,7 @@ exports.getGenerateReportUPDRMCDetail = (req, res, next) => {
                                                             let test_words_list_abrufen_int = 0;
                                                             let test_words_list_r_ja = 0;
                                                             let test_words_list_r_nein = 0;
+                                                            let test_words_list_figur_abrufen = 0;
 
                                                             Test_Words_List.select_report_by_idSession(IDSession)
                                                             .then(([test_words_list]) => {
@@ -1005,6 +1007,7 @@ exports.getGenerateReportUPDRMCDetail = (req, res, next) => {
                                                                     test_words_list_abrufen_int = test_words_list[0].abrufen_int;
                                                                     test_words_list_r_ja = test_words_list[0].r_ja;
                                                                     test_words_list_r_nein = test_words_list[0].r_nein;
+                                                                    test_words_list_figur_abrufen = test_words_list[0].figur_abrufen;
                                                                 }
 
                                                                 let test_fvsem_z_score_vft = 0;
@@ -1188,76 +1191,92 @@ exports.getGenerateReportUPDRMCDetail = (req, res, next) => {
                                                                         }
                                                                     }
                                                                 }
+
+                                                                let test_trial_making_a_time = 0;
+                                                                let test_trial_making_b_time = 0;
+
+                                                                Test_Trial_Making_Test.select_report_by_idSession(IDSession)
+                                                                .then(([test_trial_making_test]) => {
+
+                                                                    if (test_trial_making_test.length == 1) {
+                                                                        test_trial_making_a_time = test_trial_making_test[0].trial_making_a_time;
+                                                                        test_trial_making_b_time = test_trial_making_test[0].trial_making_b_time;
+                                                                    }
                                 
-                                                                res.render('clinician/reports/generate-report-upd-rmc-detail', {                                        
-                                                                    pageTitle : 'Générer un Rapport',
-                                                                    path : '',
-                                                                    id_session : IDSession,
-                                                                    fromPage: req.query.from,
-                                                                    patient_family_name : patient_family_name,
-                                                                    patient_name : patient_name,
-                                                                    session_created_date : session_created_date,
-                                                                    patient_id : patient_id,
-                                                                    email : email,
-                                                                    birthday : birthday,
-                                                                    age : age,
-                                                                    sex : sex,
-                                                                    bildungsniveau : bildungsniveau,
-                                                                    test_moca_total : test_moca_total,
-                                                                    test_gds_score : test_gds_score,
-                                                                    test_stroop_victoria_2_duree_1 : test_stroop_victoria_2_duree_1,
-                                                                    test_stroop_victoria_2_nombre_d_erreurs_1 : test_stroop_victoria_2_nombre_d_erreurs_1,
-                                                                    test_stroop_victoria_2_nombre_d_erreurs_corrigees_1 : test_stroop_victoria_2_nombre_d_erreurs_corrigees_1,
-                                                                    test_stroop_victoria_2_duree_2 : test_stroop_victoria_2_duree_2,
-                                                                    test_stroop_victoria_2_nombre_d_erreurs_2 : test_stroop_victoria_2_nombre_d_erreurs_2,
-                                                                    test_stroop_victoria_2_nombre_d_erreurs_corrigees_2 : test_stroop_victoria_2_nombre_d_erreurs_corrigees_2,
-                                                                    test_stroop_victoria_2_duree_3 : test_stroop_victoria_2_duree_3,
-                                                                    test_stroop_victoria_2_nombre_d_erreurs_3 : test_stroop_victoria_2_nombre_d_erreurs_3,
-                                                                    test_stroop_victoria_2_nombre_d_erreurs_corrigees_3 : test_stroop_victoria_2_nombre_d_erreurs_corrigees_3,
-                                                                    test_stroop_victoria_2_z_score_svA : test_stroop_victoria_2_z_score_svA,
-                                                                    test_stroop_victoria_2_z_score_svB : test_stroop_victoria_2_z_score_svB,
-                                                                    test_stroop_victoria_2_z_score_svC : test_stroop_victoria_2_z_score_svC,
-                                                                    
-                                                                    test_digital_span_vor : test_digital_span_vor,
-                                                                    test_digital_span_ruc : test_digital_span_ruc,
-                                                                    test_digital_span_CAV_vorwarts : test_digital_span_CAV_vorwarts,
-                                                                    test_digital_span_CAV_score_ruckwarts : test_digital_span_CAV_score_ruckwarts,
-                                                                    test_digital_span_z_score_dsv : test_digital_span_z_score_dsv,
-                                                                    test_digital_span_z_score_dsr : test_digital_span_z_score_dsr,
-                                                                    test_fvsem_animaux_reponses : test_fvsem_animaux_reponses,
-                                                                    test_fvsem_animaux_intrusions : test_fvsem_animaux_intrusions,
-                                                                    test_fvsem_animaux_erreurs : test_fvsem_animaux_erreurs,
-                                                                    test_fvsem_z_score_vft : test_fvsem_z_score_vft,
-                                                                    test_fvlex_p_reponses : test_fvlex_p_reponses,
-                                                                    test_fvlex_p_intrusions : test_fvlex_p_intrusions,
-                                                                    test_fvlex_p_erreurs : test_fvlex_p_erreurs,
-                                                                    test_fvlex_z_score_pfs : test_fvlex_z_score_pfs,
-                                                                    test_bnt_15_haufig : test_bnt_15_haufig,
-                                                                    test_bnt_15_mittel : test_bnt_15_mittel,
-                                                                    test_bnt_15_selten : test_bnt_15_selten, 
-                                                                    test_bnt_15_total : test_bnt_15_total,
-                                                                    test_bnt_15_z_score_bnt : test_bnt_15_z_score_bnt,
-                                                                    test_words_list_lernen_1 : test_words_list_lernen_1,
-                                                                    test_words_list_lernen_1_int : test_words_list_lernen_1_int,
-                                                                    test_words_list_lernen_2 : test_words_list_lernen_2,
-                                                                    test_words_list_lernen_2_int : test_words_list_lernen_2_int,
-                                                                    test_words_list_lernen_3 : test_words_list_lernen_3,
-                                                                    test_words_list_lernen_3_int : test_words_list_lernen_3_int,
-                                                                    test_words_list_z_score_wld1 : test_words_list_z_score_wld1,
-                                                                    test_words_list_z_score_wld2 : test_words_list_z_score_wld2,
-                                                                    test_words_list_z_score_wld3 : test_words_list_z_score_wld3,
-                                                                    test_words_list_z_score_wlt : test_words_list_z_score_wlt,
-                                                                    test_words_list_z_score_wli : test_words_list_z_score_wli,
-                                                                    test_words_list_fiabz : test_words_list_fiabz,
-                                                                    test_words_list_abrufen : test_words_list_abrufen,
-                                                                    test_words_list_abrufen_int : test_words_list_abrufen_int,
-                                                                    test_words_list_z_score_wab : test_words_list_z_score_wab,
-                                                                    test_words_list_z_score_swo : test_words_list_z_score_swo,
-                                                                    test_words_list_r_ja : test_words_list_r_ja,
-                                                                    test_words_list_r_nein : test_words_list_r_nein,
-                                                                    test_words_list_z_score_dis : test_words_list_z_score_dis,
-                                                                    manageClinicians: manageClinicians
-                                                                });
+                                                                    res.render('clinician/reports/generate-report-upd-rmc-detail', {                                        
+                                                                        pageTitle : 'Générer un Rapport',
+                                                                        path : '',
+                                                                        id_session : IDSession,
+                                                                        fromPage: req.query.from,
+                                                                        patient_family_name : patient_family_name,
+                                                                        patient_name : patient_name,
+                                                                        session_created_date : session_created_date,
+                                                                        patient_id : patient_id,
+                                                                        email : email,
+                                                                        birthday : birthday,
+                                                                        age : age,
+                                                                        sex : sex,
+                                                                        bildungsniveau : bildungsniveau,
+                                                                        test_moca_total : test_moca_total,
+                                                                        test_gds_score : test_gds_score,
+                                                                        test_stroop_victoria_2_duree_1 : test_stroop_victoria_2_duree_1,
+                                                                        test_stroop_victoria_2_nombre_d_erreurs_1 : test_stroop_victoria_2_nombre_d_erreurs_1,
+                                                                        test_stroop_victoria_2_nombre_d_erreurs_corrigees_1 : test_stroop_victoria_2_nombre_d_erreurs_corrigees_1,
+                                                                        test_stroop_victoria_2_duree_2 : test_stroop_victoria_2_duree_2,
+                                                                        test_stroop_victoria_2_nombre_d_erreurs_2 : test_stroop_victoria_2_nombre_d_erreurs_2,
+                                                                        test_stroop_victoria_2_nombre_d_erreurs_corrigees_2 : test_stroop_victoria_2_nombre_d_erreurs_corrigees_2,
+                                                                        test_stroop_victoria_2_duree_3 : test_stroop_victoria_2_duree_3,
+                                                                        test_stroop_victoria_2_nombre_d_erreurs_3 : test_stroop_victoria_2_nombre_d_erreurs_3,
+                                                                        test_stroop_victoria_2_nombre_d_erreurs_corrigees_3 : test_stroop_victoria_2_nombre_d_erreurs_corrigees_3,
+                                                                        test_stroop_victoria_2_z_score_svA : test_stroop_victoria_2_z_score_svA,
+                                                                        test_stroop_victoria_2_z_score_svB : test_stroop_victoria_2_z_score_svB,
+                                                                        test_stroop_victoria_2_z_score_svC : test_stroop_victoria_2_z_score_svC,
+                                                                        
+                                                                        test_digital_span_vor : test_digital_span_vor,
+                                                                        test_digital_span_ruc : test_digital_span_ruc,
+                                                                        test_digital_span_CAV_vorwarts : test_digital_span_CAV_vorwarts,
+                                                                        test_digital_span_CAV_score_ruckwarts : test_digital_span_CAV_score_ruckwarts,
+                                                                        test_digital_span_z_score_dsv : test_digital_span_z_score_dsv,
+                                                                        test_digital_span_z_score_dsr : test_digital_span_z_score_dsr,
+                                                                        test_fvsem_animaux_reponses : test_fvsem_animaux_reponses,
+                                                                        test_fvsem_animaux_intrusions : test_fvsem_animaux_intrusions,
+                                                                        test_fvsem_animaux_erreurs : test_fvsem_animaux_erreurs,
+                                                                        test_fvsem_z_score_vft : test_fvsem_z_score_vft,
+                                                                        test_fvlex_p_reponses : test_fvlex_p_reponses,
+                                                                        test_fvlex_p_intrusions : test_fvlex_p_intrusions,
+                                                                        test_fvlex_p_erreurs : test_fvlex_p_erreurs,
+                                                                        test_fvlex_z_score_pfs : test_fvlex_z_score_pfs,
+                                                                        test_bnt_15_haufig : test_bnt_15_haufig,
+                                                                        test_bnt_15_mittel : test_bnt_15_mittel,
+                                                                        test_bnt_15_selten : test_bnt_15_selten, 
+                                                                        test_bnt_15_total : test_bnt_15_total,
+                                                                        test_bnt_15_z_score_bnt : test_bnt_15_z_score_bnt,
+                                                                        test_words_list_lernen_1 : test_words_list_lernen_1,
+                                                                        test_words_list_lernen_1_int : test_words_list_lernen_1_int,
+                                                                        test_words_list_lernen_2 : test_words_list_lernen_2,
+                                                                        test_words_list_lernen_2_int : test_words_list_lernen_2_int,
+                                                                        test_words_list_lernen_3 : test_words_list_lernen_3,
+                                                                        test_words_list_lernen_3_int : test_words_list_lernen_3_int,
+                                                                        test_words_list_z_score_wld1 : test_words_list_z_score_wld1,
+                                                                        test_words_list_z_score_wld2 : test_words_list_z_score_wld2,
+                                                                        test_words_list_z_score_wld3 : test_words_list_z_score_wld3,
+                                                                        test_words_list_z_score_wlt : test_words_list_z_score_wlt,
+                                                                        test_words_list_z_score_wli : test_words_list_z_score_wli,
+                                                                        test_words_list_fiabz : test_words_list_fiabz,
+                                                                        test_words_list_abrufen : test_words_list_abrufen,
+                                                                        test_words_list_abrufen_int : test_words_list_abrufen_int,
+                                                                        test_words_list_z_score_wab : test_words_list_z_score_wab,
+                                                                        test_words_list_z_score_swo : test_words_list_z_score_swo,
+                                                                        test_words_list_r_ja : test_words_list_r_ja,
+                                                                        test_words_list_r_nein : test_words_list_r_nein,
+                                                                        test_words_list_z_score_dis : test_words_list_z_score_dis,
+                                                                        test_words_list_figur_abrufen : test_words_list_figur_abrufen,
+                                                                        test_trial_making_a_time : test_trial_making_a_time,
+                                                                        test_trial_making_b_time : test_trial_making_b_time,
+                                                                        manageClinicians: manageClinicians
+                                                                    });
+                                                                })
+                                                                .catch(err => res.redirect('/error'));
                                                             })
                                                             .catch(err => res.redirect('/error'));
                                                         })
@@ -2409,19 +2428,6 @@ exports.getReportAllTests = (req, res, next) => {
                                                                                                 fvsem_fruits_oublis_a_mesure : fvsem_fruits_oublis_a_mesure,
                                                                                                 fvsem_fruits_erreurs : fvsem_fruits_erreurs,
                                                                                                 fvsem_fruits_text_zone : fvsem_fruits_text_zone,
-                                
-                                                                                                fivemots_active : fivemots_active,
-                                                                                                fivemots_path_audio_1 : fivemots_path_audio_1,
-                                                                                                fivemots_path_audio_2 : fivemots_path_audio_2,
-                                                                                                fivemots_list_choice : fivemots_list_choice,
-                                                                                                fivemots_score_total : fivemots_score_total,
-                                                                                                fivemots_Ri : fivemots_Ri,
-                                                                                                fivemots_Ri1 : fivemots_Ri1,
-                                                                                                fivemots_Ri2 : fivemots_Ri2,
-                                                                                                fivemots_Rd : fivemots_Rd,                                                                                                                                
-                                                                                                fivemots_Rd1 : fivemots_Rd1,
-                                                                                                fivemots_rappel_immediat : fivemots_rappel_immediat,
-                                                                                                fivemots_rappel_differe : fivemots_rappel_differe,
 
                                                                                                 GDS_active : GDS_active,
                                                                                                 GDS_Score : GDS_Score,
