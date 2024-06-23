@@ -7,7 +7,8 @@ module.exports = class DS_Test_Words_List {
                     knl_3, wortliste_knl_3, lernen_3, rew_list_3, lernen_3_int, lernen_3_int_text,
                     fiabz, abrufen, rew_list_abrufen, abrufen_int, abrufen_int_text,
                     butter, arm, strand, brief, konigin, hutte, stange, karte, gras, motor, 
-                    r_ja, r_ja_list, r_nein, r_nein_list, f_ja, f_ja_list, f_nein, f_nein_list) {
+                    r_ja, r_ja_list, r_nein, r_nein_list, f_ja, f_ja_list, f_nein, f_nein_list,
+                    figur_abrufen) {
         this.idTest = idTest;
         this.idSession = idSession;
         this.test_done = test_done;
@@ -53,6 +54,7 @@ module.exports = class DS_Test_Words_List {
         this.f_ja_list = f_ja_list;
         this.f_nein = f_nein;
         this.f_nein_list = f_nein_list;
+        this.figur_abrufen = figur_abrufen;
     }
 
     insert() {
@@ -62,14 +64,14 @@ module.exports = class DS_Test_Words_List {
                             "knl_3, wortliste_knl_3, lernen_3, rew_list_3, lernen_3_int, lernen_3_int_text, " +
                             "fiabz, abrufen, rew_list_abrufen, abrufen_int, abrufen_int_text, " +
                             "butter, arm, strand, brief, konigin, hutte, stange, karte, gras, motor, " + 
-                            "r_ja, r_ja_list, r_nein, r_nein_list, f_ja, f_ja_list, f_nein, f_nein_list) " +
+                            "r_ja, r_ja_list, r_nein, r_nein_list, f_ja, f_ja_list, f_nein, f_nein_list, figur_abrufen) " +
                         "VALUES (?, ?, ?, " + 
                                "?, ?, ?, ?, ?, ?, " + 
                                "?, ?, ?, ?, ?, ?, " + 
                                "?, ?, ?, ?, ?, ?, " + 
                                "?, ?, ?, ?, ?, " + 
                                "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " +
-                               "?, ?, ?, ?, ?, ?, ?, ?) ";     
+                               "?, ?, ?, ?, ?, ?, ?, ?, ?) ";     
 
         return db.execute(strQuery, 
             [this.idSession, this.test_done, this.record_video, 
@@ -83,7 +85,7 @@ module.exports = class DS_Test_Words_List {
                 this.butter, this.arm, this.strand, this.brief, this.konigin, this.hutte, 
                 this.stange, this.karte, this.gras, this.motor,
                 this.r_ja, this.r_ja_list, this.r_nein, this.r_nein_list, 
-                this.f_ja, this.f_ja_list, this.f_nein, this.f_nein_list]);
+                this.f_ja, this.f_ja_list, this.f_nein, this.f_nein_list, this.figur_abrufen]);
     }
 
     // Fields: [DS_Test_Words_List] - id_session
@@ -123,7 +125,7 @@ module.exports = class DS_Test_Words_List {
     //                            knl_3, wortliste_knl_3, lernen_3, rew_list_3, lernen_3_int, lernen_3_int_text,
     //                            fiabz, abrufen, rew_list_abrufen, abrufen_int, abrufen_int_text,
     //                            butter, arm, strand, brief, konigin, hutte, stange, karte, gras, motor,
-    //                            r_ja, r_ja_list, r_nein, r_nein_list, f_ja, f_ja_list, f_nein, f_nein_list
+    //                            r_ja, r_ja_list, r_nein, r_nein_list, f_ja, f_ja_list, f_nein, f_nein_list, figur_abrufen
     // Tables: [DS_Test_Words_List]
     // Conditions: [DS_Test_Words_List] - id_session    
     static select_report_by_idSession(idSession) {
@@ -133,7 +135,7 @@ module.exports = class DS_Test_Words_List {
                             'knl_3, wortliste_knl_3, lernen_3, rew_list_3, lernen_3_int, lernen_3_int_text, ' +
                             'fiabz, abrufen, rew_list_abrufen, abrufen_int, abrufen_int_text, ' +
                             'butter, arm, strand, brief, konigin, hutte, stange, karte, gras, motor, ' +
-                            'r_ja, r_ja_list, r_nein, r_nein_list, f_ja, f_ja_list, f_nein, f_nein_list ' +
+                            'r_ja, r_ja_list, r_nein, r_nein_list, f_ja, f_ja_list, f_nein, f_nein_list, figur_abrufen ' +
                        'FROM DS_Test_Words_List ' + 
                        'WHERE id_session = ? ';
 
@@ -219,6 +221,18 @@ module.exports = class DS_Test_Words_List {
 
         return db.execute(strQuery, [test_done, r_ja, r_ja_list, r_nein, r_nein_list, 
                                      f_ja, f_ja_list, f_nein, f_nein_list, idSession]);
+    }
+
+    // Fields: [DS_Test_Words_List] - test_done, figur_abrufen
+    // Tables: [DS_Test_Words_List]
+    // Conditions: [DS_Test_Words_List] - id_session    
+    static update_figur_abrufen_by_idSession(idSession, test_done, figur_abrufen) {
+        let strQuery = 'UPDATE DS_Test_Words_List ' +
+                        'SET test_done = ?, ' + 
+                            'figur_abrufen = ? ' +
+                        'WHERE id_session = ? ';
+
+        return db.execute(strQuery, [test_done, figur_abrufen, idSession]);
     }
 
     // Fields: [DS_Test_Words_List] - record_video
