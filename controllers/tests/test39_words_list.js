@@ -16,6 +16,7 @@ exports.test39_words_list_showpage = function(req, res) {
                 let test2_done = "";
                 let test3_done = "";
                 let test4_done = "";
+                let test5_done = "";
 
                 Test39_Words_List.select_testDone_by_idSession(idSelectedSession)
                 .then(([test39_words_list]) => {
@@ -23,26 +24,34 @@ exports.test39_words_list_showpage = function(req, res) {
                         test_done = test39_words_list[0].test_done;
 
                         switch(test_done) {
-                            case 8:
+                            case 16:
                                 test1_done = "<span style='font-size:18px'>&#9745;</span>";
                                 break;
                             
-                            case 12:
+                            case 24:
                                 test1_done = "<span style='font-size:18px'>&#9745;</span>";
                                 test2_done = "<span style='font-size:18px'>&#9745;</span>";
                                 break;
 
-                            case 14:
+                            case 28:
                                 test1_done = "<span style='font-size:18px'>&#9745;</span>";
                                 test2_done = "<span style='font-size:18px'>&#9745;</span>";
                                 test3_done = "<span style='font-size:18px'>&#9745;</span>";
                                 break;
 
-                            case 15:
+                            case 30:
                                 test1_done = "<span style='font-size:18px'>&#9745;</span>";
                                 test2_done = "<span style='font-size:18px'>&#9745;</span>";
                                 test3_done = "<span style='font-size:18px'>&#9745;</span>";
                                 test4_done = "<span style='font-size:18px'>&#9745;</span>";
+                                break;
+
+                            case 31:
+                                test1_done = "<span style='font-size:18px'>&#9745;</span>";
+                                test2_done = "<span style='font-size:18px'>&#9745;</span>";
+                                test3_done = "<span style='font-size:18px'>&#9745;</span>";
+                                test4_done = "<span style='font-size:18px'>&#9745;</span>";
+                                test5_done = "<span style='font-size:18px'>&#9745;</span>";
                                 break;
 
                         }
@@ -54,13 +63,16 @@ exports.test39_words_list_showpage = function(req, res) {
                         txtButton1: "Wortliste Lernen",
                         IDButton2: "bt-test39-page" + page + "-2",
                         test2_done: test2_done,
-                        txtButton2: "Figur abzeichnen",
+                        txtButton2: "Figur Abzeichnen",
                         IDButton3: "bt-test39-page" + page + "-3",
                         test3_done: test3_done,
                         txtButton3: "Wortliste Abrufen",
                         IDButton4: "bt-test39-page" + page + "-4",
                         test4_done: test4_done,
                         txtButton4: "Wortliste Wiedererkennen",
+                        IDButton5: "bt-test39-page" + page + "-5",
+                        test5_done: test5_done,
+                        txtButton5: "Figur Abrufen",
                         IDLabel: "lbl-test39-page" + page,
                         IDButtonLeft: "bt-test39-page" + page + "-terminer",
                         txtButtonLeft: "Beenden",
@@ -463,6 +475,35 @@ exports.test39_words_list_showpage = function(req, res) {
                 res.render('clinician/test-screens/words_list/page16', {
                     text1: "Figur abzeichnen",
                     text2: "Score = " + fiabz,
+                    IDButtonLeft: "bt-test39-page" + page + "-retour",
+                    txtButtonLeft: "Zurück",
+                    IDButtonRight: "bt-test39-page" + page + "-terminer",
+                    txtButtonRight: "Beenden"
+                });
+                break;
+
+            case 72:
+                res.render('clinician/test-screens/words_list/page17', {
+                    text1: "Figur Abrufen",
+                    text2: "Anweisung:",
+                    text3: "<span class='text-primary'><b>\"Vor einigen Minuten haben ich Sie gebeten drei Figuren abzuzeichnen. Erinnern Sie sich noch an die Figuren? Können Sie die Figuren noch mal auf das vor Ihnen liegende Papier aufzeichnen? \"</b></span>", 
+                    IDButton1: "bt-test39-page" + page + "-1",
+                    txtButton1: "Würfel",
+                    IDButton2: "bt-test39-page" + page + "-2",
+                    txtButton2: "Rhombus",
+                    IDButton3: "bt-test39-page" + page + "-3",
+                    txtButton3: "Kreis",
+                    IDButton: "bt-test39-page" + page + "-continuer",
+                    txtButton: "Weiter"
+                });
+                break;
+
+            case 73:
+                let figur_abrufen = Number(req.query.figur_abrufen);
+                
+                res.render('clinician/test-screens/words_list/page16', {
+                    text1: "SCORES",
+                    text2: "Figur Abrufen = " + figur_abrufen,
                     IDButtonLeft: "bt-test39-page" + page + "-retour",
                     txtButtonLeft: "Zurück",
                     IDButtonRight: "bt-test39-page" + page + "-terminer",
