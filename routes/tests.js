@@ -21,5 +21,6 @@ router.get('/digital_span', testController.test37_Digital_Span_GetPage);
 router.get('/bnt_15', testController.test38_BNT_15_GetPage);
 router.get('/words_list', testController.test39_Words_List_GetPage);
 router.get('/stroop_victoria_2', testController.test40_Stroop_Victoria_2_GetPage);
+router.get('/trial_making_test', testController.test41_Trial_Making_Test_GetPage);
 
 module.exports = router;

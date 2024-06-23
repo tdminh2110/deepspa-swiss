@@ -551,6 +551,22 @@ const upload_stroop_victoria_2 = multer({ storage : storage_test40_stroop_victor
 
 router.post('/upload-multifiles-stroop-victoria-2', upload_stroop_victoria_2.array("audios", STROOP_VICTORIA_2_NUMBER_OF_AUDIOS + 1), patientController.postUploadMultiFiles);
 
+/////////// Test41 - Trial Making Test /////////////////////////////////////////////
+
+var storage_test41_trial_making_test = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, MyGlobals.popPathFromIDPatientAndTest_PatientInformationForUpload(req.session.iduser, "Trial_Making_Test"));
+    },
+
+    filename: function (req, file, cb) {
+        cb(null, file.originalname)
+    }
+});
+
+const upload_trial_making_test = multer({ storage : storage_test41_trial_making_test});
+
+router.post('/upload-singlefile-trial-making-test', upload_trial_making_test.single("video"), patientController.postUploadSingleFile);
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 router.get('/connection-already-exists', patientController.getConnectionAlreadyExists);
