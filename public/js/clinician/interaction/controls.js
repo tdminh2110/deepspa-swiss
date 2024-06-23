@@ -471,6 +471,10 @@ openTest("#Test40_Stroop_Victoria_2", "test40_stroop_victoria_2", "#Run_Test40_S
 openTest("#Test40_Stroop_Victoria_2_SC1", "test40_stroop_victoria_2_sc1", "#Run_Test40_Stroop_Victoria_2_SC1", "#BackListTests_Stroop_Victoria_2_SC1", 
         "#Test40_Stroop_Victoria_2_Checkbox_Record_Audio", "Test40", "record_audio", "load-list-of-tests", 1);
 
+openTest("#Test41_Trial_Making_Test", "test41_trial_making_test", "#Run_Test41_Trial_Making_Test", "#BackListTests_Trial_Making_Test", 
+        "#Test41_Trial_Making_Test_Checkbox_Record_Video", "Test41", "record_video", "load-list-of-tests", 0);
+
+
 //Common Function////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function offDocumentEvents(documentEvents) {

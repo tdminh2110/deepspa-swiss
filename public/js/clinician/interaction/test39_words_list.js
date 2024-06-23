@@ -73,7 +73,7 @@ socket.on('Test39', function(data) {
             if ((page == 16) || (page == 29) || (page == 42) || (page == 46) || 
                 ((page >= 49) && (page <= 68)))
                 $('#bt-test39-page' + page + '-' + number_word).attr("class","btn btn-warning btn-lg btn-block");
-            else if (page == 70)
+            else if ((page == 70) || (page == 72))
                 $('#bt-test39-page' + page + '-' + (number_word + 1)).attr("class","btn btn-warning btn-lg btn-block");
             else
                 $('#bt-test39-page' + page).attr("class","btn btn-warning btn-lg btn-block");
@@ -125,7 +125,7 @@ socket.on('Test39', function(data) {
                     });  
                     break;
 
-                case 2: case 3: case 4: case 44: case 45: 
+                case 2: case 3: case 4: case 44: case 45:
                     $('#MainScreenGame').load('/tests/words_list?page=' + page, 
                     function(strResponse, strStatus, xhr) {
                         if (strStatus == "success") {                         
@@ -155,7 +155,7 @@ socket.on('Test39', function(data) {
                 case 37: case 38: case 39: case 40: case 50: case 51: case 52: 
                 case 53: case 54: case 55: case 56: case 57: case 58: case 59:
                 case 60: case 61: case 62: case 63: case 64: case 65: case 66: 
-                case 67:                 
+                case 67: case 72:            
                     $('#MainScreenGame').load('/tests/words_list?page=' + page, 
                     function(strResponse, strStatus, xhr) {
                         if (strStatus == "success") {                         
@@ -265,6 +265,21 @@ socket.on('Test39', function(data) {
                         }
                     });  
                     break;
+
+                case 73:
+                    $('#MainScreenGame').load('/tests/words_list?page=' + page + 
+                        '&figur_abrufen=' + data['figur_abrufen'],
+                    function(strResponse, strStatus, xhr) {
+                        if (strStatus == "success") {                         
+                            test39_OnDocumentEventsOnPage(socket, page);
+                            if (test39_record_video == true) {
+                                setPatientStatus(1, 0, 0, 1);
+                            } else {
+                                setPatientStatus(1, 0, 0, 0);
+                            }
+                        }
+                    });  
+                    break;
             }            
             break;
         }
@@ -358,7 +373,7 @@ socket.on('Test39', function(data) {
             if ((page == 16) || (page == 29) || (page == 42) || (page == 46) ||
                 ((page >= 49) && (page <= 68)) )
                 $('#bt-test39-page' + page + '-' + number_word).attr("class","btn btn-secondary btn-lg btn-block");
-            else if (page == 70)
+            else if ((page == 70) || (page == 72))
                 $('#bt-test39-page' + page + '-' + (number_word + 1)).attr("class","btn btn-secondary btn-lg btn-block");
             else
                 $('#bt-test39-page' + page).attr("class","btn btn-secondary btn-lg btn-block");
@@ -388,6 +403,7 @@ function test39_OnDocumentEventsOnPage(socket, page) {
             test39_DocumentEvents.push('#bt-test39-page' + page + '-2');
             test39_DocumentEvents.push('#bt-test39-page' + page + '-3');
             test39_DocumentEvents.push('#bt-test39-page' + page + '-4');
+            test39_DocumentEvents.push('#bt-test39-page' + page + '-5');
             test39_DocumentEvents.push('#bt-test39-page' + page + '-terminer');
             test39_DocumentEvents.push('#bt-test39-page' + page + '-continuer');
 
@@ -405,6 +421,10 @@ function test39_OnDocumentEventsOnPage(socket, page) {
 
             $(document).on("click", "#bt-test39-page" + page + "-4", function(e) {            
                 socket.emit('Test39', { 'type' : 'select-subtest', 'page' : page, 'value' : 4 });
+            });
+
+            $(document).on("click", "#bt-test39-page" + page + "-5", function(e) {            
+                socket.emit('Test39', { 'type' : 'select-subtest', 'page' : page, 'value' : 5 });
             });
 
             $(document).on("click", "#bt-test39-page" + page + "-terminer", function(e) {
@@ -499,7 +519,7 @@ function test39_OnDocumentEventsOnPage(socket, page) {
 
             break;        
         
-        case 43: case 47: case 69: case 71:
+        case 43: case 47: case 69: case 71: case 73:
             test39_DocumentEvents.push('#bt-test39-page' + page + '-retour');
             test39_DocumentEvents.push('#bt-test39-page' + page + '-terminer');
 
@@ -614,6 +634,24 @@ function test39_OnDocumentEventsOnPage(socket, page) {
             
             $(document).on("click", "#bt-test39-page" + page + "-continuer", function(e) {
                 socket.emit('Test39', { 'type' : 'hide-image', 'page' : page });
+                socket.emit('Test39', { 'type' : 'show-page', 'page' : (page + 1) });
+            });
+            break;
+
+        case 72:
+            for(let i = 1; i <= 3; i++) {
+                test39_DocumentEvents.push('#bt-test39-page' + page + '-' + i);
+            }
+
+            test39_DocumentEvents.push('#bt-test39-page' + page + '-continuer');
+
+            for(let i = 1; i <= 3; i++) {
+                $(document).on("click", '#bt-test39-page' + page + '-' + i, function(e) { 
+                    socket.emit('Test39', { 'type' : 'select-word', 'page' : page, 'word' : i });
+                });
+            }
+
+            $(document).on("click", "#bt-test39-page" + page + "-continuer", function(e) {
                 socket.emit('Test39', { 'type' : 'show-page', 'page' : (page + 1) });
             });
             break;
