@@ -15,6 +15,7 @@ const Test37_Digital_Span_Socket = require('./sockets/test37_digital_span');
 const Test38_BNT_15_Socket = require('./sockets/test38_bnt_15');
 const Test39_Words_List_Socket = require('./sockets/test39_words_list');
 const Test40_Stroop_Victoria_2_Socket = require('./sockets/test40_stroop_victoria_2');
+const Test41_Trial_Making_Test_Socket = require('./sockets/test41_trial_making_test');
 
 const sock = require('./sockets/senddata');
 const MyRooms = require('./roommanagement');
@@ -342,6 +343,10 @@ module.exports = {
 
             socket.on('Test40', (data, fn) => {
                 Test40_Stroop_Victoria_2_Socket.test40_stroop_victoria_2_socket(socket, data);
+            });
+
+            socket.on('Test41', (data, fn) => {
+                Test41_Trial_Making_Test_Socket.test41_trial_making_test_socket(socket, data);
             });
         });
     }
